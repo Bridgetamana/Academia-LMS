@@ -15,6 +15,42 @@ const Features = () => {
         </p>
 
         <h2>Features</h2>
+
+        {/* Add Academia features here */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <Image
+              src=""
+              alt="Feature 1"
+              width={300}
+              height={200}
+            />
+            <h3>Automated Task Management</h3>
+            <p>Efficiently manage assignments and deadlines.</p>
+          </div>
+          <div>
+            <Image
+              src=""
+              alt="Feature 2"
+              width={300}
+              height={200}
+            />
+            <h3>Personalized Study Schedules</h3>
+            <p>Create customized study plans based on individual habits.</p>
+          </div>
+          <div>
+            <Image
+              src=""
+              alt="Feature 3"
+              width={300}
+              height={200}
+            />
+            <h3>Real-Time Notifications</h3>
+            <p>
+              Stay updated with instant alerts on course updates and deadlines.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

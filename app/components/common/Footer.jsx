@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <section>
       {/* copyright */}
-      <footer className=" text-black px-6 py-3">
+      <footer className=" text-[#79767D] px-6 py-3">
         {/* lg:h-[80px] */}
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 space-y-5 lg:space-y-0 lg:flex gap-4 lg:gap-8 justify-between items-center">
           <p className="py- text-center lg:text-start">

@@ -95,18 +95,18 @@ const SignUp = () => {
 
             <button
               type="submit"
-              className="btn btn-ghost bg-docify-primary hover:bg-docify-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
+              className="btn btn-ghost bg-academia-primary hover:bg-academia-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
             >
               Sign Up
             </button>
 
             <p className="text-[#7A8A98] text-[18px] max-w-sm">
               By Signing up, you agree to our{" "}
-              <Link href="" className="hover:underline text-docify-teal">
+              <Link href="" className="hover:underline text-academia-primary">
                 Terms of Service
               </Link>{" "}
               and{" "}
-              <Link href="" className="hover:underline text-docify-teal">
+              <Link href="" className="hover:underline text-academia-primary">
                 Privacy Policy
               </Link>
             </p>
@@ -115,7 +115,7 @@ const SignUp = () => {
 
         <Link
           href="/signin"
-          className="btn btn-ghost bg-docify-teal hover:bg-docify-teal/90 rounded-none text-base md:text-[20px] text-white font-semibold"
+          className="btn btn-ghost bg-academia-primary hover:bg-academia-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
         >
           Sign In
         </Link>

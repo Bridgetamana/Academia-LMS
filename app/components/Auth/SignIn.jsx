@@ -45,14 +45,14 @@ const SignIn = () => {
 
           <button
             type="submit"
-            className="btn btn-ghost bg-docify-primary hover:bg-docify-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
+            className="btn btn-ghost bg-academia-primary hover:bg-academia-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
           >
             Sign In
           </button>
 
           <Link
             href="/forgot-password"
-            className="hover:underline text-docify-teal w-max"
+            className="hover:underline text-academia-primary w-max"
           >
             Forgot Password?
           </Link>
@@ -60,7 +60,7 @@ const SignIn = () => {
 
         <Link
           href="/signup"
-          className="btn btn-ghost bg-docify-teal hover:bg-docify-teal/90 rounded-none text-base md:text-[20px] text-white font-semibold"
+          className="btn btn-ghost bg-academia-primary hover:bg-academia-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
         >
           Sign Up
         </Link>

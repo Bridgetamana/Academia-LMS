@@ -14,64 +14,73 @@ const Features = () => {
           An overview of our features.
         </p>
 
-        {/* Add Academia features here */}
+        {/* Academia features grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="card w-96 shadow-xl ">
+          {/* Feature: Stay Updated, Instantly */}
+          <div className="card w-96 shadow-xl">
             <div className="card-body">
-              <span className=" text-start">
+              <span className="text-start">
                 <FaBell className="text-3xl mb-4 text-[#79767D]" />
                 <h2 className="card-title">Stay Updated, Instantly</h2>
               </span>
-              <p className=" text-start text-[#79767D]">
+              <p className="text-start text-[#79767D]">
                 Receive immediate notifications when new course materials,
                 lecture notes, or supplemental readings are available.
               </p>
             </div>
           </div>
+
+          {/* Feature: All Your Dates in One Place */}
           <div className="card w-96 shadow-xl">
             <div className="card-body">
-              <span className=" text-start">
+              <span className="text-start">
                 <FaSync className="text-3xl mb-4 text-[#79767D]" />
                 <h2 className="card-title">All Your Dates in One Place</h2>
               </span>
-              <p className=" text-start text-[#79767D]">
+              <p className="text-start text-[#79767D]">
                 Sync your academic calendar with your personal one. Keep all
                 important dates in one convenient location.
               </p>
             </div>
           </div>
+
+          {/* Feature: Never Miss a Deadline */}
           <div className="card w-96 shadow-xl">
             <div className="card-body">
-              <span className=" text-start">
+              <span className="text-start">
                 <FaClock className="text-3xl mb-4 text-[#79767D]" />
                 <h2 className="card-title">Never Miss a Deadline</h2>
               </span>
-              <p className=" text-start text-[#79767D]">
+              <p className="text-start text-[#79767D]">
                 Get timely reminders for upcoming deadlines, assignments,
                 quizzes, and exams to ensure you stay on top of your academic
                 responsibilities.
               </p>
             </div>
           </div>
+
+          {/* Feature: Quick PDF Summaries */}
           <div className="card w-96 shadow-xl">
             <div className="card-body">
-              <span className=" text-start">
+              <span className="text-start">
                 <FaFile className="text-3xl mb-4 text-[#79767D]" />
                 <h2 className="card-title">Quick PDF Summaries</h2>
               </span>
-              <p className=" text-start text-[#79767D]">
+              <p className="text-start text-[#79767D]">
                 Automatically generate concise summaries of lengthy PDFs. Save
                 time and quickly grasp key points from your course materials.
               </p>
             </div>
           </div>
+
+          {/* Feature: Efficient Assignment Management */}
           <div className="card w-96 shadow-xl">
             <div className="card-body">
-              <span className=" text-start">
+              <span className="text-start">
                 <FaCalendar className="text-3xl mb-4 text-[#79767D]" />
                 <h2 className="card-title">Efficient Assignment Management</h2>
               </span>
-              <p className=" text-start text-[#79767D]">
+              <p className="text-start text-[#79767D]">
                 Educators can schedule, manage, and monitor assignments with
                 ease. Enhance the teaching and learning experience with
                 streamlined workflows.

@@ -7,27 +7,18 @@ const Hero = () => {
       {/* bg-[url('/assets/images/AI-mobile.png')] bg-no-repeat bg-contain lg:bg-none bg-right */}
 
       <div className="lg:space-y-16 space-y-8 flex-none lg:max-w-[440px] text-left">
-        <div className="flex items-center">
-          <div className="bg-[#00B2A9] h-[143px] lg:h-[215px] w-[56px] lg:w-[76px]" />
-          <h1 className="text-[#1E1C27] font-medium text-[20px] md:text-[36px] -ml-10">
-            Fast and Intuitive <br />
-            <span className="text-[80px] md:text-[100px] lg:text-[120px] xl:text-[144px] leading-none font-bold text-[#1A1A1A]">
-              CARE
-            </span>
+        {/* <div className="bg-[#00B2A9] h-[143px] lg:h-[215px] w-[56px] lg:w-[76px]" /> */}
+        <div>
+          <h1 className="text-[#1E1C27] font-medium text-[28px] md:text-[36px]">
+            Academia LMS: Your All-in-One Solution
           </h1>
-        </div>
-        <div className="flex gap-4 items-center backdrop-blur-sm bg-white/40 lg:bg-transparent lg:backdrop-blur-none">
-          <div className="bg-[#8A2387] h-[57px] w-[4px]" />
-          <p className="text-[#7A8A98] max-w-xl leading-relaxed text-[14px] md:text-base">
-            Lorem ipsum
+          <p className="py-6">
+            Effortlessly manage your academic responsibilities and boost
+            productivity with our comprehensive platform for students and
+            educators.
           </p>
-        </div>
-        <div className="lg:pt-6">
-          <button
-            type="button"
-            className="border border-transparent md:border-[#1E1C27] bg-[#8A2387] md:bg-transparent px-[72px] py-[24px] font-bold text-[14px] text-white md:text-[#1E1C27] w-full md:w-max"
-          >
-            Let&apos;s Go
+          <button className="text-white bg-academia-primary hover:bg-academia-primary/90 py-3 px-4 btn btn-ghost font-medium rounded-none text-[14px]">
+            Sign Up
           </button>
         </div>
       </div>

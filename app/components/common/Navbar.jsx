@@ -8,14 +8,6 @@ import Link from "next/link";
 const Navbar = () => {
   const [state, setState] = useState(false);
 
-  const navigation = [
-    { title: "Home", path: "/" },
-    { title: "About", path: "/about" },
-    { title: "Services", path: "/services" },
-    { title: "Contact", path: "/contact" },
-    { title: "FAQ", path: "/faq" },
-  ];
-
   return (
     <nav className="w-full border-b md:border-0 sticky top-0 backdrop-blur-md z-[999]">
       <div className="items-center max-w-screen-2xl mx-auto md:flex">
@@ -35,32 +27,6 @@ const Navbar = () => {
               )}
             </button>
           </div>
-        </div>
-        <div
-          className={`flex-1 justify-self-center pb-3 md:block md:pb-0 md:mt-0 ${
-            state
-              ? "flex justify-center text-center pt-12 absolute h-screen w-full p-4 backdrop-blur-lg bg-black/70 text-white"
-              : "hidden"
-          }`}
-        >
-          <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-            {navigation.map((item, idx) => {
-              return (
-                <li
-                  key={idx}
-                  className="md:text-[14px] text-[22px] text-white md:text-[#1E1C27] font-medium hover:text-academia-primary duration-150 uppercase"
-                >
-                  <Link
-                    href={item.path}
-                    className="group transition duration-300"
-                  >
-                    {item.title}
-                    <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-academia-primary" />
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
         </div>
         <div className="hidden md:inline-block md:px-8">
           <Link

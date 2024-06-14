@@ -10,8 +10,8 @@ export default function Home() {
     <>
       <BaseLayout>
         <Hero />
-        <hr className="border border-[#DFE9F3]" />
         <Features />
+        <hr className="border border-[#DFE9F3]" />
       </BaseLayout>
     </>
   );

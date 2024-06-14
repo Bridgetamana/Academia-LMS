@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <section>
       {/* copyright */}
-      <footer className="bg-[#141416] text-white px-6 py-3">
+      <footer className=" text-[#79767D] px-6 py-3">
         {/* lg:h-[80px] */}
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 space-y-5 lg:space-y-0 lg:flex gap-4 lg:gap-8 justify-between items-center">
           <p className="py- text-center lg:text-start">
@@ -62,7 +62,7 @@ const Footer = () => {
               >
                 <path
                   d="M30 25C30 25 22.6352 15 20 15C17.3647 15 10 25 10 25"
-                  stroke="white"
+                  stroke="black"
                   stroke-width="1.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"

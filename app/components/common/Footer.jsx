@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <section>
       {/* copyright */}
-      <footer className=" text-[#79767D] px-6 py-3">
+      <footer className=" text-[#080808] px-6 py-3">
         {/* lg:h-[80px] */}
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 space-y-5 lg:space-y-0 lg:flex gap-4 lg:gap-8 justify-between items-center">
           <p className="py- text-center lg:text-start">
@@ -35,16 +35,16 @@ const Footer = () => {
           </p>
           <span className="flex gap-6 items-center justify-center lg:justify-start">
             <Link href="" className="">
-              <FaInstagram className="w-5 h-5 hover:text-academia-primary duration-150" />
+              <FaInstagram className="w-4 h-4 hover:text-academia-primary duration-150" />
             </Link>
             <Link href="" className="">
-              <FaLinkedinIn className="w-5 h-5 hover:text-academia-primary duration-150" />
+              <FaLinkedinIn className="w-4 h-4 hover:text-academia-primary duration-150" />
             </Link>
             <Link href="" className="">
-              <FaFacebookF className="w-5 h-5 hover:text-academia-primary duration-150" />
+              <FaFacebookF className="w-4 h-4 hover:text-academia-primary duration-150" />
             </Link>
             <Link href="" className="">
-              <FaXTwitter className="w-5 h-5 hover:text-academia-primary duration-150" />
+              <FaXTwitter className="w-4 h-4 hover:text-academia-primary duration-150" />
             </Link>
 
             <button

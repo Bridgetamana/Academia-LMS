@@ -28,8 +28,11 @@ const SignUp = () => {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-6 bg-white p-[24px] lg:p-[40px] rounded-md shadow-2xl"
+            className="flex flex-col gap-6 bg-white p-[24px] lg:p-[40px] rounded-md shadow-xl"
           >
+            <h2 className="text-[#080808] text-xl font-medium pb-4">
+              Create a free account
+            </h2>
             <input
               id="name"
               name="name"
@@ -37,7 +40,7 @@ const SignUp = () => {
               placeholder="Name"
               required
               autoFocus
-              className="w-full p-3 text-[#7A8A98] bg-[#7A8A983D] rounded-none outline-none border focus:border-black"
+              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
             />
             <input
               id="email"
@@ -45,7 +48,7 @@ const SignUp = () => {
               type="email"
               placeholder="Email"
               required
-              className="w-full p-3 text-[#7A8A98] bg-[#7A8A983D] rounded-none outline-none border focus:border-black"
+              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
             />
             <div className="relative w-full">
               <button
@@ -54,9 +57,9 @@ const SignUp = () => {
                 onClick={() => setPasswordHidden(!isPasswordHidden)}
               >
                 {isPasswordHidden ? (
-                  <FiEye className="w-6 h-6" />
+                  <FiEye className="w-5 h-5" />
                 ) : (
-                  <FiEyeOff className="w-6 h-6" />
+                  <FiEyeOff className="w-5 h-5" />
                 )}
               </button>
               <input
@@ -65,7 +68,7 @@ const SignUp = () => {
                 type={isPasswordHidden ? "password" : "text"}
                 placeholder="Password"
                 required
-                className="w-full pr-12 pl-3 py-3 text-[#7A8A98] bg-[#7A8A983D] rounded-none outline-none border focus:border-black"
+                className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
               />
             </div>
 
@@ -78,9 +81,9 @@ const SignUp = () => {
                 }
               >
                 {isConfirmPasswordHidden ? (
-                  <FiEye className="w-6 h-6" />
+                  <FiEye className="w-5 h-5" />
                 ) : (
-                  <FiEyeOff className="w-6 h-6" />
+                  <FiEyeOff className="w-5 h-5" />
                 )}
               </button>
               <input
@@ -89,13 +92,13 @@ const SignUp = () => {
                 type={isConfirmPasswordHidden ? "password" : "text"}
                 placeholder="Confirm password"
                 required
-                className="w-full pr-12 pl-3 py-3 text-[#7A8A98] bg-[#7A8A983D] rounded-none outline-none border focus:border-black"
+                className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
               />
             </div>
 
             <button
               type="submit"
-              className="btn btn-ghost bg-academia-primary hover:bg-academia-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
+              className="py-2 bg-academia-primary hover:bg-academia-primary/90 rounded-full text-base text-white font-semibold "
             >
               Sign Up
             </button>
@@ -110,15 +113,18 @@ const SignUp = () => {
                 Privacy Policy
               </Link>
             </p>
+            <hr />
+            <p className="text-sm">
+              Already have an account?{" "}
+              <Link
+                href="/signin"
+                className="text-academia-primary cursor-pointer link link-hover"
+              >
+                Sign In
+              </Link>
+            </p>
           </form>
         )}
-
-        <Link
-          href="/signin"
-          className="btn btn-ghost bg-academia-primary hover:bg-academia-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
-        >
-          Sign In
-        </Link>
       </div>
     </AuthLayout>
   );

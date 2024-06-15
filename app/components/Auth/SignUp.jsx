@@ -30,8 +30,8 @@ const SignUp = () => {
             onSubmit={handleSubmit}
             className="flex flex-col gap-6 bg-white p-[24px] lg:p-[40px] rounded-md shadow-xl"
           >
-            <h2 className="text-[#080808] text-xl font-medium pb-4">
-              Create a free account
+            <h2 className="text-[#202020] text-xl font-semibold pb-4">
+              Create your account
             </h2>
             <input
               id="name"
@@ -98,7 +98,7 @@ const SignUp = () => {
 
             <button
               type="submit"
-              className="py-2 bg-academia-primary hover:bg-academia-primary/90 rounded-full text-base text-white font-semibold "
+              className="py-2 bg-academia-primary hover:bg-academia-primary/90 rounded-md text-base text-white font-semibold "
             >
               Sign Up
             </button>

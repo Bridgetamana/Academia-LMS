@@ -12,6 +12,9 @@ const SignIn = () => {
     <AuthLayout>
       <div className="flex flex-col gap-8 max-w-[480px] lg:w-[480px] mx-auto lg:mx-0 text-base md:text-[20px] font-medium">
         <form className="flex flex-col gap-6 bg-white p-[24px] lg:p-[40px] rounded-md shadow-2xl">
+          <h2 className="text-[#202020] text-xl font-semibold pb-4">
+            Welcome back
+          </h2>
           <input
             id="email"
             name="email"
@@ -19,7 +22,7 @@ const SignIn = () => {
             placeholder="Email"
             required
             autoFocus
-            className="w-full p-3 text-[#7A8A98] bg-[#7A8A983D] rounded-none outline-none border focus:border-black"
+            className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
           />
           <div className="relative w-full">
             <button
@@ -28,9 +31,9 @@ const SignIn = () => {
               onClick={() => setPasswordHidden(!isPasswordHidden)}
             >
               {isPasswordHidden ? (
-                <FiEye className="w-6 h-6" />
+                <FiEye className="w-5 h-5" />
               ) : (
-                <FiEyeOff className="w-6 h-6" />
+                <FiEyeOff className="w-5 h-5" />
               )}
             </button>
             <input
@@ -39,31 +42,35 @@ const SignIn = () => {
               type={isPasswordHidden ? "password" : "text"}
               placeholder="Password"
               required
-              className="w-full pr-12 pl-3 py-3 text-[#7A8A98] bg-[#7A8A983D] rounded-none outline-none border focus:border-black"
+              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
             />
           </div>
 
           <button
             type="submit"
-            className="btn btn-ghost bg-academia-primary hover:bg-academia-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
+            className="py-3 bg-academia-primary hover:bg-academia-primary/90 rounded-md text-base text-white font-semibold "
           >
             Sign In
           </button>
 
           <Link
             href="/forgot-password"
-            className="hover:underline text-academia-primary w-max"
+            className="text-sm text-academia-primary link link-hover"
           >
             Forgot Password?
           </Link>
-        </form>
 
-        <Link
-          href="/signup"
-          className="btn btn-ghost bg-academia-primary hover:bg-academia-primary/90 rounded-none text-base md:text-[20px] text-white font-semibold"
-        >
-          Sign Up
-        </Link>
+          <hr />
+          <p className="text-sm">
+            Don't have an account yet?{" "}
+            <Link
+              href="/signup"
+              className="text-academia-primary cursor-pointer link link-hover"
+            >
+              Sign Up
+            </Link>
+          </p>
+        </form>
       </div>
     </AuthLayout>
   );

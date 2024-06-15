@@ -62,7 +62,7 @@ const SignIn = () => {
 
           <hr />
           <p className="text-sm">
-            Don't have an account yet?{" "}
+            Don&apos;t have an account yet?{" "}
             <Link
               href="/signup"
               className="text-academia-primary cursor-pointer link link-hover"

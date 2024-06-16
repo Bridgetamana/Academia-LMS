@@ -96,6 +96,14 @@ const SignUp = () => {
               />
             </div>
 
+            <select className="select select-bordered w-full max-w-xs">
+              <option disabled selected>
+                Account Type
+              </option>
+              <option>Teacher/Educator</option>
+              <option>Students</option>
+            </select>
+
             <button
               type="submit"
               className="py-2 bg-academia-general hover:bg-academia-general/90 rounded-md text-base text-white font-semibold "

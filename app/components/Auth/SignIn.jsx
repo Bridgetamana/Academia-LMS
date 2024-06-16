@@ -13,7 +13,7 @@ const SignIn = () => {
       <div className="flex flex-col gap-8 max-w-[480px] lg:w-[480px] mx-auto lg:mx-0 text-base md:text-[20px] font-medium">
         <form className="flex flex-col gap-6 bg-white p-[24px] lg:p-[40px] rounded-md shadow-2xl">
           <h2 className="text-[#202020] text-xl font-semibold pb-4">
-            Welcome back
+            Welcome back!
           </h2>
           <input
             id="email"
@@ -55,7 +55,7 @@ const SignIn = () => {
 
           <Link
             href="/forgot-password"
-            className="text-sm text-academia-general link link-hover"
+            className="text-sm text-academia-general link link-hover w-max"
           >
             Forgot Password?
           </Link>

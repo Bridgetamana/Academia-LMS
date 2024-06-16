@@ -40,7 +40,7 @@ const SignUp = () => {
               placeholder="Name"
               required
               autoFocus
-              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
+              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-general focus:bg-white lg:text-sm"
             />
             <input
               id="email"
@@ -48,7 +48,7 @@ const SignUp = () => {
               type="email"
               placeholder="Email"
               required
-              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
+              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-general focus:bg-white lg:text-sm"
             />
             <div className="relative w-full">
               <button
@@ -68,7 +68,7 @@ const SignUp = () => {
                 type={isPasswordHidden ? "password" : "text"}
                 placeholder="Password"
                 required
-                className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
+                className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-general focus:bg-white lg:text-sm"
               />
             </div>
 
@@ -92,33 +92,33 @@ const SignUp = () => {
                 type={isConfirmPasswordHidden ? "password" : "text"}
                 placeholder="Confirm password"
                 required
-                className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
+                className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-general focus:bg-white lg:text-sm"
               />
             </div>
 
             <button
               type="submit"
-              className="py-2 bg-academia-primary hover:bg-academia-primary/90 rounded-md text-base text-white font-semibold "
+              className="py-2 bg-academia-general hover:bg-academia-general/90 rounded-md text-base text-white font-semibold "
             >
               Sign Up
             </button>
 
-            <p className="text-[#7A8A98] text-[18px] max-w-sm">
+            <p className="text-[#7A8A98] lg:text-sm max-w-sm">
               By Signing up, you agree to our{" "}
-              <Link href="" className="hover:underline text-academia-primary">
+              <Link href="" className="hover:underline text-academia-general">
                 Terms of Service
               </Link>{" "}
               and{" "}
-              <Link href="" className="hover:underline text-academia-primary">
+              <Link href="" className="hover:underline text-academia-general">
                 Privacy Policy
               </Link>
             </p>
             <hr />
-            <p className="text-sm">
+            <p className="lg:text-sm">
               Already have an account?{" "}
               <Link
                 href="/signin"
-                className="text-academia-primary cursor-pointer link link-hover"
+                className="text-academia-general cursor-pointer link link-hover"
               >
                 Sign In
               </Link>

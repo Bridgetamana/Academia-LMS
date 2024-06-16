@@ -22,7 +22,7 @@ const DashboardSider = () => {
       <aside className="flex flex-col space-y-4 w-[15rem]  h-screen overflow-hidden  shadow-xl bg-white border-r border-r-gray-300 py-2 overflow-y-scroll">
         <Link
           href=""
-          className="text-2xl font-semibold mx-auto py-2 text-academia-primary-80"
+          className="text-2xl font-semibold mx-auto py-2 text-academia-general-80"
         >
           Academia
         </Link>

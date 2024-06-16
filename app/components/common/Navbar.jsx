@@ -8,13 +8,13 @@ const Navbar = () => {
       <div className="items-center max-w-screen-2xl mx-auto flex justify-between p-4 lg:p-0">
         <div className="flex items-center  px-4 md:px-8 justify-between py-3 md:py-5 md:block">
           <Link href="/" className="font-semibold text-xl">
-            <p>Academia</p>
+            Academia
           </Link>
         </div>
         <div className="md:px-8">
           <Link
             href="/signup"
-            className="py-3 px-6 font-medium text-[12px] text-white bg-academia-primary hover:bg-academia-primary/90 rounded-[24px] "
+            className="py-3 px-6 font-medium text-[12px] text-white bg-academia-general hover:bg-academia-general/90 rounded-[24px] "
           >
             Sign Up
           </Link>

@@ -59,7 +59,7 @@ export const sidebarData2 = [
   },
   {
     label: (
-      <Link href="/" className="text-base">
+      <Link href="/signin" className="text-base">
         Log Out
       </Link>
     ),

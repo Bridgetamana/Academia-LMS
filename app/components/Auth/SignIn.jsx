@@ -22,7 +22,7 @@ const SignIn = () => {
             placeholder="Email"
             required
             autoFocus
-            className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
+            className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-general text-sm"
           />
           <div className="relative w-full">
             <button
@@ -42,20 +42,20 @@ const SignIn = () => {
               type={isPasswordHidden ? "password" : "text"}
               placeholder="Password"
               required
-              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-primary text-sm"
+              className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-general text-sm"
             />
           </div>
 
           <button
             type="submit"
-            className="py-3 bg-academia-primary hover:bg-academia-primary/90 rounded-md text-base text-white font-semibold "
+            className="py-3 bg-academia-general hover:bg-academia-general/90 rounded-md text-base text-white font-semibold "
           >
             Sign In
           </button>
 
           <Link
             href="/forgot-password"
-            className="text-sm text-academia-primary link link-hover"
+            className="text-sm text-academia-general link link-hover"
           >
             Forgot Password?
           </Link>
@@ -65,7 +65,7 @@ const SignIn = () => {
             Don&apos;t have an account yet?{" "}
             <Link
               href="/signup"
-              className="text-academia-primary cursor-pointer link link-hover"
+              className="text-academia-general cursor-pointer link link-hover"
             >
               Sign Up
             </Link>

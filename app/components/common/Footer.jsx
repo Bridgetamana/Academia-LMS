@@ -35,23 +35,23 @@ const Footer = () => {
           </p>
           <span className="flex gap-6 items-center justify-center lg:justify-start">
             <Link href="" className="">
-              <FaInstagram className="w-4 h-4 hover:text-academia-primary duration-150" />
+              <FaInstagram className="w-4 h-4 hover:text-academia-general duration-150" />
             </Link>
             <Link href="" className="">
-              <FaLinkedinIn className="w-4 h-4 hover:text-academia-primary duration-150" />
+              <FaLinkedinIn className="w-4 h-4 hover:text-academia-general duration-150" />
             </Link>
             <Link href="" className="">
-              <FaFacebookF className="w-4 h-4 hover:text-academia-primary duration-150" />
+              <FaFacebookF className="w-4 h-4 hover:text-academia-general duration-150" />
             </Link>
             <Link href="" className="">
-              <FaXTwitter className="w-4 h-4 hover:text-academia-primary duration-150" />
+              <FaXTwitter className="w-4 h-4 hover:text-academia-general duration-150" />
             </Link>
 
             <button
               onClick={scrollToTop}
               title="Back to Top"
               type="button"
-              className="bg-academia-primary rounded-full hover:bg-academia-primary/90"
+              className="bg-academia-general rounded-full hover:bg-academia-general/90"
             >
               <svg
                 width="32"

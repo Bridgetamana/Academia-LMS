@@ -24,7 +24,7 @@ module.exports = {
         "why-choose-us": "#F6F6F6",
 
         academia: {
-          general: "#6bc327",
+          general: "#7E6FF2",
           dark: "#245305",
           primary: {
             80: "#9E9D24",

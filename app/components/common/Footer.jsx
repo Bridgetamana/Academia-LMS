@@ -9,6 +9,7 @@ import {
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
+import { IoChevronUp } from "react-icons/io5";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -51,23 +52,9 @@ const Footer = () => {
               onClick={scrollToTop}
               title="Back to Top"
               type="button"
-              className="bg-academia-general rounded-full hover:bg-academia-general/90"
+              className="bg-academia-general rounded-full hover:bg-academia-general/90 text-white p-2 hover:bg-gray-700"
             >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M30 25C30 25 22.6352 15 20 15C17.3647 15 10 25 10 25"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              <IoChevronUp className="w-5 h-5 " />
             </button>
           </span>
         </div>

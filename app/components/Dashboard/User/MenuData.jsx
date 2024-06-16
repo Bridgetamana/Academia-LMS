@@ -6,22 +6,21 @@ import {
   FiLogOut,
   FiSettings,
 } from "react-icons/fi";
-
-import { MdMenuOpen } from "react-icons/md";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
 
 export const sidebarData1 = [
   {
     label: (
-      <Link href="/dashboard" className="text-base">
+      <Link href="dashboard" className="text-base">
         Dashboard
       </Link>
     ),
-    icon: <MdMenuOpen className=" font-bold text-[#7C8493] w-5 h-5" />,
+    icon: <MdOutlineDashboardCustomize className=" font-bold text-[#7C8493] w-5 h-5" />,
     key: "dashboard",
   },
   {
     label: (
-      <Link href="/courses" className="text-base">
+      <Link href="courses" className="text-base">
         Courses
       </Link>
     ),
@@ -30,7 +29,7 @@ export const sidebarData1 = [
   },
   {
     label: (
-      <Link href="/calendar" className="text-base">
+      <Link href="calendar" className="text-base">
         Calendar
       </Link>
     ),
@@ -39,7 +38,7 @@ export const sidebarData1 = [
   },
   {
     label: (
-      <Link href="/resources" className="text-base">
+      <Link href="resources" className="text-base">
         Resources
       </Link>
     ),
@@ -50,7 +49,7 @@ export const sidebarData1 = [
 export const sidebarData2 = [
   {
     label: (
-      <Link href="/settings" className="text-base">
+      <Link href="settings" className="text-base">
         Settings
       </Link>
     ),

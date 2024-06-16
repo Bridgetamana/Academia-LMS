@@ -24,17 +24,11 @@ module.exports = {
         "why-choose-us": "#F6F6F6",
 
         academia: {
-          primary: "#6bc327",
+          neutral: "#827717",
           dark: "#245305",
-          neutral: {
-            10: "#101E14",
-            20: "#344639",
-            30: "#4E5F53",
-            40: "#748178",
-            50: "#A1AAA4",
-            60: "#CDD6D0",
-            70: "#E3E8E5",
-            80: "#F4F5F5",
+          primary: {
+            80: "#9E9D24",
+            90: "#827717",
           },
           error: {
             10: "#6A0101",

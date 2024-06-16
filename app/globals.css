@@ -13,6 +13,22 @@ img {
   /* user-drag: none; */
 }
 
+/* Change the background color of the selected menu item */
+.ant-menu-item-selected {
+  background-color: #f0f4c3 !important;
+}
+
+/* Change the text color of the selected menu item */
+.ant-menu-item-selected a {
+  color: #827717 !important;
+}
+
+/* Change the icon color of the selected menu item */
+
+.ant-menu-item-selected .ant-menu-item-icon {
+  color: #827717 !important;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

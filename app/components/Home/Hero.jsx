@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import School from "@/public/assets/images/school.jpg";
+import Illustration from "@/public/assets/images/certification-illustration.avif";
 import { useRouter } from "next/navigation";
 
 const Hero = () => {
@@ -33,7 +33,7 @@ const Hero = () => {
 
       <div className="lg:flex-1 lg:flex hidden text-center mt-4 lg:mt-0 lg:ml-6 max-w-[1080px] w-full">
         <Image
-          src={School}
+          src={Illustration}
           className="w-full lg:w-full h-ful"
           alt="school"
           width={900}

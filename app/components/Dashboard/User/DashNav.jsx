@@ -19,17 +19,17 @@ const notifications = [
 ];
 
 const profile = [
+  // {
+  //   key: "1",
+  //   label: <Link href="">Profile</Link>,
+  // },
   {
     key: "1",
-    label: <Link href="">Profile</Link>,
+    label: <Link href="settings">Settings</Link>,
   },
   {
     key: "2",
-    label: <Link href="">Settings</Link>,
-  },
-  {
-    key: "3",
-    label: <Link href="">Log Out</Link>,
+    label: <Link href="/signin">Log Out</Link>,
   },
 ];
 
@@ -59,7 +59,9 @@ const DashNav = () => {
               {getGreeting()}, <span>User</span>
             </p>
             <p className="text-sm hidden lg:flex">
-              Welcome back to the world of knowledge!
+              {/* Welcome back to the world of knowledge! */}
+              Your learning adventure continues!
+              {/* Ready to conquer new challenges today? */}
             </p>
           </span>
 

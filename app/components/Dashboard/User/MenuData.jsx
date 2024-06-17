@@ -7,6 +7,7 @@ import {
   FiSettings,
 } from "react-icons/fi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
+import { LuClipboardList } from "react-icons/lu";
 
 export const sidebarData1 = [
   {
@@ -35,7 +36,7 @@ export const sidebarData1 = [
         Assignments
       </Link>
     ),
-    icon: <FiBookOpen className=" font-bold text-[#7C8493] w-5 h-5" />,
+    icon: <LuClipboardList className=" font-bold text-[#7C8493] w-5 h-5" />,
     key: "assignments",
   },
   {
@@ -80,6 +81,7 @@ export const sidebarData2 = [
 export const activeKeys = [
   "dashboard",
   "courses",
+  "assignments",
   "calendar",
   "resources",
   "settings",

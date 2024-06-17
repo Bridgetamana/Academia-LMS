@@ -14,3 +14,5 @@ Our objective is to build a comprehensive LMS that supports both students and ed
 - **Next.js:** For building the React-based web application.
 - **Tailwind CSS:** For styling the application with a modern and responsive design.
 - **Daisy UI:** For pre-styled components to enhance the UI design and user experience.
+- **Ant Design (Antd)**: For high-quality React components in the application.
+- **React Calendar**: For integrating a flexible calendar component in the app, allowing users to select dates, navigate months and years.

@@ -48,7 +48,7 @@ const DashNav = () => {
 
   return (
     <>
-      <nav className="flex gap-6 items-center px-5 py-3 lg:py-5">
+      <nav className="flex gap-6 items-center px-4 lg:px-8 py-3 lg:py-5">
         <label htmlFor="my-drawer-2" className="flex lg:hidden">
           <CgMenuRightAlt size="25" />
         </label>

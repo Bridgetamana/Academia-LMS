@@ -3,6 +3,9 @@ import React from "react";
 import CalendarView from "./CalendarView";
 import { BsThreeDotsVertical, BsStopwatch } from "react-icons/bs";
 import Image from "next/image";
+import Course1 from "@/public/assets/images/course-1.jpg";
+import Course2 from "@/public/assets/images/course-2.jpg";
+import Link from "next/link";
 
 const Dashboard = () => {
   return (
@@ -18,23 +21,52 @@ const Dashboard = () => {
                 Some of the courses you've recently viewed or interacted with.
               </p>
             </span>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg p-1 relative h-32">
-                {/* <Image src={Course} className=""/> */}
-                <span className="flex justify-center">
-                  <span className="flex flex-col gap-1 absolute bottom-4">
-                    <p className="font-semibold">CSC 101 Group Project</p>
-                    <p className="text-xs font-medium">
-                      Self-paced course • 4 weeks
-                    </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {/* flex overflow-x-scroll */}
+              <Link href="" title="CSC 101" className="bg-white rounded-lg p-1">
+                <div className="bg-[#FCF0D7] rounded-lg p-1 relative pb-20">
+                  <Image src={Course1} alt="course" className="" />
+                  <span className="flex justify-center">
+                    <span className="flex flex-col gap-1 absolute bottom-4 px-4">
+                      <p className="font-semibold">CSC 101</p>
+                      <p className="text-xs font-medium">
+                        Self-paced course • 4 weeks
+                      </p>
+                    </span>
                   </span>
-                </span>
-              </div>
+                </div>
+              </Link>
+              <Link href="" title="CSC 101" className="bg-white rounded-lg p-1">
+                <div className="bg-[#CCF4FD] rounded-lg p-1 relative pb-20">
+                  <Image src={Course2} alt="course" className="" />
+                  <span className="flex justify-center">
+                    <span className="flex flex-col gap-1 absolute bottom-4 px-4">
+                      <p className="font-semibold">CSC 101</p>
+                      <p className="text-xs font-medium">
+                        Self-paced course • 4 weeks
+                      </p>
+                    </span>
+                  </span>
+                </div>
+              </Link>
+              <Link href="" title="CSC 101" className="bg-white rounded-lg p-1">
+                <div className="bg-[#FCF0D7] rounded-lg p-1 relative pb-20">
+                  <Image src={Course1} alt="course" className="" />
+                  <span className="flex justify-center">
+                    <span className="flex flex-col gap-1 absolute bottom-4 px-4">
+                      <p className="font-semibold">CSC 101</p>
+                      <p className="text-xs font-medium">
+                        Self-paced course • 4 weeks
+                      </p>
+                    </span>
+                  </span>
+                </div>
+              </Link>
             </div>
           </div>
 
           {/* calendar */}
-          <div className="">
+          <div className="place-self-end">
             <CalendarView />
           </div>
 

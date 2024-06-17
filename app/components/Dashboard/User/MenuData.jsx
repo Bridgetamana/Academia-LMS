@@ -15,7 +15,9 @@ export const sidebarData1 = [
         Dashboard
       </Link>
     ),
-    icon: <MdOutlineDashboardCustomize className=" font-bold text-[#7C8493] w-5 h-5" />,
+    icon: (
+      <MdOutlineDashboardCustomize className=" font-bold text-[#7C8493] w-5 h-5" />
+    ),
     key: "dashboard",
   },
   {
@@ -26,6 +28,15 @@ export const sidebarData1 = [
     ),
     icon: <FiBookOpen className=" font-bold text-[#7C8493] w-5 h-5" />,
     key: "courses",
+  },
+  {
+    label: (
+      <Link href="assignments" className="text-base">
+        Assignments
+      </Link>
+    ),
+    icon: <FiBookOpen className=" font-bold text-[#7C8493] w-5 h-5" />,
+    key: "assignments",
   },
   {
     label: (

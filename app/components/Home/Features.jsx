@@ -17,9 +17,9 @@ const Features = () => {
         </p>
 
         {/* Academia features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {/* Feature: Stay Updated, Instantly */}
-          <div className="card w-96 shadow-md">
+          <div className="card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md">
             <div className="card-body">
               <span className="text-start">
                 <span className="avatar placeholder p-3 rounded-lg bg-[#e3ddf8] mb-4">
@@ -35,7 +35,7 @@ const Features = () => {
           </div>
 
           {/* Feature: All Your Dates in One Place */}
-          <div className="card w-96 shadow-md">
+          <div className="card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md">
             <div className="card-body">
               <span className="text-start">
                 <span className="avatar placeholder p-3 rounded-lg bg-[#EAF0C9] mb-4">
@@ -51,7 +51,7 @@ const Features = () => {
           </div>
 
           {/* Feature: Never Miss a Deadline */}
-          <div className="card w-96 shadow-md">
+          <div className="card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md">
             <div className="card-body">
               <span className="text-start">
                 <span className="avatar placeholder p-3 rounded-lg bg-[#F6E2F8] mb-4">
@@ -68,7 +68,7 @@ const Features = () => {
           </div>
 
           {/* Feature: Quick PDF Summaries */}
-          <div className="card w-96 shadow-md">
+          <div className="card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md">
             <div className="card-body">
               <span className="text-start">
                 <span className="avatar placeholder p-3 rounded-lg bg-[#F8E4E1] mb-4">
@@ -84,7 +84,7 @@ const Features = () => {
           </div>
 
           {/* Feature: Efficient Assignment Management */}
-          <div className="card w-96 shadow-md">
+          <div className="card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md">
             <div className="card-body">
               <span className="text-start">
                 <span className="avatar placeholder p-3 rounded-lg bg-[#e3ddf8] mb-4">

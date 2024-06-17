@@ -4,7 +4,7 @@ Welcome to Academia LMS, developed for the PipeOps Hackathon 1.0! Our mission is
 
 ## Deployment
 
-This project is deployed and can be accessed at [https://complex-edge-trusty-fish-production.pipeops.app/](#).
+This project is deployed and can be accessed at [here](https://complex-edge-trusty-fish-production.pipeops.app/).
 
 ### Objective(s)
 Our objective is to build a comprehensive LMS that supports both students and educators, enabling efficient task management, real-time updates, and effective communication.

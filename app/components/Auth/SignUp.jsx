@@ -96,7 +96,7 @@ const SignUp = () => {
               />
             </div>
 
-            <select className="select select-bordered w-full max-w-xs">
+            <select className="select select-ghost select-bordered w-full outline-none border focus:border-academia-general focus:bg-white focus:outline-none">
               <option disabled selected>
                 Account Type
               </option>

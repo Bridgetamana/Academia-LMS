@@ -1,15 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AuthLayout } from "@/app/_layouts";
 import Link from "next/link";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
   const [isConfirmPasswordHidden, setConfirmPasswordHidden] = useState(true);
-
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setTimeout(() => {
+        router.push("/signin");
+      }, 5000); // Redirect after 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [isSubmitted, router]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -96,12 +107,15 @@ const SignUp = () => {
               />
             </div>
 
-            <select className="select select-ghost select-bordered w-full outline-none border focus:border-academia-general focus:bg-white focus:outline-none">
-              <option disabled selected>
+            <select
+              required
+              className="select select-ghost select-bordered w-full text-[#202020] bg-[#E8E8E8] outline-none border focus:border-academia-general focus:bg-white focus:outline-none"
+            >
+              <option disabled selected value="">
                 Account Type
               </option>
-              <option>Teacher/Educator</option>
-              <option>Students</option>
+              <option value="educator">Teacher/Educator</option>
+              <option value="student">Student</option>
             </select>
 
             <button

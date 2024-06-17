@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 space-y-5 lg:space-y-0 lg:flex gap-4 lg:gap-8 justify-between items-center">
           <p className="py- text-center lg:text-start">
             Copyright © {currentYear} All rights reserved{" "}
-            <Link href="" className="text-[#00B2A9] hover:underline">
+            <Link href="" className="text-academia-general hover:underline">
               {" "}
               Academia
             </Link>{" "}

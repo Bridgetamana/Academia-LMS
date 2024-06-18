@@ -15,18 +15,18 @@ img {
 
 /* Change the background color of the selected menu item */
 .ant-menu-item-selected {
-  background-color: #f0f4c3 !important;
+  background-color: #F8F9FF !important;
 }
 
 /* Change the text color of the selected menu item */
 .ant-menu-item-selected a {
-  color: #827717 !important;
+  color: #7E6FF2 !important;
   font-weight: 500;
 }
 
 /* Change the icon color of the selected menu item */
 .ant-menu-item-selected .ant-menu-item-icon {
-  color: #827717 !important;
+  color: #7E6FF2 !important;
 }
 
 ::-webkit-scrollbar {

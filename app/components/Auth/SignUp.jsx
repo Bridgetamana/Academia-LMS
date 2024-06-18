@@ -80,7 +80,7 @@ const SignUp = () => {
             id="name"
             name="name"
             type="text"
-            placeholder="Name"
+            placeholder="Full Name"
             required
             autoFocus
             className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-general focus:bg-white lg:text-sm"

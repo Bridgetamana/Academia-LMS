@@ -1,11 +1,5 @@
 import Link from "next/link";
-import {
-  FiBookOpen,
-  FiBox,
-  FiCalendar,
-  FiLogOut,
-  FiSettings,
-} from "react-icons/fi";
+import { FiBookOpen, FiCalendar, FiLogOut, FiSettings } from "react-icons/fi";
 import {
   MdOutlineDashboardCustomize,
   MdOutlineAssignmentTurnedIn,

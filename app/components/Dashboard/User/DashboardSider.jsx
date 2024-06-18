@@ -1,20 +1,118 @@
 "use client";
 
-import Image from "next/image";
-// import logo from "@/assets/logo.svg";
 import { useLayoutEffect, useState } from "react";
-import { usePathname } from "next/navigation";
-import { activeKeys, sidebarData1, sidebarData2 } from "./MenuData";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu } from "antd";
 import Link from "next/link";
-// import { CustomMenu as Menu } from "@/lib/AntdComponents";
+import useAuthStore from "@/app/_store/authStore";
+
+import {
+  FiBookOpen,
+  FiCalendar,
+  FiLogOut,
+  FiSettings,
+  FiBox,
+} from "react-icons/fi";
+import {
+  MdOutlineDashboardCustomize,
+  MdOutlineAssignmentTurnedIn,
+} from "react-icons/md";
+import { LuClipboardList } from "react-icons/lu";
+import { PiStudentBold } from "react-icons/pi";
 
 const DashboardSider = () => {
   const pathName = usePathname();
+  const router = useRouter();
+  const logout = useAuthStore((state) => state.logout);
   const [activePath, setActivePath] = useState("");
   useLayoutEffect(() => {
     setActivePath(activeKeys.filter((value) => pathName.includes(value))[0]);
   }, [pathName]);
+
+  const handleLogout = () => {
+    logout();
+    router.push("/signin");
+  };
+
+  const sidebarData1 = [
+    {
+      label: (
+        <Link href="dashboard" className="text-base">
+          Dashboard
+        </Link>
+      ),
+      icon: (
+        <MdOutlineDashboardCustomize className=" font-bold text-[#7C8493] w-5 h-5" />
+      ),
+      key: "dashboard",
+    },
+    {
+      label: (
+        <Link href="courses" className="text-base">
+          Courses
+        </Link>
+      ),
+      icon: <FiBookOpen className=" font-bold text-[#7C8493] w-5 h-5" />,
+      key: "courses",
+    },
+    {
+      label: (
+        <Link href="assignments" className="text-base">
+          Assignments
+        </Link>
+      ),
+      icon: <LuClipboardList className=" font-bold text-[#7C8493] w-5 h-5" />,
+      key: "assignments",
+    },
+    {
+      label: (
+        <Link href="calendar" className="text-base">
+          Calendar
+        </Link>
+      ),
+      icon: <FiCalendar className=" font-bold text-[#7C8493] w-5 h-5" />,
+      key: "calendar",
+    },
+    {
+      label: (
+        <Link href="resources" className="text-base">
+          Resources
+        </Link>
+      ),
+      icon: <FiBox className=" font-bold text-[#7C8493] w-5 h-5" />,
+      key: "resources",
+    },
+  ];
+
+  const sidebarData2 = [
+    {
+      label: (
+        <Link href="settings" className="text-base">
+          Settings
+        </Link>
+      ),
+      icon: <FiSettings className=" font-bold text-[#7C8493] w-5 h-5" />,
+      key: "settings",
+    },
+    {
+      label: (
+        <button onClick={handleLogout} className="text-base">
+          Log Out
+        </button>
+      ),
+      icon: <FiLogOut className="font-bold text-[#7C8493] w-5 h-5" />,
+      key: "logout",
+    },
+  ];
+
+  const activeKeys = [
+    "dashboard",
+    "courses",
+    "assignments",
+    "calendar",
+    "resources",
+    "settings",
+  ];
 
   return (
     <div className="drawer-side z-10 ">

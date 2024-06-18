@@ -1,4 +1,4 @@
-import { UserDashboardLayout } from "@/app/_layouts";
+import { AdminDashboardLayout } from "@/app/_layouts";
 import React from "react";
 import CalendarView from "./CalendarView";
 import { BsThreeDotsVertical, BsStopwatch } from "react-icons/bs";
@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const Dashboard = () => {
   return (
-    <UserDashboardLayout>
+    <AdminDashboardLayout>
       <section className="max-w-[1640px] flex flex-col gap-6 px-4 lg:px-8 py-8 md:h-screen overflow-y-scroll">
         <div className="grid grid-cols-1 lg:grid-cols-[65%_30%] gap-8">
           <div className="flex flex-col gap-6">
@@ -18,8 +18,7 @@ const Dashboard = () => {
                 Recently Accessed Courses
               </h2>
               <p className="text-sm">
-                Some of the courses you&apos;ve recently viewed or interacted
-                with.
+                Some of the courses you've recently viewed or interacted with.
               </p>
             </span>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -78,7 +77,7 @@ const Dashboard = () => {
             <span className="flex flex-col gap-2 bg-white rounded-lg p-6">
               <h2 className="lg:text-xl font-semibold">My Schedule</h2>
               <p className="text-sm">
-                Don&apos;t forget to check your daily schedule
+                Don't forget to check your daily schedule
               </p>
             </span>
 
@@ -104,7 +103,9 @@ const Dashboard = () => {
 
             {/* deadlines */}
             <div className="flex flex-col gap-4">
-              <h2 className="lg:text-lg font-semibold">Deadlines</h2>
+              <h2 className="lg:text-lg font-semibold">
+                Upcoming Assignment Submissions
+              </h2>
 
               <div className="bg-red-300 rounded-lg py-4 px-6 flex gap-6 justify-between items-center">
                 <span className="flex flex-col gap-2">
@@ -127,7 +128,7 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
-    </UserDashboardLayout>
+    </AdminDashboardLayout>
   );
 };
 

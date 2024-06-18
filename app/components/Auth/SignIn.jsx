@@ -4,14 +4,66 @@ import { useState } from "react";
 import { AuthLayout } from "@/app/_layouts";
 import Link from "next/link";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { getDoc, doc } from "firebase/firestore";
+import { auth, db } from "@/firebaseConfig";
+import { message } from "antd";
+import useAuthStore from "@/app/_store/authStore";
 
 const SignIn = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const setUser = useAuthStore((state) => state.setUser);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+
+    setIsSubmitting(true);
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      );
+
+      const user = userCredential.user;
+      const userDocRef = doc(db, "users", user.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        const { role } = userData;
+        setUser(user, role);
+
+        if (role === "educator") {
+          router.push("/admin/dashboard");
+        } else if (role === "student") {
+          router.push("/user/dashboard");
+        } else {
+          message.error("Unknown user role.");
+        }
+      } else {
+        message.error("User data not found.");
+      }
+    } catch (error) {
+      console.error("Error signing in:", error);
+      message.error(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <AuthLayout>
       <div className="flex flex-col gap-8 max-w-[480px] lg:w-[480px] mx-auto lg:mx-0 text-base md:text-[20px] font-medium">
-        <form className="flex flex-col gap-6 bg-white p-[24px] lg:p-[40px] rounded-md shadow-2xl">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-6 bg-white p-[24px] lg:p-[40px] rounded-md shadow-2xl"
+        >
           <h2 className="text-[#202020] text-xl font-semibold pb-4">
             Welcome back!
           </h2>
@@ -48,8 +100,12 @@ const SignIn = () => {
 
           <button
             type="submit"
-            className="py-3 bg-academia-general hover:bg-academia-general/90 rounded-md text-base text-white font-semibold "
+            className="py-2 flex gap-2 items-center justify-center bg-academia-general hover:bg-academia-general/90 rounded-md text-base text-white font-semibold "
+            disabled={isSubmitting}
           >
+            {isSubmitting && (
+              <span className="loading loading-spinner loading-sm" />
+            )}
             Sign In
           </button>
 

@@ -6,13 +6,7 @@ import { Menu } from "antd";
 import Link from "next/link";
 import useAuthStore from "@/app/_store/authStore";
 
-import {
-  FiBookOpen,
-  FiCalendar,
-  FiLogOut,
-  FiSettings,
-  FiBox,
-} from "react-icons/fi";
+import { FiBookOpen, FiCalendar, FiLogOut, FiSettings } from "react-icons/fi";
 import {
   MdOutlineDashboardCustomize,
   MdOutlineAssignmentTurnedIn,
@@ -20,11 +14,12 @@ import {
 import { LuClipboardList } from "react-icons/lu";
 import { PiStudentBold } from "react-icons/pi";
 
-const DashboardSider = () => {
+const DashboardSider2 = () => {
   const pathName = usePathname();
   const router = useRouter();
   const logout = useAuthStore((state) => state.logout);
   const [activePath, setActivePath] = useState("");
+
   useLayoutEffect(() => {
     setActivePath(activeKeys.filter((value) => pathName.includes(value))[0]);
   }, [pathName]);
@@ -42,7 +37,7 @@ const DashboardSider = () => {
         </Link>
       ),
       icon: (
-        <MdOutlineDashboardCustomize className=" font-bold text-[#7C8493] w-5 h-5" />
+        <MdOutlineDashboardCustomize className="font-bold text-[#7C8493] w-5 h-5" />
       ),
       key: "dashboard",
     },
@@ -52,8 +47,17 @@ const DashboardSider = () => {
           Courses
         </Link>
       ),
-      icon: <FiBookOpen className=" font-bold text-[#7C8493] w-5 h-5" />,
+      icon: <FiBookOpen className="font-bold text-[#7C8493] w-5 h-5" />,
       key: "courses",
+    },
+    {
+      label: (
+        <Link href="timetable" className="text-base">
+          Timetable
+        </Link>
+      ),
+      icon: <LuClipboardList className="font-bold text-[#7C8493] w-5 h-5" />,
+      key: "timetable",
     },
     {
       label: (
@@ -61,7 +65,9 @@ const DashboardSider = () => {
           Assignments
         </Link>
       ),
-      icon: <LuClipboardList className=" font-bold text-[#7C8493] w-5 h-5" />,
+      icon: (
+        <MdOutlineAssignmentTurnedIn className="font-bold text-[#7C8493] w-5 h-5" />
+      ),
       key: "assignments",
     },
     {
@@ -70,17 +76,17 @@ const DashboardSider = () => {
           Calendar
         </Link>
       ),
-      icon: <FiCalendar className=" font-bold text-[#7C8493] w-5 h-5" />,
+      icon: <FiCalendar className="font-bold text-[#7C8493] w-5 h-5" />,
       key: "calendar",
     },
     {
       label: (
-        <Link href="resources" className="text-base">
-          Resources
+        <Link href="students" className="text-base">
+          Students
         </Link>
       ),
-      icon: <FiBox className=" font-bold text-[#7C8493] w-5 h-5" />,
-      key: "resources",
+      icon: <PiStudentBold className="font-bold text-[#7C8493] w-5 h-5" />,
+      key: "students",
     },
   ];
 
@@ -91,7 +97,7 @@ const DashboardSider = () => {
           Settings
         </Link>
       ),
-      icon: <FiSettings className=" font-bold text-[#7C8493] w-5 h-5" />,
+      icon: <FiSettings className="font-bold text-[#7C8493] w-5 h-5" />,
       key: "settings",
     },
     {
@@ -108,32 +114,32 @@ const DashboardSider = () => {
   const activeKeys = [
     "dashboard",
     "courses",
-    "assignments",
     "calendar",
-    "resources",
+    "timetable",
+    "assignments",
+    "students",
     "settings",
   ];
 
   return (
-    <div className="drawer-side z-10 ">
+    <div className="drawer-side z-10">
       <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-      <aside className="flex flex-col space-y-4 w-[15rem]  h-screen overflow-hidden  shadow-xl bg-white border-r border-r-gray-300 py-2 overflow-y-scroll">
+      <aside className="flex flex-col space-y-4 w-[15rem] h-screen overflow-hidden shadow-xl bg-white border-r border-r-gray-300 py-2 overflow-y-scroll">
         <Link
           href=""
           className="text-2xl font-semibold mx-auto py-2 text-academia-primary-80"
         >
           Academia
         </Link>
-        <div className=" border border-gray-200 mt-6" />
-        <div className=" overflow-y-scroll space-y-5">
+        <div className="border border-gray-200 mt-6" />
+        <div className="overflow-y-scroll space-y-5">
           <Menu
             selectedKeys={[activePath]}
             items={sidebarData1}
             className="!space-y-4 !w-full"
             mode="inline"
           />
-          <div className=" border border-gray-200 mt-6" />
-
+          <div className="border border-gray-200 mt-6" />
           <Menu
             selectedKeys={[activePath]}
             items={sidebarData2}
@@ -146,4 +152,4 @@ const DashboardSider = () => {
   );
 };
 
-export default DashboardSider;
+export default DashboardSider2;

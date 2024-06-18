@@ -8,7 +8,7 @@ import Link from "next/link";
 import useAuthStore from "@/app/_store/authStore";
 import { useRouter } from "next/navigation";
 
-const DashNav = () => {
+const DashNav2 = () => {
   const displayName = useAuthStore((state) => state.displayName);
   const router = useRouter();
 
@@ -23,20 +23,6 @@ const DashNav = () => {
       return "Good evening";
     }
   };
-
-  const messages = [
-    {
-      key: "1",
-      label: <p className="">No messages yet</p>,
-    },
-  ];
-
-  const notifications = [
-    {
-      key: "1",
-      label: <p className="">(0) notifications</p>,
-    },
-  ];
 
   const profile = [
     {
@@ -59,6 +45,20 @@ const DashNav = () => {
     },
   ];
 
+  const messages = [
+    {
+      key: "1",
+      label: <p className="">No messages yet</p>,
+    },
+  ];
+
+  const notifications = [
+    {
+      key: "1",
+      label: <p className="">(0) notifications</p>,
+    },
+  ];
+
   return (
     <>
       <nav className="flex gap-6 items-center px-4 lg:px-8 py-3 lg:py-5">
@@ -69,12 +69,12 @@ const DashNav = () => {
         <div className="w-full flex gap-8 justify-between items-center">
           <span className="flex flex-col gap-1">
             <p className="text-[14px] xs:text-base lg:text-xl font-semibold">
-              {getGreeting()}, <span>{displayName || "User"}</span>
+              {getGreeting()}, Educator <span>{displayName}</span>
             </p>
             <p className="text-sm hidden lg:flex">
-              {/* Welcome back to the world of knowledge! */}
-              Your learning adventure continues!
-              {/* Ready to conquer new challenges today? */}
+              {/* Empowering minds, one lesson at a time! */}
+              {/* Let's inspire minds and shape the future together! */}
+              Ready to make a difference today?
             </p>
           </span>
 
@@ -118,7 +118,7 @@ const DashNav = () => {
             >
               <button type="button" className="avatar w-10 active:scale-95">
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt=''
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
                   className="rounded-full"
                 />
               </button>
@@ -131,4 +131,4 @@ const DashNav = () => {
   );
 };
 
-export default DashNav;
+export default DashNav2;

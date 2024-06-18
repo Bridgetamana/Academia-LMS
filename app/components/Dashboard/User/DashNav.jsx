@@ -118,7 +118,7 @@ const DashNav = () => {
             >
               <button type="button" className="avatar w-10 active:scale-95">
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt=''
                   className="rounded-full"
                 />
               </button>

@@ -18,7 +18,8 @@ const Dashboard = () => {
                 Recently Accessed Courses
               </h2>
               <p className="text-sm">
-                Some of the courses you've recently viewed or interacted with.
+                Some of the courses you&apos;ve recently viewed or interacted
+                with.
               </p>
             </span>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -77,7 +78,7 @@ const Dashboard = () => {
             <span className="flex flex-col gap-2 bg-white rounded-lg p-6">
               <h2 className="lg:text-xl font-semibold">My Schedule</h2>
               <p className="text-sm">
-                Don't forget to check your daily schedule
+                Don&apos;t forget to check your daily schedule
               </p>
             </span>
 

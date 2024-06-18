@@ -2,19 +2,25 @@
 
 import { AdminDashboardLayout } from "@/app/_layouts";
 import React, { useState } from "react";
+import { FaPlus } from "react-icons/fa";
+import CreateCourseModal from "../CreateNewCourse";
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState("");
-
-  const courses = [
+  const [courses, setCourses] = useState([
     { title: "Communication skills", code: "Gst 102", progress: 20 },
     { title: "Nigerian People and culture", code: "Gst 203", progress: 100 },
     { title: "Communication skills", code: "Gst 102", progress: 50 },
-  ];
+  ]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredCourses = courses.filter((course) =>
     course.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleCreateCourse = (newCourse) => {
+    setCourses([...courses, newCourse]);
+  };
 
   return (
     <AdminDashboardLayout>
@@ -48,7 +54,7 @@ const Courses = () => {
                   type="search"
                   id="default-search"
                   className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-[#B9B8FB] focus:border-[#B9B8FB] outline-none"
-                  placeholder="find course"
+                  placeholder="Find course"
                   required
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -56,8 +62,11 @@ const Courses = () => {
               </div>
             </form>
             <div className="flex items-center">
-              <button className="btn btn-ghost text-academia-general">
-                <p className="text-lg">+</p>
+              <button
+                className="btn btn-ghost text-academia-general"
+                onClick={() => setIsModalOpen(true)}
+              >
+                <FaPlus className="mr-2" />
                 Create Course
               </button>
             </div>
@@ -91,6 +100,13 @@ const Courses = () => {
             ))}
           </div>
         </div>
+
+        {/* Modal */}
+        <CreateCourseModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onCreate={handleCreateCourse}
+        />
       </section>
     </AdminDashboardLayout>
   );

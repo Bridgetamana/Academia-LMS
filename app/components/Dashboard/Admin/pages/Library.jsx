@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { AdminDashboardLayout } from "@/app/_layouts";
 import { FaUpload } from "react-icons/fa";
@@ -72,10 +72,7 @@ const Assignments = () => {
                   </thead>
                   <tbody>
                     {uploadedFiles.map((file, index) => (
-                      <tr
-                        key={index}
-                        className="hover:bg-slate-300 cursor-pointer rounded-md"
-                      >
+                      <tr key={index} className="hover:bg-slate-300 cursor-pointer rounded-md">
                         <th>1</th>
                         <td>{file.name}</td>
                         <td>{file.date}</td>

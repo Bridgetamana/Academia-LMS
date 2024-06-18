@@ -88,6 +88,15 @@ const DashboardSider2 = () => {
       icon: <PiStudentBold className="font-bold text-[#7C8493] w-5 h-5" />,
       key: "students",
     },
+    {
+      label: (
+        <Link href="library" className="text-base">
+          Library
+        </Link>
+      ),
+      icon: <PiStudentBold className="font-bold text-[#7C8493] w-5 h-5" />,
+      key: "library",
+    },
   ];
 
   const sidebarData2 = [
@@ -119,6 +128,7 @@ const DashboardSider2 = () => {
     "assignments",
     "students",
     "settings",
+    "library",
   ];
 
   return (

@@ -66,6 +66,15 @@ export const sidebarData1 = [
     icon: <PiStudentBold className=" font-bold text-[#7C8493] w-5 h-5" />,
     key: "students",
   },
+  {
+    label: (
+      <Link href="library" className="text-base">
+        library
+      </Link>
+    ),
+    icon: <PiStudentBold className=" font-bold text-[#7C8493] w-5 h-5" />,
+    key: "library",
+  },
 ];
 export const sidebarData2 = [
   {
@@ -95,4 +104,5 @@ export const activeKeys = [
   "assignments",
   "students",
   "settings",
+  "library",
 ];

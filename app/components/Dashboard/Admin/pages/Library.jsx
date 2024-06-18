@@ -4,7 +4,7 @@ import { AdminDashboardLayout } from "@/app/_layouts";
 import { FaUpload } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 
-const Assignments = () => {
+const Library = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const Assignments = () => {
                   </thead>
                   <tbody>
                     {uploadedFiles.map((file, index) => (
-                      <tr key={index} className="hover:bg-slate-300 cursor-pointer rounded-md">
+                      <tr key={index} className="cursor-pointer rounded-md">
                         <th>1</th>
                         <td>{file.name}</td>
                         <td>{file.date}</td>
@@ -101,10 +101,11 @@ const Assignments = () => {
               <p>No files uploaded yet.</p>
             )}
           </div>
+
         </div>
       </section>
     </AdminDashboardLayout>
   );
 };
 
-export default Assignments;
+export default Library;

@@ -1,39 +1,17 @@
+"use client";
+
 import React from "react";
-import { Dropdown } from "antd";
+import { Dropdown, message } from "antd";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoChatboxEllipses, IoNotifications } from "react-icons/io5";
 import Link from "next/link";
-
-const messages = [
-  {
-    key: "1",
-    label: <p className="">No messages yet</p>,
-  },
-];
-
-const notifications = [
-  {
-    key: "1",
-    label: <p className="">(0) notifications</p>,
-  },
-];
-
-const profile = [
-  // {
-  //   key: "1",
-  //   label: <Link href="">Profile</Link>,
-  // },
-  {
-    key: "1",
-    label: <Link href="settings">Settings</Link>,
-  },
-  {
-    key: "2",
-    label: <Link href="/signin">Log Out</Link>,
-  },
-];
+import useAuthStore from "@/app/_store/authStore";
+import { useRouter } from "next/navigation";
 
 const DashNav = () => {
+  const displayName = useAuthStore((state) => state.displayName);
+  const router = useRouter();
+
   const getGreeting = () => {
     const currentHour = new Date().getHours();
 
@@ -46,6 +24,41 @@ const DashNav = () => {
     }
   };
 
+  const messages = [
+    {
+      key: "1",
+      label: <p className="">No messages yet</p>,
+    },
+  ];
+
+  const notifications = [
+    {
+      key: "1",
+      label: <p className="">(0) notifications</p>,
+    },
+  ];
+
+  const profile = [
+    {
+      key: "1",
+      label: <Link href="settings">Settings</Link>,
+    },
+    {
+      key: "2",
+      label: (
+        <button
+          onClick={() => {
+            useAuthStore.getState().logout(); // Call logout action from Zustand
+            message.success("Logged out successfully!");
+            router.push("/signin"); // Redirect to signin page after logout
+          }}
+        >
+          Log Out
+        </button>
+      ),
+    },
+  ];
+
   return (
     <>
       <nav className="flex gap-6 items-center px-4 lg:px-8 py-3 lg:py-5">
@@ -56,7 +69,7 @@ const DashNav = () => {
         <div className="w-full flex gap-8 justify-between items-center">
           <span className="flex flex-col gap-1">
             <p className="text-[14px] xs:text-base lg:text-xl font-semibold">
-              {getGreeting()}, <span>User</span>
+              {getGreeting()}, <span>{displayName || "User"}</span>
             </p>
             <p className="text-sm hidden lg:flex">
               {/* Welcome back to the world of knowledge! */}

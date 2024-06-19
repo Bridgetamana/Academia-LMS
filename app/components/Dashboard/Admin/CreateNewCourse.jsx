@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 
@@ -6,7 +6,11 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
   const [newCourse, setNewCourse] = useState({
     title: "",
     code: "",
-    progress: 0,
+    instructorName: "",
+    description: "",
+    syllabus: [],
+    courseOutline: "",
+    image: "", // Placeholder for the course image
   });
 
   const handleInputChange = (e) => {
@@ -14,9 +18,34 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
     setNewCourse({ ...newCourse, [name]: value });
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const newFile = {
+        name: file.name,
+        url: URL.createObjectURL(file),
+      };
+      const updatedFiles = [...newCourse.syllabus, newFile];
+      setNewCourse({ ...newCourse, syllabus: updatedFiles });
+    }
+  };
+
+  const handleDeleteFile = (index) => {
+    const updatedFiles = newCourse.syllabus.filter((_, i) => i !== index);
+    setNewCourse({ ...newCourse, syllabus: updatedFiles });
+  };
+
   const handleCreateCourse = () => {
     onCreate(newCourse);
-    setNewCourse({ title: "", code: "", progress: 0 });
+    setNewCourse({
+      title: "",
+      code: "",
+      instructorName: "",
+      description: "",
+      syllabus: [],
+      courseOutline: "",
+      image: "", // Placeholder for the course image
+    });
     onClose();
   };
 
@@ -24,7 +53,7 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-      <div className="bg-white rounded-lg p-6 w-96">
+      <div className="bg-white rounded-lg p-6 w-96 max-h-screen overflow-y-auto">
         <h2 className="text-lg font-semibold mb-4">Create New Course</h2>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
@@ -52,23 +81,75 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
-            Progress
+            Instructor Name
           </label>
           <input
-            type="number"
-            name="progress"
-            value={newCourse.progress}
+            type="text"
+            name="instructorName"
+            value={newCourse.instructorName}
             onChange={handleInputChange}
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
-            min="0"
-            max="100"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+            Course Description
+          </label>
+          <textarea
+            name="description"
+            value={newCourse.description}
+            onChange={handleInputChange}
+            rows={4}
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+            Upload Syllabus
+          </label>
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+          />
+          {newCourse.syllabus.length > 0 && (
+            <ul className="mt-2">
+              {newCourse.syllabus.map((file, index) => (
+                <li
+                  key={index}
+                  className="flex justify-between items-center mb-2"
+                >
+                  <a href={file.url} className="text-blue-600 hover:underline">
+                    {file.name}
+                  </a>
+                  <button
+                    className="text-red-500"
+                    onClick={() => handleDeleteFile(index)}
+                  >
+                    Delete
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+            Course Outline
+          </label>
+          <textarea
+            name="courseOutline"
+            value={newCourse.courseOutline}
+            onChange={handleInputChange}
+            rows={6}
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
           />
         </div>
         <div className="flex justify-end">
           <button className="btn mr-2" onClick={handleCreateCourse}>
             Create
           </button>
-          <button className="btn " onClick={onClose}>
+          <button className="btn" onClick={onClose}>
             Cancel
           </button>
         </div>

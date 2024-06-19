@@ -1,26 +1,30 @@
 "use client";
 
 import { AdminDashboardLayout } from "@/app/_layouts";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
 import CreateCourseModal from "../CreateNewCourse";
+import Link from "next/link";
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [courses, setCourses] = useState([
-    { title: "Communication skills", code: "Gst 102", progress: 20 },
-    { title: "Nigerian People and culture", code: "Gst 203", progress: 100 },
-    { title: "Communication skills", code: "Gst 102", progress: 50 },
-  ]);
+  const [courses, setCourses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const storedCourses = JSON.parse(localStorage.getItem("courses")) || [];
+    setCourses(storedCourses);
+  }, []);
+
+  const handleCreateCourse = (newCourse) => {
+    const updatedCourses = [...courses, newCourse];
+    setCourses(updatedCourses);
+    localStorage.setItem("courses", JSON.stringify(updatedCourses));
+  };
 
   const filteredCourses = courses.filter((course) =>
     course.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const handleCreateCourse = (newCourse) => {
-    setCourses([...courses, newCourse]);
-  };
 
   return (
     <AdminDashboardLayout>
@@ -63,7 +67,7 @@ const Courses = () => {
             </form>
             <div className="flex items-center">
               <button
-                className="btn btn-ghost text-academia-general"
+                className="btn text-academia-general"
                 onClick={() => setIsModalOpen(true)}
               >
                 <FaPlus className="mr-2" />
@@ -75,33 +79,31 @@ const Courses = () => {
             {filteredCourses.map((course, index) => (
               <div
                 key={index}
-                className="card card-compact bg-base-100 shadow-md hover:shadow-lg cursor-pointer max-w-sm lg:max-w-lg"
+                className="card card-compact bg-base-100 shadow-md hover:shadow-lg transition-shadow cursor-pointer w-full"
               >
                 <figure>
                   <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+                    src={course.image || "/default-course-image.jpg"}
                     alt={course.title}
+                    className="h-48 w-full object-cover"
                   />
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">{course.title}</h2>
-                  <p className="uppercase">{course.code}</p>
+                  <p>{course.code}</p>
                   <div className="card-actions justify-end">
-                    <div
-                      className="radial-progress"
-                      style={{ "--value": course.progress, "--size": "4rem" }}
-                      role="progressbar"
+                    <Link
+                      href=""
+                      className="btn btn-primary"
                     >
-                      {course.progress}%
-                    </div>
+                      View Details
+                    </Link>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Modal */}
         <CreateCourseModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}

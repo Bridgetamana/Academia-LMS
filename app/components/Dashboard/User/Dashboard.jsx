@@ -13,7 +13,7 @@ import {
   FaBook,
   FaUserGraduate,
   FaRegCalendarAlt,
-  FaArrowLeft,
+  FaArrowRight,
 } from "react-icons/fa";
 
 const Dashboard = () => {

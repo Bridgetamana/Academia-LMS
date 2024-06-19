@@ -8,7 +8,12 @@ import Image from "next/image";
 import Course1 from "@/public/assets/images/course-1.jpg";
 import Course2 from "@/public/assets/images/course-2.jpg";
 import Link from "next/link";
-import { FaChalkboardTeacher, FaBook, FaUserGraduate, FaRegCalendarAlt } from "react-icons/fa";
+import {
+  FaChalkboardTeacher,
+  FaBook,
+  FaArrowRight,
+  FaRegCalendarAlt,
+} from "react-icons/fa";
 
 
 

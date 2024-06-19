@@ -6,3 +6,4 @@ export { default as DashNav2 } from "../Dashboard/Admin/DashNav2";
 export { default as ScrollButton } from "./ScrollButton";
 export { default as DashboardSider } from "../Dashboard/User/DashboardSider";
 export { default as DashboardSider2 } from "../Dashboard/Admin/DashboardSider2";
+export { default as ChatSupport } from "./ChatSupport"

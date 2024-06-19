@@ -1,10 +1,11 @@
-"use client";
+"use client"
 
 import { AdminDashboardLayout } from "@/app/_layouts";
 import React, { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
 import CreateCourseModal from "../CreateNewCourse";
 import Link from "next/link";
+import DetailedCourse from "./DetailedCourse";
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -77,30 +78,29 @@ const Courses = () => {
           </div>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
             {filteredCourses.map((course, index) => (
-              <div
-                key={index}
-                className="card card-compact bg-base-100 shadow-md hover:shadow-lg transition-shadow cursor-pointer w-full"
-              >
-                <figure>
-                  <img
-                    src={course.image || "/default-course-image.jpg"}
-                    alt={course.title}
-                    className="h-48 w-full object-cover"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title">{course.title}</h2>
-                  <p>{course.code}</p>
-                  <div className="card-actions justify-end">
-                    <Link
-                      href=""
-                      className="btn btn-primary"
-                    >
-                      View Details
-                    </Link>
+              <Link key={index} href={`/courses/${course.id}`}>
+                <div className="card card-compact bg-base-100 shadow-md hover:shadow-lg transition-shadow cursor-pointer w-full">
+                  <figure>
+                    <img
+                      src={course.image || "/default-course-image.jpg"}
+                      alt={course.title}
+                      className="h-48 w-full object-cover"
+                    />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">{course.title}</h2>
+                    <p>{course.code}</p>
+                    <div className="card-actions justify-end">
+                      <Link
+                        href={`/courses/${course.id}`}
+                        className="btn btn-primary"
+                      >
+                        View Details
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

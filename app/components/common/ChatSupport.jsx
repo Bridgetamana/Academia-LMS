@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineMessage, AiOutlineSend } from "react-icons/ai";
 
 const ChatSupport = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -56,18 +56,18 @@ const ChatSupport = () => {
                 </div>
               ))}
             </div>
-            <div className="flex">
+            <div className="flex border border-gray-300 rounded-lg">
               <input
                 type="text"
-                className="flex-grow border border-gray-300 rounded-l-lg p-2 focus:outline-none"
+                className="flex-grow bg-white p-2 focus:outline-none rounded-lg "
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
               />
               <button
-                className="bg-academia-general text-white p-2 rounded-r-lg"
+                className="text-academia-general p-2"
                 onClick={handleSendMessage}
               >
-                Send
+                <AiOutlineSend />
               </button>
             </div>
           </div>

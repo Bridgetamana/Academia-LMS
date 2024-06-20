@@ -57,7 +57,7 @@ const Dashboard = () => {
               <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
               <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
                 <li
-                  className="py-4 pl-5 bg-base-100 border hover:shadow-md rounded-lg cursor-pointer"
+                  className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer"
                   onClick={openCatchUpModal}
                 >
                   <div className="space-y-2">
@@ -69,7 +69,7 @@ const Dashboard = () => {
                     <p>Catch Up</p>
                   </div>
                 </li>
-                <li className="py-4 pl-5 bg-base-100 border hover:shadow-md rounded-lg cursor-pointer">
+                <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
                       <button className="btn btn-square btn-sm text-xl">
@@ -79,7 +79,7 @@ const Dashboard = () => {
                     <p>Schedule Posts</p>
                   </div>
                 </li>
-                <li className="py-4 pl-5 bg-base-100 border hover:shadow-md rounded-lg cursor-pointer">
+                <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
                       <button className="btn btn-square btn-sm text-xl">
@@ -89,7 +89,7 @@ const Dashboard = () => {
                     <p>Create New Course</p>
                   </div>
                 </li>
-                <li className="py-4 pl-5 bg-base-100 border hover:shadow-md rounded-lg cursor-pointer">
+                <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
                       <button className="btn btn-square btn-sm text-xl">

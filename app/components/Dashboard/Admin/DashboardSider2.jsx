@@ -134,8 +134,8 @@ const DashboardSider2 = () => {
   return (
     <div className="drawer-side z-10">
       <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-      <aside className="flex flex-col space-y-4 w-[15rem] h-screen overflow-hidden shadow-xl bg-white border-r border-r-gray-300 py-2 overflow-y-scroll">
-        <Link href="" className="font-semibold text-xl mx-auto py-2">
+      <aside className="flex flex-col space-y-4 w-[15rem] shadow-xl bg-white border-r border-r-gray-300 py-2 h-full">
+        <Link href="" className="font-semibold text-xl mx-auto py-2.5">
           <div className="avatar placeholder">
             <div className="bg-academia-general text-white rounded-full w-8">
               <span className="text-xl font-mono">A</span>
@@ -144,7 +144,7 @@ const DashboardSider2 = () => {
           </div>
         </Link>
         <div className="border border-gray-200 mt-6" />
-        <div className="overflow-y-scroll space-y-5">
+        <div className="space-y-5">
           <Menu
             selectedKeys={[activePath]}
             items={sidebarData1}

@@ -72,22 +72,22 @@ const Library = () => {
                   </thead>
                   <tbody>
                     {uploadedFiles.map((file, index) => (
-                      <tr key={index} className="cursor-pointer rounded-md">
+                      <tr key={index} className="">
                         <th>1</th>
                         <td>{file.name}</td>
                         <td>{file.date}</td>
-                        <td>
+                        <td className="space-x-8">
                           <a
                             href={file.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn mr-2"
+                            className="mr-2 cursor-pointer p-2 rounded-md hover:bg-slate-200"
                           >
                             View
                           </a>
                           <button
                             onClick={() => handleDeleteFile(index)}
-                            className="btn btn-danger"
+                            className="cursor-pointer p-2 rounded-md hover:bg-slate-200"
                           >
                             Delete
                           </button>
@@ -101,7 +101,6 @@ const Library = () => {
               <p>No files uploaded yet.</p>
             )}
           </div>
-
         </div>
       </section>
     </AdminDashboardLayout>

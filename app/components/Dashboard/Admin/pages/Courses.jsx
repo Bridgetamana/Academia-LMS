@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import CreateCourseModal from "../CreateNewCourse";
 import Course1 from "@/public/assets/images/course-1.jpg";
 import Link from "next/link";
+import { PiStudentFill } from "react-icons/pi";
 import Image from "next/image";
 
 const Courses = () => {
@@ -33,7 +34,7 @@ const Courses = () => {
       <section className="max-w-[1640px] flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll">
         <div>
           <h2 className="lg:text-xl font-semibold mb-4">Courses</h2>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mb-4">
             <form className="max-w-sm">
               <label htmlFor="default-search" className="sr-only">
                 Search
@@ -69,7 +70,7 @@ const Courses = () => {
             </form>
             <div className="flex items-center">
               <button
-                className="btn text-academia-general bg-slate-200"
+                className="flex p-2 items-center rounded-md text-academia-general bg-slate-200"
                 onClick={() => setIsModalOpen(true)}
               >
                 <FaPlus className="mr-1" />
@@ -77,30 +78,40 @@ const Courses = () => {
               </button>
             </div>
           </div>
-          <div className="mt-12 grid grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-            {filteredCourses.map((course, index) => (
-              <Link key={index} href={`/courses/${course.id}`}>
-                <div className="bg-white hover:shadow-md p-4 border rounded-md w-64">
-                  <figure>
-                    <Image
-                      src={Course1}
-                      alt={course.title}
-                      width={300}
-                      height={200}
-                      className="object-cover w-full h-48 rounded-md"
-                    />
-                  </figure>
-                  <div className="">
-                    <h2 className="text-2xl font-semibold mt-4">{course.title}</h2>
-                    <p className="text-gray-400 my-5">{course.description}</p>
-                    <div className="">
-                      
+
+          {filteredCourses.length === 0 ? (
+            <div className="text-center text-gray-500 mt-12">
+              <p>No courses have been created yet.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+              {filteredCourses.map((course, index) => (
+                <Link key={index} href={`/courses/${course.id}`}>
+                  <div className="bg-white hover:shadow-md border rounded-md w-80 lg:w-64">
+                    <figure>
+                      <Image
+                        src={Course1}
+                        alt={course.title}
+                        width={300}
+                        height={200}
+                        className="object-cover w-full h-48 rounded-t-lg"
+                      />
+                    </figure>
+                    <div className="p-4">
+                      <h2 className="text-2xl font-semibold mt-4">
+                        {course.title}
+                      </h2>
+                      <p className="text-gray-400 my-5">{course.description}</p>
+                      <div className="flex items-center justify-end">
+                        <PiStudentFill />
+                        <p>0</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <CreateCourseModal
           isOpen={isModalOpen}

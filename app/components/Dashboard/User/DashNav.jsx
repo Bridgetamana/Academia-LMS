@@ -87,7 +87,7 @@ const DashNav = () => {
             >
               <button
                 type="button"
-                className="p-2 bg-white rounded-full text-gray-500 hover:text-academia-primary-80 active:scale-95"
+                className="p-2 bg-white rounded-full text-gray-600 hover:text-academia-general active:scalgite-95"
               >
                 <IoChatboxEllipses className="w-6 h-6" />
               </button>
@@ -101,7 +101,7 @@ const DashNav = () => {
             >
               <button
                 type="button"
-                className="p-2 bg-white rounded-full text-gray-500 hover:text-academia-primary-80 active:scale-95"
+                className="p-2 bg-white rounded-full text-gray-500 hover:text-academia-general/90 active:scale-95"
               >
                 <span className="relative">
                   <IoNotifications className="w-6 h-6" />

@@ -36,7 +36,7 @@ const Assignments = () => {
     <AdminDashboardLayout>
       <section className="max-w-[1640px] flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll">
         <div>
-          <h2 className="lg:text-xl font-semibold mb-4">Library</h2>
+          <h2 className="lg:text-xl font-semibold mb-4">Resources</h2>
           <div className="hero bg-[#E7E8EC] border rounded-lg py-3">
             <div className="hero-content text-center">
               <div className="max-w-md">
@@ -72,10 +72,7 @@ const Assignments = () => {
                   </thead>
                   <tbody>
                     {uploadedFiles.map((file, index) => (
-                      <tr
-                        key={index}
-                        className="hover:bg-slate-300 cursor-pointer rounded-md"
-                      >
+                      <tr key={index} className="rounded-md">
                         <th>1</th>
                         <td>{file.name}</td>
                         <td>{file.date}</td>
@@ -84,13 +81,13 @@ const Assignments = () => {
                             href={file.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn mr-2"
+                            className="mr-2 cursor-pointer p-2 hover:bg-slate-200 rounded-md "
                           >
                             View
                           </a>
                           <button
                             onClick={() => handleDeleteFile(index)}
-                            className="btn btn-danger"
+                            className="cursor-pointer p-2 rounded-md hover:bg-slate-200"
                           >
                             Delete
                           </button>

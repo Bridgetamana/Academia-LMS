@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
+import Course1 from "@/public/assets/images/course-1.jpg";
 
 const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
   const [newCourse, setNewCourse] = useState({
     title: "",
-    code: "",
     instructorName: "",
     description: "",
     syllabus: [],
     courseOutline: "",
-    image: "", // Placeholder for the course image
   });
 
   const handleInputChange = (e) => {
@@ -39,12 +39,10 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
     onCreate(newCourse);
     setNewCourse({
       title: "",
-      code: "",
       instructorName: "",
       description: "",
       syllabus: [],
       courseOutline: "",
-      image: "", // Placeholder for the course image
     });
     onClose();
   };
@@ -63,18 +61,6 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
             type="text"
             name="title"
             value={newCourse.title}
-            onChange={handleInputChange}
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Course Code
-          </label>
-          <input
-            type="text"
-            name="code"
-            value={newCourse.code}
             onChange={handleInputChange}
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
           />
@@ -144,6 +130,14 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
             rows={6}
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
           />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
+            Course Image
+          </label>
+          <div className="flex items-center gap-4">
+            <Image src={Course1} alt="Course Image" width={100} height={100} />
+          </div>
         </div>
         <div className="flex justify-end">
           <button className="btn mr-2" onClick={handleCreateCourse}>

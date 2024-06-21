@@ -6,7 +6,7 @@ import { AiOutlineMessage, AiOutlineSend } from "react-icons/ai";
 const ChatSupport = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { from: "support", text: "Hello! How can I help you today?" },
+    { from: "AI", text: "Hello! How can I assist you today?" },
   ]);
   const [inputValue, setInputValue] = useState("");
 
@@ -35,7 +35,7 @@ const ChatSupport = () => {
       {isChatOpen && (
         <div className="fixed bottom-24 right-8 bg-white shadow-lg rounded-lg w-80">
           <div className="p-4">
-            <h2 className="text-lg font-semibold mb-4">AI Study paddy</h2>
+            <h2 className="text-lg font-semibold mb-4">AI paddy</h2>
             <div className="flex flex-col space-y-2 mb-4 max-h-64 overflow-y-auto">
               {messages.map((message, index) => (
                 <div

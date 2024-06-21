@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
 import { AdminDashboardLayout } from "@/app/_layouts";
 import React, { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
 import CreateCourseModal from "../CreateNewCourse";
+import Course1 from "@/public/assets/images/course-1.jpg";
 import Link from "next/link";
-import DetailedCourse from "./DetailedCourse";
+import Image from "next/image";
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -68,35 +69,32 @@ const Courses = () => {
             </form>
             <div className="flex items-center">
               <button
-                className="btn text-academia-general"
+                className="btn text-academia-general bg-slate-200"
                 onClick={() => setIsModalOpen(true)}
               >
-                <FaPlus className="mr-2" />
-                Create Course
+                <FaPlus className="mr-1" />
+                <p className="hidden lg:flex">Create Course</p>
               </button>
             </div>
           </div>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+          <div className="mt-12 grid grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {filteredCourses.map((course, index) => (
               <Link key={index} href={`/courses/${course.id}`}>
-                <div className="card card-compact bg-base-100 shadow-md hover:shadow-lg transition-shadow cursor-pointer w-full">
+                <div className="bg-white hover:shadow-md p-4 border rounded-md w-64">
                   <figure>
-                    <img
-                      src={course.image || "/default-course-image.jpg"}
+                    <Image
+                      src={Course1}
                       alt={course.title}
-                      className="h-48 w-full object-cover"
+                      width={300}
+                      height={200}
+                      className="object-cover w-full h-48 rounded-md"
                     />
                   </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">{course.title}</h2>
-                    <p>{course.code}</p>
-                    <div className="card-actions justify-end">
-                      <Link
-                        href={`/courses/${course.id}`}
-                        className="btn btn-primary"
-                      >
-                        View Details
-                      </Link>
+                  <div className="">
+                    <h2 className="text-2xl font-semibold mt-4">{course.title}</h2>
+                    <p className="text-gray-400 my-5">{course.description}</p>
+                    <div className="">
+                      
                     </div>
                   </div>
                 </div>

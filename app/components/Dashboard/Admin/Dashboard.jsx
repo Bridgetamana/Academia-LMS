@@ -26,7 +26,6 @@ const Dashboard = () => {
 
   const openCatchUpModal = () => {
     setShowCatchUpModal(true);
-    // Reset current slide index to start from the beginning
     setCurrentSlideIndex(0);
   };
 
@@ -38,19 +37,13 @@ const Dashboard = () => {
     if (currentSlideIndex < catchUpActivities.length - 1) {
       setCurrentSlideIndex(currentSlideIndex + 1);
     } else {
-      // Close modal if at the last slide
       setShowCatchUpModal(false);
     }
   };
 
-  const markAsSeen = (index) => {
-    // Logic to mark the activity as seen
-    console.log(`Activity marked as seen: ${catchUpActivities[index]}`);
-  };
-
   return (
     <AdminDashboardLayout>
-      <section className="max-w-[1640px] flex flex-col gap-6 px-4 lg:px-8 py-8 md:h-screen overflow-y-scroll">
+      <section className="max-w-[1640px] flex flex-col gap-6 px-4 lg:px-8 py-8 md:h-screen overflow-y-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[65%_30%] gap-8">
           <div>
             <div className=" rounded-lg mb-6">
@@ -62,7 +55,7 @@ const Dashboard = () => {
                 >
                   <div className="space-y-2">
                     <div>
-                      <button className="btn btn-square btn-sm text-xl">
+                      <button className="btn btn-square bg-slate-200 btn-sm text-xl ">
                         <FaBook />
                       </button>
                     </div>
@@ -72,7 +65,7 @@ const Dashboard = () => {
                 <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
-                      <button className="btn btn-square btn-sm text-xl">
+                      <button className="btn btn-square bg-slate-200 btn-sm text-xl">
                         <FaRegCalendarAlt />
                       </button>
                     </div>
@@ -82,7 +75,7 @@ const Dashboard = () => {
                 <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
-                      <button className="btn btn-square btn-sm text-xl">
+                      <button className="btn btn-square bg-slate-200 btn-sm text-xl">
                         <FaChalkboardTeacher />
                       </button>
                     </div>
@@ -92,7 +85,7 @@ const Dashboard = () => {
                 <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
-                      <button className="btn btn-square btn-sm text-xl">
+                      <button className="btn btn-square bg-slate-200 btn-sm text-xl">
                         <FaRegCalendarAlt />
                       </button>
                     </div>

@@ -135,10 +135,10 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
           <p class="mt-1 text-sm text-gray-500">SVG, PNG or JPG</p>
         </div>
         <div className="flex justify-end">
-          <button className="btn mr-2" onClick={handleCreateCourse}>
+          <button className="p-2 bg-gray-300 rounded-md mr-2" onClick={handleCreateCourse}>
             Create
           </button>
-          <button className="btn text-red-500" onClick={onClose}>
+          <button className="p-2 bg-red-500 rounded-md" onClick={onClose}>
             Cancel
           </button>
         </div>

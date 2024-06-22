@@ -23,7 +23,7 @@ const EventCalendarView = ({
   const handleDateClick = (date) => {
     setSelectedDate(date);
     onDateClick(date);
-    setSelectedEvent(null); // Clear selected event when a new date is clicked
+    setSelectedEvent(null);
   };
 
   const handleSaveEvent = (eventData) => {
@@ -33,7 +33,7 @@ const EventCalendarView = ({
 
   const handleDeleteEvent = (eventId) => {
     onDeleteEvent(eventId);
-    setSelectedEvent(null); // Clear selected event after deletion
+    setSelectedEvent(null); 
   };
 
   const handleEventClick = (event) => {
@@ -41,7 +41,6 @@ const EventCalendarView = ({
   };
 
   const canEditEvent = (event) => {
-    // Check if the event date is in the future
     const eventDate = new Date(event.date);
     const today = new Date();
     return eventDate > today;
@@ -55,9 +54,9 @@ const EventCalendarView = ({
   };
 
   return (
-    <div className="flex flex-row h-screen">
+    <div className="md:flex gap-8 justify-center">
       {/* Left: Calendar View */}
-      <div className="w-2/4 p-4 border-r border-gray-200">
+      <div className=" p-4 md:border-r border-gray-200">
         <Calendar
           onChange={() => {}}
           value={new Date()}
@@ -104,9 +103,6 @@ const EventCalendarView = ({
                   <button
                     className=" text-blue-600"
                     onClick={() => {
-                      // Implement edit functionality here
-                      // For simplicity, let's assume editing opens EventManagement modal again
-                      // with prefilled data of selectedEvent
                       setSelectedDate(selectedEvent.date);
                     }}
                   >

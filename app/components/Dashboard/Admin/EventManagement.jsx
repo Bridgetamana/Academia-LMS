@@ -31,8 +31,8 @@ const EventManagement = ({ onClose, onSave, selectedDate }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
       <div className="bg-white rounded-lg p-6 w-96">
         <div className="flex justify-end mb-4">
-          <button className="btn" onClick={onClose}>
-            Close
+          <button className="" onClick={onClose}>
+            X
           </button>
         </div>
         <h2 className="text-lg font-semibold mb-4">Create New Event</h2>
@@ -50,7 +50,7 @@ const EventManagement = ({ onClose, onSave, selectedDate }) => {
               name="title"
               value={eventData.title}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+              className="mt-1 p-2 block w-full bg-gray-50 border border-gray-300 rounded-md outline-none"
               required
             />
           </div>
@@ -67,7 +67,7 @@ const EventManagement = ({ onClose, onSave, selectedDate }) => {
               value={eventData.description}
               onChange={handleChange}
               rows={4}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+              className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
             />
           </div>
           <div className="mb-4">
@@ -82,7 +82,7 @@ const EventManagement = ({ onClose, onSave, selectedDate }) => {
               name="category"
               value={eventData.category}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+              className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
             >
               <option value="assignment">Assignment Deadline</option>
               <option value="classSchedule">Class Schedule</option>
@@ -90,10 +90,10 @@ const EventManagement = ({ onClose, onSave, selectedDate }) => {
             </select>
           </div>
           <div className="flex justify-end">
-            <button type="submit" className="btn btn-primary mr-2">
+            <button type="submit" className="p-2 bg-gray-300 rounded-md mr-2">
               Save Event
             </button>
-            <button type="button" className="btn" onClick={onClose}>
+            <button type="button" className="p-2 bg-red-500 rounded-md" onClick={onClose}>
               Cancel
             </button>
           </div>

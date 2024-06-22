@@ -44,7 +44,7 @@ const Assignments = () => {
                   <FaUpload className="text-xl text-[#381A6D]" />
                 </span>
                 <p className="py-3">Click to upload file</p>
-                <label className="btn bg-[#7262E4] text-white cursor-pointer">
+                <label className="btn bg-[#7262E4] text-white cursor-pointer border-0">
                   Upload file
                   <input
                     id="dropzone-file"

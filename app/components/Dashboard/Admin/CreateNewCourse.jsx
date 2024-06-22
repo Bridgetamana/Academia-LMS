@@ -7,7 +7,6 @@ import Course1 from "@/public/assets/images/course-1.jpg";
 const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
   const [newCourse, setNewCourse] = useState({
     title: "",
-    instructorName: "",
     description: "",
     syllabus: [],
     courseOutline: "",
@@ -62,19 +61,8 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
             name="title"
             value={newCourse.title}
             onChange={handleInputChange}
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Instructor Name
-          </label>
-          <input
-            type="text"
-            name="instructorName"
-            value={newCourse.instructorName}
-            onChange={handleInputChange}
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+            className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            required
           />
         </div>
         <div className="mb-4">
@@ -86,7 +74,8 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
             value={newCourse.description}
             onChange={handleInputChange}
             rows={4}
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+            className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            required
           />
         </div>
         <div className="mb-4">
@@ -96,7 +85,8 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
           <input
             type="file"
             onChange={handleFileChange}
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+            className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            required
           />
           {newCourse.syllabus.length > 0 && (
             <ul className="mt-2">
@@ -128,7 +118,8 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
             value={newCourse.courseOutline}
             onChange={handleInputChange}
             rows={6}
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none"
+            className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            required
           />
         </div>
         <div className="mb-4">
@@ -136,14 +127,18 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
             Course Image
           </label>
           <div className="flex items-center gap-4">
-            <Image src={Course1} alt="Course Image" width={100} height={100} />
+            <input
+              type="file"
+              className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            />
           </div>
+          <p class="mt-1 text-sm text-gray-500">SVG, PNG or JPG</p>
         </div>
         <div className="flex justify-end">
           <button className="btn mr-2" onClick={handleCreateCourse}>
             Create
           </button>
-          <button className="btn" onClick={onClose}>
+          <button className="btn text-red-500" onClick={onClose}>
             Cancel
           </button>
         </div>

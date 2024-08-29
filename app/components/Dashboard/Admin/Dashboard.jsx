@@ -55,7 +55,7 @@ const Dashboard = () => {
                 >
                   <div className="space-y-2">
                     <div>
-                      <button className="btn btn-square bg-slate-200 btn-sm text-xl ">
+                      <button className="btn btn-square bg-slate-200 border-0 btn-sm text-xl ">
                         <FaBook />
                       </button>
                     </div>
@@ -65,7 +65,7 @@ const Dashboard = () => {
                 <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
-                      <button className="btn btn-square bg-slate-200 btn-sm text-xl">
+                      <button className="btn btn-square border-0 bg-slate-200 btn-sm text-xl">
                         <FaRegCalendarAlt />
                       </button>
                     </div>
@@ -75,7 +75,7 @@ const Dashboard = () => {
                 <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
-                      <button className="btn btn-square bg-slate-200 btn-sm text-xl">
+                      <button className="btn btn-square border-0 bg-slate-200 btn-sm text-xl">
                         <FaChalkboardTeacher />
                       </button>
                     </div>
@@ -85,7 +85,7 @@ const Dashboard = () => {
                 <li className="py-4 pl-5 bg-white border hover:shadow-md rounded-lg cursor-pointer">
                   <div className="space-y-2">
                     <div>
-                      <button className="btn btn-square bg-slate-200 btn-sm text-xl">
+                      <button className="btn btn-square border-0 bg-slate-200 btn-sm text-xl">
                         <FaRegCalendarAlt />
                       </button>
                     </div>

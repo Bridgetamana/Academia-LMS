@@ -14,8 +14,10 @@ import useAuthStore from "@/app/_store/authStore";
 const SignUp = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
   const [isConfirmPasswordHidden, setConfirmPasswordHidden] = useState(true);
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [role, setRole] = useState("");
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
@@ -27,6 +29,14 @@ const SignUp = () => {
     if (password.value !== ConfirmPassword.value) {
       message.error("Passwords do not match");
       return;
+    }
+
+    if (password.value.length <= 5) {
+      message.error("Password must be longer than 5 characters.");
+    } else if (!/\d/.test(password.value)) {
+      message.error("Password must contain at least one number.");
+    } else {
+      message.error("");
     }
 
     setIsSubmitting(true);
@@ -62,13 +72,7 @@ const SignUp = () => {
 
   return (
     <AuthLayout>
-      <div className="flex flex-col gap-8 max-w-[480px] lg:w-[480px] mx-auto lg:mx-0 text-base md:text-[20px] font-medium">
-        {/* {isSubmitted ? (
-          <p className="bg-white p-[24px] lg:p-[40px] rounded-md shadow-2xl">
-            We sent a confirmation link to your email, click it to continue your
-            onboarding process.
-          </p>
-        ) : ( */}
+      <div className="mb-20 flex flex-col gap-8 max-w-[480px] lg:w-[480px] mx-auto lg:mx-0 text-base md:text-[20px] font-medium">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-6 bg-white p-[24px] lg:p-[40px] rounded-md shadow-xl"
@@ -135,7 +139,7 @@ const SignUp = () => {
               required
               className="w-full p-3 text-[#202020] bg-[#E8E8E8] rounded-md outline-none border focus:border-academia-general focus:bg-white lg:text-sm"
             />
-          </div>
+            </div>
 
           <select
             required

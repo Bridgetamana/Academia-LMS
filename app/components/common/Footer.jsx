@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   FaFacebookF,
@@ -21,45 +19,48 @@ const Footer = () => {
     });
   };
 
-  return (
-    <section>
-      {/* copyright */}
-      <footer className=" text-[#080808] px-6 py-3">
-        {/* lg:h-[80px] */}
-        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 space-y-5 lg:space-y-0 lg:flex gap-4 lg:gap-8 justify-between items-center">
-          <p className="py- text-center lg:text-start">
-            Copyright © {currentYear} All rights reserved{" "}
-            <Link href="" className="text-academia-general hover:underline">
-              {" "}
-              Academia
-            </Link>{" "}
-          </p>
-          <span className="flex gap-6 items-center justify-center lg:justify-start">
-            <Link href="" className="">
-              <FaInstagram className="w-4 h-4 hover:text-academia-general duration-150" />
-            </Link>
-            <Link href="" className="">
-              <FaLinkedinIn className="w-4 h-4 hover:text-academia-general duration-150" />
-            </Link>
-            <Link href="" className="">
-              <FaFacebookF className="w-4 h-4 hover:text-academia-general duration-150" />
-            </Link>
-            <Link href="" className="">
-              <FaXTwitter className="w-4 h-4 hover:text-academia-general duration-150" />
-            </Link>
+  const socialLinks = [
+    { href: "#", icon: FaInstagram },
+    { href: "#", icon: FaLinkedinIn },
+    { href: "#", icon: FaFacebookF },
+    { href: "#", icon: FaXTwitter },
+  ];
 
+  return (
+    <footer className="bg-white text-neutral-900 border-t">
+      <div className="mx-auto max-w-screen-xl px-4 py-6">
+        <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+          {/* Copyright */}
+          <p className="text-center lg:text-start">
+            Copyright © {currentYear} All rights reserved{" "}
+            <Link href="/" className="text-primary hover:underline">
+              Academia
+            </Link>
+          </p>
+
+          <div className="flex items-center space-x-6">
+            {socialLinks.map((social, index) => (
+              <Link
+                key={index}
+                href={social.icon.name}
+                className="hover:text-primary transition-colors duration-200"
+              >
+                <social.icon className="w-4 h-4" />
+              </Link>
+            ))}
+            
             <button
               onClick={scrollToTop}
               title="Back to Top"
               type="button"
-              className="bg-academia-general rounded-full hover:bg-academia-general/90 text-white p-2 hover:bg-gray-700"
+              className="bg-primary rounded-full text-white p-2 hover:bg-primary/90 transition-colors duration-200"
             >
-              <IoChevronUp className="w-5 h-5 " />
+              <IoChevronUp className="w-5 h-5" />
             </button>
-          </span>
+          </div>
         </div>
-      </footer>
-    </section>
+      </div>
+    </footer>
   );
 };
 

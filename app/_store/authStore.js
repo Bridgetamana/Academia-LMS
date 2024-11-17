@@ -16,7 +16,6 @@ export const handleSignUp = async (name, email, password, role) => {
       email,
       role,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
     });
 
     return {
@@ -71,6 +70,34 @@ export const handleSignIn = async (email, password, role) => {
         break;
       case 'auth/invalid-credential':
         errorMessage = 'Invalid email or password';
+        break;
+      default:
+        errorMessage = error.message;
+    }
+
+    return {
+      success: false,
+      message: errorMessage
+    };
+  }
+};
+export const resetPassword = async (email) => {
+  const auth = getAuth();
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return {
+      success: true,
+      message: 'Password reset email sent successfully!'
+    };
+  } catch (error) {
+    let errorMessage = 'Failed to send reset email';
+    
+    switch (error.code) {
+      case 'auth/user-not-found':
+        errorMessage = 'No account found with this email';
+        break;
+      case 'auth/invalid-email':
+        errorMessage = 'Invalid email address';
         break;
       default:
         errorMessage = error.message;

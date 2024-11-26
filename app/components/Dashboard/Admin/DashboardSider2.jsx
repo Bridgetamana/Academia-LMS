@@ -17,7 +17,6 @@ import { PiStudentBold } from "react-icons/pi";
 const DashboardSider2 = () => {
   const pathName = usePathname();
   const router = useRouter();
-  const logout = useAuthStore((state) => state.logout);
   const [activePath, setActivePath] = useState("");
 
   useLayoutEffect(() => {

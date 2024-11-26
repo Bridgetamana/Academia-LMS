@@ -4,7 +4,6 @@ import { useLayoutEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu } from "antd";
 import Link from "next/link";
-import useAuthStore from "@/app/_store/authStore";
 
 import {
   FiBookOpen,
@@ -23,7 +22,6 @@ import { PiStudentBold } from "react-icons/pi";
 const DashboardSider = () => {
   const pathName = usePathname();
   const router = useRouter();
-  const logout = useAuthStore((state) => state.logout);
   const [activePath, setActivePath] = useState("");
   useLayoutEffect(() => {
     setActivePath(activeKeys.filter((value) => pathName.includes(value))[0]);

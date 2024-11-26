@@ -5,11 +5,9 @@ import { Dropdown, message } from "antd";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { IoChatboxEllipses, IoNotifications } from "react-icons/io5";
 import Link from "next/link";
-import useAuthStore from "@/app/_store/authStore";
 import { useRouter } from "next/navigation";
 
 const DashNav = () => {
-  const displayName = useAuthStore((state) => state.displayName);
   const router = useRouter();
 
   const getGreeting = () => {

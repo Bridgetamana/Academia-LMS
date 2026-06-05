@@ -28,7 +28,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-white text-neutral-900 border-t">
-      <div className="mx-auto max-w-screen-xl px-4 py-6">
+      <div className="mx-auto max-w-[theme(screens.xl)] px-4 py-6">
         <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
           {/* Copyright */}
           <p className="text-center lg:text-start">

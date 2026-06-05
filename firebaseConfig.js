@@ -1,10 +1,7 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from 'firebase/storage';
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,7 +14,28 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+let app;
+let auth;
+let db;
+let storage;
+
+try {
+  app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+  if (firebaseConfig.apiKey && !firebaseConfig.apiKey.includes("NEXT_PUBLIC")) {
+    auth = getAuth(app);
+    db = getFirestore(app);
+    storage = getStorage(app);
+  } else {
+    auth = {};
+    db = {};
+    storage = {};
+  }
+} catch (error) {
+  console.error("Firebase initialization failed:", error.message);
+  app = {};
+  auth = {};
+  db = {};
+  storage = {};
+}
+
+export { app, auth, db, storage };

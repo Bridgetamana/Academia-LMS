@@ -5,7 +5,6 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { handleSignIn } from "@/app/_store/authStore";
-import { message } from "antd";
 
 const SignIn = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -36,8 +35,6 @@ const SignIn = () => {
       const result = await handleSignIn(formData.email, formData.password, formData.role);
 
       if (result.success) {
-        message.success(result.message);
-        
         const redirectUser = result.user.role === 'educator' 
           ? '/admin/dashboard'
           : '/user/dashboard';
@@ -47,12 +44,10 @@ const SignIn = () => {
         }, 200);
       } else {
         setError(result.message);
-        message.error(result.message);
       }
     } catch (err) {
-      console.error("Error signing in:", error);
-      setError(error.message);
-      message.error(error.message);
+      console.error("Error signing in:", err);
+      setError(err.message || "An unexpected error occurred.");
     } finally {
       setIsSubmitting(false);
     }

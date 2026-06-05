@@ -5,8 +5,8 @@ import Logo from "./Logo";
 
 const Navbar = () => {
   return (
-    <nav className="w-full border-neutral-200 sticky top-0 backdrop-blur-md z-[999] shadow-sm bg-white/80 py-2 md:py-4">
-      <div className="items-center max-w-screen-2xl mx-auto flex justify-between p-4 lg:p-0">
+    <nav className="w-full border-neutral-200 sticky top-0 backdrop-blur-md z-999 shadow-sm bg-white/80 py-2 md:py-4">
+      <div className="items-center max-w-[theme(screens.2xl)] mx-auto flex justify-between p-4 lg:p-0">
         <Logo />
         <div className="md:px-8 flex items-center gap-2">
           <Link

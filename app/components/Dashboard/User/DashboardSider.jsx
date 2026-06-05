@@ -1,9 +1,10 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu } from "antd";
 import Link from "next/link";
+import { auth } from "@/firebaseConfig";
+import { signOut } from "firebase/auth";
 
 import {
   FiBookOpen,
@@ -14,94 +15,13 @@ import {
 } from "react-icons/fi";
 import {
   MdOutlineDashboardCustomize,
-  MdOutlineAssignmentTurnedIn,
 } from "react-icons/md";
 import { LuClipboardList } from "react-icons/lu";
-import { PiStudentBold } from "react-icons/pi";
 
 const DashboardSider = () => {
   const pathName = usePathname();
   const router = useRouter();
   const [activePath, setActivePath] = useState("");
-  useLayoutEffect(() => {
-    setActivePath(activeKeys.filter((value) => pathName.includes(value))[0]);
-  }, [pathName]);
-
-  const handleLogout = () => {
-    logout();
-    router.push("/signin");
-  };
-
-  const sidebarData1 = [
-    {
-      label: (
-        <Link href="dashboard" className="text-base">
-          Dashboard
-        </Link>
-      ),
-      icon: (
-        <MdOutlineDashboardCustomize className=" font-bold text-[#7C8493] w-5 h-5" />
-      ),
-      key: "dashboard",
-    },
-    {
-      label: (
-        <Link href="courses" className="text-base">
-          Courses
-        </Link>
-      ),
-      icon: <FiBookOpen className=" font-bold text-[#7C8493] w-5 h-5" />,
-      key: "courses",
-    },
-    {
-      label: (
-        <Link href="assignments" className="text-base">
-          Assignments
-        </Link>
-      ),
-      icon: <LuClipboardList className=" font-bold text-[#7C8493] w-5 h-5" />,
-      key: "assignments",
-    },
-    {
-      label: (
-        <Link href="calendar" className="text-base">
-          Calendar
-        </Link>
-      ),
-      icon: <FiCalendar className=" font-bold text-[#7C8493] w-5 h-5" />,
-      key: "calendar",
-    },
-    {
-      label: (
-        <Link href="resources" className="text-base">
-          Resources
-        </Link>
-      ),
-      icon: <FiBox className=" font-bold text-[#7C8493] w-5 h-5" />,
-      key: "resources",
-    },
-  ];
-
-  const sidebarData2 = [
-    {
-      label: (
-        <Link href="settings" className="text-base">
-          Settings
-        </Link>
-      ),
-      icon: <FiSettings className=" font-bold text-[#7C8493] w-5 h-5" />,
-      key: "settings",
-    },
-    {
-      label: (
-        <button onClick={handleLogout} className="text-base">
-          Log Out
-        </button>
-      ),
-      icon: <FiLogOut className="font-bold text-[#7C8493] w-5 h-5" />,
-      key: "logout",
-    },
-  ];
 
   const activeKeys = [
     "dashboard",
@@ -112,37 +32,127 @@ const DashboardSider = () => {
     "settings",
   ];
 
-  return (
-    <div className="drawer-side z-10 ">
-      <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-      <aside className="flex flex-col space-y-4 w-[15rem] shadow-xl bg-white border-r border-r-gray-300 py-2 h-full">
-        <Link
-          href=""
-          className="font-semibold text-xl mx-auto py-2"
-        >
-          <div className="avatar placeholder">
-            <div className="bg-academia-general text-white rounded-full w-8">
-              <span className="text-xl font-mono">A</span>
-            </div>
-            cademia
-          </div>
-        </Link>
-        <div className=" border border-gray-200 mt-6" />
-        <div className=" overflow-y-scroll space-y-5">
-          <Menu
-            selectedKeys={[activePath]}
-            items={sidebarData1}
-            className="!space-y-4 !w-full"
-            mode="inline"
-          />
-          <div className=" border border-gray-200 mt-6" />
+  useLayoutEffect(() => {
+    const matched = activeKeys.find((key) => pathName.includes(key)) || "";
+    setActivePath(matched);
+  }, [pathName]);
 
-          <Menu
-            selectedKeys={[activePath]}
-            items={sidebarData2}
-            className="!space-y-4 !w-full"
-            mode="inline"
-          />
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      router.push("/signin");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
+  const menuItems = [
+    {
+      label: "Dashboard",
+      icon: <MdOutlineDashboardCustomize className="w-5 h-5" />,
+      href: "/user/dashboard",
+      key: "dashboard",
+    },
+    {
+      label: "Courses",
+      icon: <FiBookOpen className="w-5 h-5" />,
+      href: "/user/courses",
+      key: "courses",
+    },
+    {
+      label: "Assignments",
+      icon: <LuClipboardList className="w-5 h-5" />,
+      href: "/user/assignments",
+      key: "assignments",
+    },
+    {
+      label: "Calendar",
+      icon: <FiCalendar className="w-5 h-5" />,
+      href: "/user/calendar",
+      key: "calendar",
+    },
+    {
+      label: "Resources",
+      icon: <FiBox className="w-5 h-5" />,
+      href: "/user/resources",
+      key: "resources",
+    },
+  ];
+
+  const bottomItems = [
+    {
+      label: "Settings",
+      icon: <FiSettings className="w-5 h-5" />,
+      href: "/user/settings",
+      key: "settings",
+    },
+  ];
+
+  return (
+    <div className="w-[15rem] shrink-0 z-10">
+      <aside className="flex flex-col space-y-4 w-[15rem] shadow-xl bg-white border-r border-r-neutral-200 py-4 h-full fixed left-0 top-0">
+        <Link href="/user/dashboard" className="font-semibold text-xl mx-auto py-2.5 flex items-center gap-2">
+          <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">A</span>
+          <span className="text-neutral-800">cademia</span>
+        </Link>
+        
+        <div className="border border-neutral-100" />
+        
+        <div className="flex-1 flex flex-col justify-between px-3">
+          <ul className="space-y-1">
+            {menuItems.map((item) => {
+              const isActive = activePath === item.key;
+              return (
+                <li key={item.key}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                      isActive
+                        ? "bg-primary-50 text-primary-600"
+                        : "text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900"
+                    }`}
+                  >
+                    <span className={isActive ? "text-primary-600" : "text-neutral-400"}>
+                      {item.icon}
+                    </span>
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          <ul className="space-y-1">
+            {bottomItems.map((item) => {
+              const isActive = activePath === item.key;
+              return (
+                <li key={item.key}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                      isActive
+                        ? "bg-primary-50 text-primary-600"
+                        : "text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900"
+                    }`}
+                  >
+                    <span className={isActive ? "text-primary-600" : "text-neutral-400"}>
+                      {item.icon}
+                    </span>
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+            <li>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-all"
+              >
+                <FiLogOut className="text-red-500 w-5 h-5" />
+                Log Out
+              </button>
+            </li>
+          </ul>
         </div>
       </aside>
     </div>

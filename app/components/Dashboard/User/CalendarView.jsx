@@ -32,7 +32,7 @@ const CalendarView = () => {
         onChange={setValue}
         showWeekNumbers
         value={value}
-        className="!border-none !w-full"
+        className="border-none! w-full!"
       />
     </div>
   );

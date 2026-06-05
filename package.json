@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
+    "@tailwindcss/postcss": "^4.3.0",
     "dayjs": "^1.11.21",
     "firebase": "^12.14.0",
     "next": "^16.2.7",

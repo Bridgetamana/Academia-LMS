@@ -59,7 +59,7 @@ const ChatSupport = () => {
             <div className="flex border border-gray-300 rounded-lg">
               <input
                 type="text"
-                className="flex-grow bg-white p-2 focus:outline-none rounded-lg "
+                className="grow bg-white p-2 focus:outline-none rounded-lg "
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
               />

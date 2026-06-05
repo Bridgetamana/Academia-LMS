@@ -5,7 +5,6 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { handleSignUp } from "@/app/_store/authStore";
-import { message } from "antd";
 
 const SignUp = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -78,7 +77,7 @@ const SignUp = () => {
     setError("");
 
     if (!validateForm()) {
-      message.error("Please fix the errors in the form");
+      setError("Please fix the errors in the form");
       return;
     }
 
@@ -93,17 +92,15 @@ const SignUp = () => {
       );
 
       if (result.success) {
-        message.success(result.message);
+        setError("");
         setTimeout(() => {
           router.push("/signin");
         }, 1000);
       } else {
         setError(result.message);
-        message.error(result.message);
       }
     } catch (err) {
-      setError(error.message);
-      message.error(error.message);
+      setError(err.message || "An unexpected error occurred.");
       console.error("Form submission error:", err);
     } finally {
       setIsSubmitting(false);

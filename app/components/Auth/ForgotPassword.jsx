@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { resetPassword } from "@/app/_store/authStore";
-import { message } from "antd";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -22,16 +21,13 @@ const ForgotPassword = () => {
 
       if (result.success) {
         setSuccess(result.message);
-        message.success(result.message);
         setEmail("");
       } else {
         setError(result.message);
-        message.error(result.message);
       }
     } catch (err) {
       const errorMessage = "An unexpected error occurred. Please try again.";
       setError(errorMessage);
-      message.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

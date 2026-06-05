@@ -9,22 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "antd": "^5.18.1",
-    "dayjs": "^1.11.11",
-    "firebase": "^10.12.2",
-    "next": "14.2.4",
-    "react": "^18",
-    "react-calendar": "^5.0.0",
-    "react-dom": "^18",
-    "react-icons": "^5.2.1",
-    "sharp": "^0.33.4",
-    "zustand": "^4.5.2"
+    "@base-ui/react": "^1.5.0",
+    "dayjs": "^1.11.21",
+    "firebase": "^12.14.0",
+    "next": "^16.2.7",
+    "react": "^19.2.7",
+    "react-calendar": "^6.0.1",
+    "react-dom": "^19.2.7",
+    "react-icons": "^5.6.0",
+    "sharp": "^0.34.5",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
-    "daisyui": "^4.12.2",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.4",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "eslint": "^10.4.1",
+    "eslint-config-next": "^16.2.7",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0"
   }
 }

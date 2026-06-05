@@ -20,7 +20,7 @@ export const handleSignUp = async (name, email, password, role) => {
 
     await sendEmailVerification(user);
 
-    await setDoc(doc(db, role + 's', user.uid), {
+    await setDoc(doc(db, 'users', user.uid), {
       name,
       email,
       role,
@@ -53,7 +53,7 @@ export const handleSignUp = async (name, email, password, role) => {
   }
 };
 
-export const handleSignIn = async (email, password, role) => {
+export const handleSignIn = async (email, password) => {
   const auth = getAuth();
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
@@ -67,7 +67,7 @@ export const handleSignIn = async (email, password, role) => {
       };
     }
 
-    const userDoc = await getDoc(doc(db, role + 's', user.uid));
+    const userDoc = await getDoc(doc(db, 'users', user.uid));
 
     if (!userDoc.exists()) {
       throw {
@@ -80,7 +80,7 @@ export const handleSignIn = async (email, password, role) => {
 
     if (userData.emailVerified !== user.emailVerified) {
       await setDoc(
-        doc(db, role + 's', user.uid),
+        doc(db, 'users', user.uid),
         { emailVerified: user.emailVerified },
         { merge: true }
       );
@@ -88,7 +88,7 @@ export const handleSignIn = async (email, password, role) => {
 
     return {
       success: true,
-      user: { ...userData, role },
+      user: userData,
       message: 'Signed in successfully!'
     };
   } catch (error) {

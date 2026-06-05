@@ -5,6 +5,9 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { handleSignUp } from "@/app/_store/authStore";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@base-ui/react";
+import Logo from "../common/Logo";
 
 const SignUp = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -13,75 +16,27 @@ const SignUp = () => {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    role: "",
-  });
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    role: "",
+    role: "educator", // Default to educator
   });
   const [error, setError] = useState("");
   const router = useRouter();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    let isValid = true;
-
-    if (formData.name.length < 2) {
-      newErrors.name = "Full name must be at least 2 characters";
-      isValid = false;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-      isValid = false;
-    }
-
-    if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-      isValid = false;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-      isValid = false;
-    }
-
-    if (!formData.role) {
-      newErrors.role = "Please select an account type";
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setError("");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
+    setIsSubmitting(true);
 
-    if (!validateForm()) {
-      setError("Please fix the errors in the form");
+    if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      setIsSubmitting(false);
       return;
     }
-
-    setIsSubmitting(true);
 
     try {
       const result = await handleSignUp(
@@ -92,198 +47,173 @@ const SignUp = () => {
       );
 
       if (result.success) {
-        setError("");
-        setTimeout(() => {
-          router.push("/signin");
-        }, 1000);
+        if (formData.role === "educator") {
+          setTimeout(() => router.push("/signin?registered=true"), 1000);
+        } else {
+          setTimeout(() => router.push("/signin?registered=true"), 1000);
+        }
       } else {
         setError(result.message);
       }
     } catch (err) {
       setError(err.message || "An unexpected error occurred.");
-      console.error("Form submission error:", err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[480px] w-full space-y-8">
-        <div className="text-center">
-          <h2 className="mt-6 text-3xl font-bold text-neutral-900">
-            Create your account
-          </h2>
-          <p className="mt-2 text-sm text-neutral-600">
-            Or{" "}
-            <Link
-              href="/signin"
-              className="font-medium text-primary hover:underline"
-            >
-              sign in to your account
-            </Link>
-          </p>
+    <div className="min-h-screen w-full flex bg-background">
+      <div className="w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-12 lg:px-24 xl:px-32 relative py-12">
+        <div className="absolute top-8 left-6 sm:left-12 lg:left-24">
+          <Logo />
         </div>
 
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-            {error}
-          </div>
-        )}
-
-        <form
-          onSubmit={handleSubmit}
-          className="mt-8 space-y-6 bg-white p-6 rounded-lg shadow-xl"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-md mx-auto"
         >
-          <div className="space-y-4">
-            <div>
+          <div className="mb-10">
+            <h1 className="text-3xl font-serif font-bold text-text-main mb-3">
+              Create your account
+            </h1>
+            <p className="text-text-muted font-sans">
+              Already have an account?{" "}
+              <Link href="/signin" className="text-primary font-medium hover:underline">
+                Sign in
+              </Link>
+            </p>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="mb-6 p-4 bg-red-50 text-red-600 rounded-xl text-sm border border-red-100 font-medium"
+              >
+                {error}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <label className={`cursor-pointer flex flex-col p-4 border rounded-2xl transition-all ${formData.role === 'educator' ? 'border-primary bg-primary-light/30' : 'border-border bg-white hover:border-gray-300'}`}>
+                <input type="radio" name="role" value="educator" checked={formData.role === "educator"} onChange={handleInputChange} className="sr-only" />
+                <span className="font-semibold text-text-main text-sm">Educator</span>
+                <span className="text-xs text-text-muted mt-1">Create an academy</span>
+              </label>
+              <label className={`cursor-pointer flex flex-col p-4 border rounded-2xl transition-all ${formData.role === 'student' ? 'border-primary bg-primary-light/30' : 'border-border bg-white hover:border-gray-300'}`}>
+                <input type="radio" name="role" value="student" checked={formData.role === "student"} onChange={handleInputChange} className="sr-only" />
+                <span className="font-semibold text-text-main text-sm">Student</span>
+                <span className="text-xs text-text-muted mt-1">Join a classroom</span>
+              </label>
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-text-main ml-1">Full Name</label>
               <input
                 name="name"
                 type="text"
-                placeholder="Full Name"
                 required
-                autoFocus
                 disabled={isSubmitting}
                 value={formData.name}
                 onChange={handleInputChange}
-                className={`w-full p-3 text-neutral-900 bg-neutral-100 rounded-md outline-none border ${
-                  errors.name ? "border-red-500" : "border-neutral-300"
-                } focus:border-primary focus:bg-white lg:text-sm disabled:opacity-50`}
+                className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
+                placeholder="Jane Doe"
               />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-              )}
             </div>
 
-            <div>
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-text-main ml-1">Email address</label>
               <input
                 name="email"
                 type="email"
-                placeholder="Email"
                 required
                 disabled={isSubmitting}
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full p-3 text-neutral-900 bg-neutral-100 rounded-md outline-none border ${
-                  errors.email ? "border-red-500" : "border-neutral-300"
-                } focus:border-primary focus:bg-white lg:text-sm disabled:opacity-50`}
+                className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
+                placeholder="jane@example.com"
               />
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-              )}
             </div>
 
-            <div className="relative">
-              <input
-                name="password"
-                type={isPasswordHidden ? "password" : "text"}
-                placeholder="Password"
-                required
-                disabled={isSubmitting}
-                value={formData.password}
-                onChange={handleInputChange}
-                className={`w-full p-3 text-neutral-900 bg-neutral-100 rounded-md outline-none border ${
-                  errors.password ? "border-red-500" : "border-neutral-300"
-                } focus:border-primary focus:bg-white lg:text-sm disabled:opacity-50`}
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400"
-                onClick={() => setPasswordHidden(!isPasswordHidden)}
-                disabled={isSubmitting}
-              >
-                {isPasswordHidden ? (
-                  <FiEye className="w-5 h-5" />
-                ) : (
-                  <FiEyeOff className="w-5 h-5" />
-                )}
-              </button>
-              {errors.password && (
-                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
-              )}
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-text-main ml-1">Password</label>
+              <div className="relative">
+                <input
+                  name="password"
+                  type={isPasswordHidden ? "password" : "text"}
+                  required
+                  disabled={isSubmitting}
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setPasswordHidden(!isPasswordHidden)}
+                  disabled={isSubmitting}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-main transition-colors"
+                >
+                  {isPasswordHidden ? <FiEye className="w-5 h-5" /> : <FiEyeOff className="w-5 h-5" />}
+                </button>
+              </div>
             </div>
 
-            <div className="relative">
-              <input
-                name="confirmPassword"
-                type={isPasswordHidden ? "password" : "text"}
-                placeholder="Confirm Password"
-                required
-                disabled={isSubmitting}
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                className={`w-full p-3 text-neutral-900 bg-neutral-100 rounded-md outline-none border ${
-                  errors.confirmPassword
-                    ? "border-red-500"
-                    : "border-neutral-300"
-                } focus:border-primary focus:bg-white lg:text-sm disabled:opacity-50`}
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400"
-                onClick={() => setPasswordHidden(!isPasswordHidden)}
-                disabled={isSubmitting}
-              >
-                {isPasswordHidden ? (
-                  <FiEye className="w-5 h-5" />
-                ) : (
-                  <FiEyeOff className="w-5 h-5" />
-                )}
-              </button>
-              {errors.confirmPassword && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.confirmPassword}
-                </p>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full mt-4 py-4 px-4 rounded-xl shadow-sm text-sm font-semibold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-70 disabled:cursor-not-allowed transition-all active:scale-[0.99] flex justify-center items-center"
+            >
+              {isSubmitting ? (
+                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+              ) : (
+                "Create Account"
               )}
-            </div>
+            </Button>
 
-            <div>
-              <select
-                name="role"
-                required
-                value={formData.role}
-                onChange={handleInputChange}
-                disabled={isSubmitting}
-                className={`w-full p-3 text-neutral-900 bg-neutral-100 rounded-md outline-none border ${
-                  errors.role ? "border-red-500" : "border-neutral-300"
-                } focus:border-primary focus:bg-white lg:text-sm disabled:opacity-50`}
-              >
-                <option value="">Select Account Type</option>
-                <option value="educator">Teacher/Educator</option>
-                <option value="student">Student</option>
-              </select>
-              {errors.role && (
-                <p className="mt-1 text-sm text-red-600">{errors.role}</p>
-              )}
+            <p className="text-xs text-text-muted text-center mt-6">
+              By signing up, you agree to our{" "}
+              <Link href="#" className="underline hover:text-text-main transition-colors">Terms of Service</Link>{" "}
+              and{" "}
+              <Link href="#" className="underline hover:text-text-main transition-colors">Privacy Policy</Link>.
+            </p>
+          </form>
+        </motion.div>
+      </div>
+
+      <div className="hidden lg:flex lg:w-[45%] bg-surface border-l border-border relative overflow-hidden items-center justify-center p-12">
+        <div className="absolute inset-0 bg-primary/5 pattern-dots pattern-border pattern-opacity-10 pattern-size-4"></div>
+        <div className="absolute top-[-20%] right-[-10%] w-150 h-150 bg-primary/20 rounded-[100%] blur-[120px] opacity-70" />
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 max-w-lg"
+        >
+          <div className="bg-white/80 backdrop-blur-xl p-8 border border-border rounded-3xl shadow-2xl relative">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+              <span className="text-primary text-xl">✨</span>
+            </div>
+            <h3 className="text-2xl font-serif font-bold text-text-main mb-4 leading-snug">
+              "Academia transformed how we deliver our curriculum. The interface gets out of the way so students can actually learn."
+            </h3>
+            <div className="flex items-center gap-4 mt-8">
+              <div className="w-10 h-10 rounded-full bg-surface-hover border border-border"></div>
+              <div>
+                <p className="text-sm font-bold text-text-main">Sarah Jenkins</p>
+                <p className="text-xs text-text-muted">Director, Animation Guild</p>
+              </div>
             </div>
           </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? (
-              <div className="flex items-center justify-center gap-2">
-                <span className="loading loading-spinner loading-sm" />
-                <span>Creating Account...</span>
-              </div>
-            ) : (
-              "Create Account"
-            )}
-          </button>
-
-          <p className="text-sm text-neutral-600 text-center">
-            By signing up, you agree to our{" "}
-            <Link href="/terms" className="text-primary hover:underline">
-              Terms of Service
-            </Link>{" "}
-            and{" "}
-            <Link href="/privacy" className="text-primary hover:underline">
-              Privacy Policy
-            </Link>
-          </p>
-        </form>
+        </motion.div>
       </div>
     </div>
   );

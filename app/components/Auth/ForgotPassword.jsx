@@ -3,97 +3,136 @@
 import { useState } from "react";
 import Link from "next/link";
 import { resetPassword } from "@/app/_store/authStore";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@base-ui/react";
+import Logo from "../common/Logo";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setSuccess("");
     setIsSubmitting(true);
 
     try {
       const result = await resetPassword(email);
 
       if (result.success) {
-        setSuccess(result.message);
-        setEmail("");
+        setIsSuccess(true);
       } else {
         setError(result.message);
       }
     } catch (err) {
-      const errorMessage = "An unexpected error occurred. Please try again.";
-      setError(errorMessage);
+      setError(err.message || "An unexpected error occurred.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[400px] w-full space-y-8">
-        <div className="text-center">
-          <h2 className="mt-6 text-3xl font-bold text-neutral-900">
-            Reset your password
-          </h2>
-          <p className="mt-2 text-sm text-neutral-600">
-            Enter your email and we'll send you a link to reset your password
-          </p>
+    <div className="min-h-screen w-full flex bg-background">
+      <div className="w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-12 lg:px-24 xl:px-32 relative py-12">
+        <div className="absolute top-8 left-6 sm:left-12 lg:left-24">
+          <Logo />
         </div>
 
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-            {error}
-          </div>
-        )}
-
-        {success && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-            {success}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6 bg-white p-6 rounded-lg shadow-xl">
-          <div>
-            <input
-              type="email"
-              placeholder="Email address"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={isSubmitting}
-              className="w-full p-3 text-neutral-900 bg-neutral-100 rounded-md outline-none border border-neutral-300 focus:border-primary focus:bg-white lg:text-sm disabled:opacity-50"
-            />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-md mx-auto"
+        >
+          <div className="mb-10">
+            <h1 className="text-3xl font-serif font-bold text-text-main mb-3">
+              Reset Password
+            </h1>
+            <p className="text-text-muted font-sans">
+              Enter the email address associated with your account and we'll send you a link to reset your password.
+            </p>
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? (
-              <div className="flex items-center justify-center gap-2">
-                <span className="loading loading-spinner loading-sm" />
-                <span>Sending reset link...</span>
-              </div>
-            ) : (
-              "Send reset link"
+          <AnimatePresence mode="wait">
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="mb-6 p-4 bg-red-50 text-red-600 rounded-xl text-sm border border-red-100 font-medium"
+              >
+                {error}
+              </motion.div>
             )}
-          </button>
+          </AnimatePresence>
 
-          <div className="text-center">
-            <Link
-              href="/signin"
-              className="text-sm text-primary hover:underline"
+          {isSuccess ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="p-8 bg-surface border border-border rounded-2xl text-center shadow-sm"
             >
-              Back to sign in
-            </Link>
-          </div>
-        </form>
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-text-main mb-2">Check your email</h3>
+              <p className="text-sm text-text-muted mb-6">
+                We've sent a password reset link to <span className="font-semibold">{email}</span>.
+              </p>
+              <Link href="/signin">
+                <Button className="w-full py-3.5 px-4 rounded-xl shadow-sm text-sm font-semibold text-text-main bg-white border border-border hover:bg-surface-hover transition-all active:scale-[0.99]">
+                  Return to Sign In
+                </Button>
+              </Link>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-text-main ml-1">Email address</label>
+                <input
+                  type="email"
+                  required
+                  autoFocus
+                  disabled={isSubmitting}
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError("");
+                  }}
+                  className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
+                  placeholder="jane@example.com"
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full mt-6 py-4 px-4 rounded-xl shadow-sm text-sm font-semibold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-70 disabled:cursor-not-allowed transition-all active:scale-[0.99] flex justify-center items-center"
+              >
+                {isSubmitting ? (
+                  <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                ) : (
+                  "Send Reset Link"
+                )}
+              </Button>
+
+              <div className="text-center mt-6">
+                <Link href="/signin" className="text-sm text-text-muted hover:text-text-main font-medium transition-colors">
+                  ← Back to Sign In
+                </Link>
+              </div>
+            </form>
+          )}
+        </motion.div>
+      </div>
+
+      <div className="hidden lg:flex lg:w-[45%] bg-surface border-l border-border relative overflow-hidden items-center justify-center p-12">
+        <div className="absolute inset-0 bg-primary/5"></div>
+        <div className="absolute top-[20%] left-[-10%] w-125 h-125 bg-primary/20 rounded-[100%] blur-[120px] opacity-60" />
       </div>
     </div>
   );

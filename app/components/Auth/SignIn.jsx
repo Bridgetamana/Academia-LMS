@@ -5,6 +5,9 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { handleSignIn } from "@/app/_store/authStore";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@base-ui/react";
+import Logo from "../common/Logo";
 
 const SignIn = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
@@ -12,17 +15,13 @@ const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role: "student"
   });
   const [error, setError] = useState("");
   const router = useRouter();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     setError("");
   };
 
@@ -32,13 +31,13 @@ const SignIn = () => {
     setIsSubmitting(true);
 
     try {
-      const result = await handleSignIn(formData.email, formData.password, formData.role);
+      // Notice we are NOT passing `role` anymore!
+      const result = await handleSignIn(formData.email, formData.password);
 
       if (result.success) {
-        const redirectUser = result.user.role === 'educator' 
-          ? '/admin/dashboard'
-          : '/user/dashboard';
-          
+        const redirectUser =
+          result.user.role === "educator" ? "/admin/dashboard" : "/user/dashboard";
+
         setTimeout(() => {
           router.push(redirectUser);
         }, 200);
@@ -54,120 +53,126 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[400px] w-full space-y-8">
-        <div className="text-center">
-          <h2 className="mt-6 text-3xl font-bold text-neutral-900">
-            Sign in to your account
-          </h2>
-          <p className="mt-2 text-sm text-neutral-600">
-            Or{" "}
-            <Link
-              href="/signup"
-              className="font-medium text-primary hover:underline"
-            >
-              create a new account
-            </Link>
-          </p>
+    <div className="min-h-screen w-full flex bg-background">
+      <div className="w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-12 lg:px-24 xl:px-32 relative py-12">
+        <div className="absolute top-8 left-6 sm:left-12 lg:left-24">
+          <Logo />
         </div>
 
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-            {error}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-md mx-auto"
+        >
+          <div className="mb-10">
+            <h1 className="text-3xl font-serif font-bold text-text-main mb-3">
+              Welcome back
+            </h1>
+            <p className="text-text-muted font-sans">
+              Don't have an account?{" "}
+              <Link href="/signup" className="text-primary font-medium hover:underline">
+                Sign up
+              </Link>
+            </p>
           </div>
-        )}
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6 bg-white p-6 rounded-lg shadow-xl">
-          <div className="space-y-4">
-            <div className="flex gap-4">
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="role"
-                  value="student"
-                  checked={formData.role === "student"}
-                  onChange={handleInputChange}
-                  className="form-radio text-primary"
-                />
-                <span className="text-sm text-neutral-700">Student</span>
-              </label>
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="role"
-                  value="educator"
-                  checked={formData.role === "educator"}
-                  onChange={handleInputChange}
-                  className="form-radio text-primary"
-                />
-                <span className="text-sm text-neutral-700">Educator</span>
-              </label>
-            </div>
+          <AnimatePresence mode="wait">
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="mb-6 p-4 bg-red-50 text-red-600 rounded-xl text-sm border border-red-100 font-medium"
+              >
+                {error}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-            <div>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-text-main ml-1">Email address</label>
               <input
                 name="email"
                 type="email"
-                placeholder="Email"
                 required
                 autoFocus
                 disabled={isSubmitting}
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full p-3 text-neutral-900 bg-neutral-100 rounded-md outline-none border border-neutral-300 focus:border-primary focus:bg-white lg:text-sm disabled:opacity-50"
+                className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
+                placeholder="jane@example.com"
               />
             </div>
 
-            <div className="relative">
-              <input
-                name="password"
-                type={isPasswordHidden ? "password" : "text"}
-                placeholder="Password"
-                required
-                disabled={isSubmitting}
-                value={formData.password}
-                onChange={handleInputChange}
-                className="w-full p-3 text-neutral-900 bg-neutral-100 rounded-md outline-none border border-neutral-300 focus:border-primary focus:bg-white lg:text-sm disabled:opacity-50"
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400"
-                onClick={() => setPasswordHidden(!isPasswordHidden)}
-                disabled={isSubmitting}
-              >
-                {isPasswordHidden ? (
-                  <FiEye className="w-5 h-5" />
-                ) : (
-                  <FiEyeOff className="w-5 h-5" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-end">
-            <Link
-              href="/forgotpassword"
-              className="text-sm text-primary hover:underline"
-            >
-              Forgot your password?
-            </Link>
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? (
-              <div className="flex items-center justify-center gap-2">
-                <span className="loading loading-spinner loading-sm" />
-                <span>Signing in...</span>
+            <div className="space-y-1">
+              <div className="flex justify-between items-center ml-1 mb-1">
+                <label className="text-sm font-medium text-text-main">Password</label>
+                <Link
+                  href="/forgotpassword"
+                  className="text-xs text-primary font-medium hover:underline"
+                >
+                  Forgot password?
+                </Link>
               </div>
-            ) : (
-              "Sign in"
-            )}
-          </button>
-        </form>
+              <div className="relative">
+                <input
+                  name="password"
+                  type={isPasswordHidden ? "password" : "text"}
+                  required
+                  disabled={isSubmitting}
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setPasswordHidden(!isPasswordHidden)}
+                  disabled={isSubmitting}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-main transition-colors"
+                >
+                  {isPasswordHidden ? <FiEye className="w-5 h-5" /> : <FiEyeOff className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full mt-6 py-4 px-4 rounded-xl shadow-sm text-sm font-semibold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-70 disabled:cursor-not-allowed transition-all active:scale-[0.99] flex justify-center items-center"
+            >
+              {isSubmitting ? (
+                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+              ) : (
+                "Sign In"
+              )}
+            </Button>
+          </form>
+        </motion.div>
+      </div>
+
+      <div className="hidden lg:flex lg:w-[45%] bg-surface border-l border-border relative overflow-hidden items-center justify-center p-12">
+        <div className="absolute inset-0 bg-primary/5"></div>
+        <div className="absolute bottom-[-20%] left-[-10%] w-200 h-200 bg-accent/10 rounded-[100%] blur-[150px] opacity-70" />
+        <div className="absolute top-[10%] right-[10%] w-200 h-200 bg-primary/20 rounded-[100%] blur-[120px] opacity-70" />
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 max-w-md text-center"
+        >
+          <div className="p-8 border border-border bg-white/50 backdrop-blur-xl rounded-3xl shadow-xl">
+            <h2 className="text-3xl font-serif font-bold text-text-main mb-4">
+              The control center for your academy.
+            </h2>
+            <p className="text-text-muted font-sans leading-relaxed">
+              Log in to manage your students, view analytics, and publish new modules to your audience seamlessly.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

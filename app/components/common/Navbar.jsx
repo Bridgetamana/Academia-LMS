@@ -1,29 +1,34 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Logo from "./Logo";
+import Link from 'next/link';
+import Logo from './Logo';
+import { Button } from '@base-ui/react';
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
+  const router = useRouter();
+
   return (
-    <nav className="w-full border-neutral-200 sticky top-0 backdrop-blur-md z-999 shadow-sm bg-white/80 py-2 md:py-4">
-      <div className="items-center max-w-[theme(screens.2xl)] mx-auto flex justify-between p-4 lg:p-0">
+    <nav className='w-full border-b border-border sticky top-0 backdrop-blur-md z-999 bg-white/80 py-3 sm:py-4 transition-all'>
+      <div className='max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6'>
         <Logo />
-        <div className="md:px-8 flex items-center gap-2">
+        <div className='flex items-center gap-3 sm:gap-6'>
           <Link
-            href="/signin"
-            className="text-neutral-600 hover:text-primary-500 transition-colors"
+            href='/signin'
+            className='text-sm font-medium text-text-muted hover:text-text-main transition-colors'
           >
-            Sign in
+            Log in
           </Link>
-          <Link
-            href="/signup"
-            className="py-1.5 px-3.5 font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-full transition-colors"
+          <Button
+            onClick={() => router.push('/signup')}
+            className='text-sm font-medium text-white bg-primary hover:bg-primary-hover px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all active:scale-[0.98] cursor-pointer'
           >
-            Sign Up
-          </Link>
+            Sign up
+          </Button>
         </div>
       </div>
     </nav>
   );
 };
+
 export default Navbar;

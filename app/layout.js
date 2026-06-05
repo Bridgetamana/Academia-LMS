@@ -1,10 +1,15 @@
-import { Raleway } from "next/font/google";
+import { Lora, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const raleway = Raleway({
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+const lora = Lora({
   subsets: ["latin"],
+  variable: "--font-lora",
+  display: "swap",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -23,8 +28,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={raleway.className}>{children}</body>
+    <html lang="en" className={`${lora.variable} ${plusJakartaSans.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

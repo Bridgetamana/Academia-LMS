@@ -26,7 +26,7 @@ const ChatSupport = () => {
     <div className="fixed bottom-8 right-8 z-50">
       <button
         role="button"
-        className="hover:bg-gray-700 bg-academia-general duration-200 text-white p-3 rounded-full transition-opacity"
+        className="hover:bg-primary-700 bg-primary-600 duration-200 text-white p-3 rounded-full transition-opacity"
         onClick={toggleChat}
       >
         <AiOutlineMessage className="w-6 h-6" />
@@ -47,7 +47,7 @@ const ChatSupport = () => {
                   <div
                     className={`p-2 rounded-lg max-w-xs ${
                       message.from === "user"
-                        ? "bg-academia-general text-white"
+                        ? "bg-primary-600 text-white"
                         : "bg-gray-200"
                     }`}
                   >
@@ -59,12 +59,12 @@ const ChatSupport = () => {
             <div className="flex border border-gray-300 rounded-lg">
               <input
                 type="text"
-                className="grow bg-white p-2 focus:outline-none rounded-lg "
+                className="flex-grow bg-white p-2 focus:outline-none rounded-lg "
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
               />
               <button
-                className="text-academia-general p-2"
+                className="text-primary-600 p-2"
                 onClick={handleSendMessage}
               >
                 <AiOutlineSend />

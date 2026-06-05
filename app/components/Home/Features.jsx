@@ -1,109 +1,94 @@
+"use client";
+
 import React from "react";
-import { FaBell, FaCalendar, FaClock, FaFile, FaSync } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { FaBookReader, FaRegCalendarAlt, FaRegChartBar, FaUserGraduate } from "react-icons/fa";
 
 const Features = () => {
+  const featuresList = [
+    {
+      title: "Streamlined Curriculum",
+      description: "Organize lessons, modules, and resources cleanly. Let your content speak for itself without UI clutter.",
+      icon: <FaBookReader className="text-xl text-text-main" />,
+    },
+    {
+      title: "Intelligent Scheduling",
+      description: "Set cohorts, due dates, and live sessions in one unified calendar integrated directly into the student experience.",
+      icon: <FaRegCalendarAlt className="text-xl text-text-main" />,
+    },
+    {
+      title: "Deep Analytics",
+      description: "Track completion rates and engagement metrics to understand exactly where students drop off.",
+      icon: <FaRegChartBar className="text-xl text-text-main" />,
+    },
+    {
+      title: "Built for Educators",
+      description: "From individual creators to full-scale bootcamps, the platform scales gracefully to fit your operational needs.",
+      icon: <FaUserGraduate className="text-xl text-text-main" />,
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+  };
+
   return (
-    <section className='mx-auto max-w-(--breakpoint-xl) px-4 md:px-8 py-16 lg:flex'>
-      <div className='text-center w-full flex flex-col gap-6'>
-        <span>
-          <p className='text-[20px] md:text-[30px] font-bold text-neutral-900'>
-            FEATURES
+    <section className="bg-surface relative py-20 lg:py-24 overflow-hidden border-y border-border">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 relative z-10 flex flex-col items-center">
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-16 max-w-2xl"
+        >
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-text-main leading-tight mb-4">
+            Everything you need to run your academy.
+          </h2>
+          <p className="text-text-muted text-lg font-sans">
+            A comprehensive toolkit designed to help you build, manage, and scale your educational product.
           </p>
-          <hr className='border-2 border-accent-600 w-10 mx-auto' />
-        </span>
+        </motion.div>
 
-        <p className='text-neutral-700 text-[18px] md:text-[24px]'>
-          An overview of our features.
-        </p>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center'>
-          <div className='card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md'>
-            <div className='card-body'>
-              <span className='text-start'>
-                <span className='avatar placeholder p-3 rounded-lg bg-primary-200 mb-4'>
-                  <FaBell className='text-xl text-primary-600' />
-                </span>
-                <h2 className='card-title text-neutral-500 text-lg'>
-                  Stay Updated, Instantly
-                </h2>
-              </span>
-              <p className='text-start text-neutral-700'>
-                Receive immediate notifications when new course materials,
-                lecture notes, or supplemental readings are available.
-              </p>
-            </div>
-          </div>
-
-          <div className='card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md'>
-            <div className='card-body'>
-              <span className='text-start'>
-                <span className='avatar placeholder p-3 rounded-lg bg-accent-100 mb-4'>
-                  <FaSync className='text-xl text-accent' />
-                </span>
-                <h2 className='card-title text-neutral-500 text-lg'>
-                  All Your Dates in One Place
-                </h2>
-              </span>
-              <p className='text-start text-neutral-700'>
-                Sync your academic calendar with your personal one. Keep all
-                important dates in one convenient location.
-              </p>
-            </div>
-          </div>
-
-          <div className='card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md'>
-            <div className='card-body'>
-              <span className='text-start'>
-                <span className='avatar placeholder p-3 rounded-lg bg-[#F6E2F8] mb-4'>
-                  <FaClock className='text-xl text-[#9C03AD]' />
-                </span>
-                <h2 className='card-title text-neutral-500 text-lg'>
-                  Never Miss a Deadline
-                </h2>
-              </span>
-              <p className='text-start text-neutral-700'>
-                Get timely reminders for upcoming deadlines, assignments,
-                quizzes, and exams to ensure you stay on top of your academic
-                responsibilities.
-              </p>
-            </div>
-          </div>
-
-          <div className='card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md'>
-            <div className='card-body'>
-              <span className='text-start'>
-                <span className='avatar placeholder p-3 rounded-lg bg-error-100 mb-4'>
-                  <FaFile className='text-xl text-error-700' />
-                </span>
-                <h2 className='card-title text-neutral-500 text-lg'>
-                  Quick PDF Summaries
-                </h2>
-              </span>
-              <p className='text-start text-neutral-700'>
-                Automatically generate concise summaries of lengthy PDFs. Save
-                time and quickly grasp key points from your course materials.
-              </p>
-            </div>
-          </div>
-
-          <div className='card max-w-xs sm:max-w-sm lg:max-w-md w-full shadow-md'>
-            <div className='card-body'>
-              <span className='text-start'>
-                <span className='avatar placeholder p-3 rounded-lg bg-[#e3ddf8] mb-4'>
-                  <FaCalendar className='text-xl text-primary-700' />
-                </span>
-                <h2 className='card-title text-neutral-500 text-lg'>
-                  Efficient Assignment Management
-                </h2>
-              </span>
-              <p className='text-start text-neutral-700'>
-                Educators can schedule, manage, and monitor assignments with
-                ease. Enhance the teaching and learning experience with
-                streamlined workflows.
-              </p>
-            </div>
-          </div>
-        </div>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="w-full grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
+          {featuresList.map((feature, idx) => (
+            <motion.div
+              key={idx}
+              variants={itemVariants}
+              className="bg-white border border-border p-8 rounded-3xl relative overflow-hidden"
+            >
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-surface border border-border flex items-center justify-center mb-6 text-text-main">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-serif font-semibold text-text-main mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-text-muted text-sm leading-relaxed font-sans">
+                  {feature.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

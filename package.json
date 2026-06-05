@@ -13,6 +13,7 @@
     "@tailwindcss/postcss": "^4.3.0",
     "dayjs": "^1.11.21",
     "firebase": "^12.14.0",
+    "framer-motion": "^12.40.0",
     "next": "^16.2.7",
     "react": "^19.2.7",
     "react-calendar": "^6.0.1",

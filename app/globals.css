@@ -1,100 +1,40 @@
 @import 'tailwindcss';
 
 @theme {
-  --breakpoint-xs: 320px;
-  --color-primary: #4F46E5;
-  --color-primary-50: #EEF2FF;
-  --color-primary-100: #E0E7FF;
-  --color-primary-200: #C7D2FE;
-  --color-primary-300: #A5B4FC;
-  --color-primary-400: #818CF8;
-  --color-primary-500: #4F46E5;
-  --color-primary-600: #4338CA;
-  --color-primary-700: #3730A3;
-  --color-primary-800: #312E81;
-  --color-primary-900: #1E1B4B;
-
-  --color-secondary: #0EA5E9;
-  --color-secondary-50: #F0F9FF;
-  --color-secondary-100: #E0F2FE;
-  --color-secondary-200: #BAE6FD;
-  --color-secondary-300: #7DD3FC;
-  --color-secondary-400: #38BDF8;
-  --color-secondary-500: #0EA5E9;
-  --color-secondary-600: #0284C7;
-  --color-secondary-700: #0369A1;
-  --color-secondary-800: #075985;
-  --color-secondary-900: #0C4A6E;
-
-  --color-accent: #F59E0B;
-  --color-accent-50: #FFFBEB;
-  --color-accent-100: #FEF3C7;
-  --color-accent-200: #FDE68A;
-  --color-accent-300: #FCD34D;
-  --color-accent-400: #FBBF24;
-  --color-accent-500: #F59E0B;
-  --color-accent-600: #D97706;
-  --color-accent-700: #B45309;
-  --color-accent-800: #92400E;
-  --color-accent-900: #78350F;
-
-  --color-success: #10B981;
-  --color-success-50: #ECFDF5;
-  --color-success-100: #D1FAE5;
-  --color-success-200: #A7F3D0;
-  --color-success-300: #6EE7B7;
-  --color-success-400: #34D399;
-  --color-success-500: #10B981;
-  --color-success-600: #059669;
-  --color-success-700: #047857;
-  --color-success-800: #065F46;
-  --color-success-900: #064E3B;
-
-  --color-error: #EF4444;
-  --color-error-50: #FEF2F2;
-  --color-error-100: #FEE2E2;
-  --color-error-200: #FECACA;
-  --color-error-300: #FCA5A5;
-  --color-error-400: #F87171;
-  --color-error-500: #EF4444;
-  --color-error-600: #DC2626;
-  --color-error-700: #B91C1C;
-  --color-error-800: #991B1B;
-  --color-error-900: #7F1D1D;
-
-  --color-neutral: #6B7280;
-  --color-neutral-50: #F9FAFB;
-  --color-neutral-100: #F3F4F6;
-  --color-neutral-200: #E5E7EB;
-  --color-neutral-300: #D1D5DB;
-  --color-neutral-400: #9CA3AF;
-  --color-neutral-500: #6B7280;
-  --color-neutral-600: #4B5563;
-  --color-neutral-700: #374151;
-  --color-neutral-800: #1F2937;
-  --color-neutral-900: #111827;
-
-  --color-background-light: #F9FAFB;
-  --color-background-default: #FFFFFF;
-  --color-background-dark: #F3F4F6;
-  --color-background-overlay: rgba(0, 0, 0, 0.4);
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-lora), Georgia, serif;
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-light: #e0e7ff;
+  --color-accent: #c2410c;
+  --color-background: #ffffff;
+  --color-surface: #fafafa;
+  --color-surface-hover: #f5f5f5;
+  --color-border: #e5e5e5;
+  --color-text-main: #171717;
+  --color-text-muted: #3d3d43;
 }
 
 * {
   scroll-behavior: smooth;
 }
 
+h1,
+h2,
+h3,
+h4,
+.font-serif {
+  font-family: var(--font-lora), Georgia, serif;
+}
+
 body {
-  position: relative; /* Base UI iOS 26+ Safari requirement */
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  position: relative;
 }
 
 .root {
-  isolation: isolate; /* Base UI Portals requirement */
-}
-
-img {
-  -webkit-user-drag: none;
-  pointer-events: none;
+  isolation: isolate;
 }
 
 ::-webkit-scrollbar {

@@ -11,7 +11,7 @@ export default function Home() {
       <BaseLayout>
         <Hero />
         <Features />
-        <hr className="border border-[#DFE9F3]" />
+        <hr className="border-t border-border" />
       </BaseLayout>
     </>
   );

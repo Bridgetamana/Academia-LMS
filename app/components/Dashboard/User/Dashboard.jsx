@@ -4,6 +4,9 @@ import {
   faEllipsisVertical,
   faStopwatch,
   faCalendarDays,
+  faBook,
+  faPersonChalkboard,
+  faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useState } from 'react';
@@ -62,7 +65,7 @@ const Dashboard = () => {
                   <div className='space-y-2'>
                     <div>
                       <button className='btn btn-square bg-slate-200 btn-sm text-xl'>
-                        <FaBook />
+                        <FontAwesomeIcon icon={faBook} />
                       </button>
                     </div>
                     <p>Catch Up</p>
@@ -82,7 +85,7 @@ const Dashboard = () => {
                   <div className='space-y-2'>
                     <div>
                       <button className='btn btn-square bg-slate-200 btn-sm text-xl'>
-                        <FaChalkboardTeacher />
+                        <FontAwesomeIcon icon={faPersonChalkboard} />
                       </button>
                     </div>
                     <p>Discussion Forum</p>
@@ -337,7 +340,7 @@ const Dashboard = () => {
                         nextSlide();
                       }}
                     >
-                      <FaArrowRight />
+                      <FontAwesomeIcon icon={faArrowRight} />
                     </button>
                   </div>
                 </>

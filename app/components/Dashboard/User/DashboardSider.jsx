@@ -7,6 +7,7 @@ import {
   faGear,
   faTableColumns,
   faClipboardList,
+  faBox,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useLayoutEffect, useState } from 'react';
@@ -70,7 +71,7 @@ const DashboardSider = () => {
     },
     {
       label: 'Resources',
-      icon: <FiBox className='w-5 h-5' />,
+      icon: <FontAwesomeIcon icon={faBox} className='w-5 h-5' />,
       href: '/user/resources',
       key: 'resources',
     },
@@ -86,8 +87,8 @@ const DashboardSider = () => {
   ];
 
   return (
-    <div className='w-[15rem] shrink-0 z-10'>
-      <aside className='flex flex-col space-y-4 w-[15rem] shadow-xl bg-white border-r border-r-neutral-200 py-4 h-full fixed left-0 top-0'>
+    <div className='w-60 shrink-0 z-10'>
+      <aside className='flex flex-col space-y-4 w-60 shadow-xl bg-white border-r border-r-neutral-200 py-4 h-full fixed left-0 top-0'>
         <Link
           href='/user/dashboard'
           className='font-semibold text-xl mx-auto py-2.5 flex items-center gap-2'

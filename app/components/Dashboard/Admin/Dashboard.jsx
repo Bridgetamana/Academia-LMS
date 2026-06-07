@@ -4,6 +4,9 @@ import {
   faEllipsisVertical,
   faStopwatch,
   faCalendarDays,
+  faBook,
+  faPersonChalkboard,
+  faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useState } from 'react';
@@ -55,7 +58,7 @@ const Dashboard = () => {
                   <div className='space-y-2'>
                     <div>
                       <button className='btn btn-square bg-slate-200 border-0 btn-sm text-xl '>
-                        <FaBook />
+                        <FontAwesomeIcon icon={faBook} />
                       </button>
                     </div>
                     <p>Catch Up</p>
@@ -75,7 +78,7 @@ const Dashboard = () => {
                   <div className='space-y-2'>
                     <div>
                       <button className='btn btn-square border-0 bg-slate-200 btn-sm text-xl'>
-                        <FaChalkboardTeacher />
+                        <FontAwesomeIcon icon={faPersonChalkboard} />
                       </button>
                     </div>
                     <p>Create New Course</p>
@@ -163,7 +166,7 @@ const Dashboard = () => {
               <div>
                 <ol class='relative border-s border-gray-200'>
                   <li class='mb-4 ms-4'>
-                    <div class='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white'></div>
+                    <div class='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -inset-s-1.5 border border-white'></div>
                     <time class='mb-1 text-sm font-normal leading-none text-gray-400'>
                       February 2022
                     </time>
@@ -195,7 +198,7 @@ const Dashboard = () => {
                     </span>
                   </li>
                   <li class='mb-4 ms-4'>
-                    <div class='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white'></div>
+                    <div class='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -inset-s-1.5 border border-white'></div>
                     <time class='mb-1 text-sm font-normal leading-none text-gray-400'>
                       February 2022
                     </time>
@@ -330,7 +333,7 @@ const Dashboard = () => {
                         nextSlide();
                       }}
                     >
-                      <FaArrowRight />
+                      <FontAwesomeIcon icon={faArrowRight} />
                     </button>
                   </div>
                 </>

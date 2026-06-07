@@ -7,6 +7,7 @@ import {
   faTableColumns,
   faClipboardList,
   faUserGraduate,
+  faClipboardCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
@@ -60,7 +61,7 @@ export const sidebarData1 = [
       </Link>
     ),
     icon: (
-      <MdOutlineAssignmentTurnedIn className=' font-bold text-[#7C8493] w-5 h-5' />
+      <FontAwesomeIcon icon={faClipboardCheck} className=' font-bold text-[#7C8493] w-5 h-5' />
     ),
     key: 'assignments',
   },

@@ -1,9 +1,9 @@
-import { DashboardSider, DashNav } from "@/app/components/common";
+import DashNav from "@/app/components/Dashboard/User/DashNav";
+import DashboardSider from "@/app/components/Dashboard/User/DashboardSider";
 
-export const UserDashboardLayout = ({ children }) => {
+export default function UserDashboardLayout({ children }) {
   return (
     <section className="drawer lg:drawer-open bg-[#F2F2F2] text-black mx-auto max-w-410">
-      {/* bg-[#DFE9F3] */}
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <DashNav />
@@ -12,4 +12,4 @@ export const UserDashboardLayout = ({ children }) => {
       <DashboardSider />
     </section>
   );
-};
+}

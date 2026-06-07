@@ -6,6 +6,7 @@ import {
   faGear,
   faTableColumns,
   faClipboardList,
+  faBox,
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
@@ -72,7 +73,7 @@ export const sidebarData1 = [
         Resources
       </Link>
     ),
-    icon: <FiBox className=' font-bold text-[#7C8493] w-5 h-5' />,
+    icon: <FontAwesomeIcon icon={faBox} className=' font-bold text-[#7C8493] w-5 h-5' />,
     key: 'resources',
   },
 ];

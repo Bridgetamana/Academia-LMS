@@ -1,13 +1,10 @@
-import {
-  ChatSupport,
-  DashboardSider2,
-  DashNav2,
-} from '@/app/components/common';
+import DashNav2 from '@/app/components/Dashboard/Admin/DashNav2';
+import DashboardSider2 from '@/app/components/Dashboard/Admin/DashboardSider2';
+import ChatSupport from '@/app/components/common/ChatSupport';
 
-export const AdminDashboardLayout = ({ children }) => {
+export default function AdminDashboardLayout({ children }) {
   return (
     <section className='drawer lg:drawer-open bg-[#fbfbfc] text-black mx-auto max-w-410'>
-      {/* bg-[#DFE9F3] */}
       <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
       <div className='drawer-content'>
         <DashNav2 />
@@ -17,4 +14,4 @@ export const AdminDashboardLayout = ({ children }) => {
       <DashboardSider2 />
     </section>
   );
-};
+}

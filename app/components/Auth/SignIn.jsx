@@ -41,7 +41,7 @@ const SignIn = () => {
           if (!result.user.academies || result.user.academies.length === 0) {
             redirectUser = '/onboarding';
           } else {
-            redirectUser = '/admin/dashboard';
+            redirectUser = '/educator/dashboard';
           }
         }
 

@@ -95,7 +95,7 @@ export default function Onboarding() {
       const result = await createAcademy(user.uid, formData);
 
       if (result.success) {
-        router.push('/admin/dashboard');
+        router.push('/educator/dashboard');
       } else {
         setError('Failed to create Academy. Please ensure Firebase Storage is initialized in your console.');
         setIsSubmitting(false);

@@ -11,6 +11,7 @@ import Link from 'next/link';
 export default function StudentDashboard() {
   const [user, setUser] = useState(null);
   const [courses, setCourses] = useState([]);
+  const [progressData, setProgressData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -34,6 +35,14 @@ export default function StudentDashboard() {
                 const coursesSnap = await getDocs(coursesQuery);
                 const allCourses = coursesSnap.docs.map(d => ({ id: d.id, ...d.data() }));
                 
+                const progressQuery = query(collection(db, 'progress'), where('studentId', '==', currentUser.uid));
+                const progressSnap = await getDocs(progressQuery);
+                const progressMap = {};
+                progressSnap.forEach(doc => {
+                  progressMap[doc.data().courseId] = doc.data().completedLessons || {};
+                });
+                
+                setProgressData(progressMap);
                 setCourses(allCourses.sort((a, b) => b.createdAt?.toMillis() - a.createdAt?.toMillis()));
               }
             }
@@ -79,7 +88,24 @@ export default function StudentDashboard() {
           <section>
             <h2 className="text-xl font-bold text-neutral-900 mb-6">My Learning Path</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {courses.map((course) => (
+              {courses.map((course) => {
+                const completedMap = progressData[course.id] || {};
+                const completedCount = Object.values(completedMap).filter(Boolean).length;
+                const totalLessons = course.lessonCount || 0; 
+                
+                let statusText = "Not Started";
+                let statusColor = "text-neutral-400";
+                
+                if (completedCount > 0) {
+                  statusText = "In Progress";
+                  statusColor = "text-yellow-500";
+                  if (totalLessons > 0 && completedCount >= totalLessons) {
+                    statusText = "Completed";
+                    statusColor = "text-green-500";
+                  }
+                }
+
+                return (
                 <Link key={course.id} href={`/student/courses/${course.id}`} className="group bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:border-neutral-300 transition-all flex flex-col h-full">
                   <div className="relative h-48 w-full bg-neutral-100 overflow-hidden">
                     {course.thumbnailUrl ? (
@@ -100,14 +126,14 @@ export default function StudentDashboard() {
                     <p className="text-sm text-neutral-500 line-clamp-2 flex-1">{course.description}</p>
                     
                     <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">Not Started</span>
+                      <span className={`text-xs font-semibold uppercase tracking-wider ${statusColor}`}>{statusText}</span>
                       <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:underline underline-offset-4">
-                        Start Course
+                        {statusText === 'Completed' ? 'Review Course' : 'Start Course'}
                       </span>
                     </div>
                   </div>
                 </Link>
-              ))}
+              )})}
             </div>
           </section>
 

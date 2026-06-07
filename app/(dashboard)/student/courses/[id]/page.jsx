@@ -2,10 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebaseConfig';
 import { getCourse, getCourseLessons } from '@/app/_store/courseStore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faArrowLeft, 
+  faArrowLeft,
   faPlayCircle, 
   faCheckCircle, 
   faCircle, 
@@ -26,31 +29,42 @@ export default function StudentCourseViewer() {
   const [activeLessonIdx, setActiveLessonIdx] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-
+  const [user, setUser] = useState(null);
   const [completedLessons, setCompletedLessons] = useState({}); 
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedCourse = await getCourse(id);
-        if (!fetchedCourse || fetchedCourse.status !== 'published') {
-          setError('Course not found or is not available.');
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        try {
+          const fetchedCourse = await getCourse(id);
+          if (!fetchedCourse || fetchedCourse.status !== 'published') {
+            setError('Course not found or is not available.');
+            setIsLoading(false);
+            return;
+          }
+          setCourse(fetchedCourse);
+          
+          const fetchedLessons = await getCourseLessons(id);
+          setLessons(fetchedLessons);
+
+          const progressDoc = await getDoc(doc(db, 'progress', `${currentUser.uid}_${id}`));
+          if (progressDoc.exists()) {
+            setCompletedLessons(progressDoc.data().completedLessons || {});
+          }
+        } catch (err) {
+          console.error(err);
+          setError('Failed to load course content.');
+        } finally {
           setIsLoading(false);
-          return;
         }
-        setCourse(fetchedCourse);
-        
-        const fetchedLessons = await getCourseLessons(id);
-        setLessons(fetchedLessons);
-      } catch (err) {
-        console.error(err);
-        setError('Failed to load course content.');
-      } finally {
+      } else {
         setIsLoading(false);
       }
-    };
+    });
 
-    fetchData();
+    return () => unsubscribe();
   }, [id]);
 
   const activeLesson = lessons[activeLessonIdx];
@@ -67,11 +81,26 @@ export default function StudentCourseViewer() {
     }
   };
 
-  const toggleComplete = (idx) => {
-    setCompletedLessons(prev => ({
-      ...prev,
-      [idx]: !prev[idx]
-    }));
+  const toggleComplete = async (idx) => {
+    const newCompletedState = {
+      ...completedLessons,
+      [idx]: !completedLessons[idx]
+    };
+    
+    setCompletedLessons(newCompletedState);
+
+    if (user) {
+      try {
+        await setDoc(doc(db, 'progress', `${user.uid}_${id}`), {
+          studentId: user.uid,
+          courseId: id,
+          completedLessons: newCompletedState,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+      } catch (err) {
+        console.error("Failed to save progress", err);
+      }
+    }
   };
 
   if (isLoading) {

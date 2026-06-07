@@ -48,7 +48,7 @@ const DashNav2 = () => {
 
   return (
     <div className='w-full z-40 bg-[#f4f6f8]'>
-      <nav className='flex items-center justify-end px-4 sm:px-8 lg:px-10 py-6'>
+      <nav className='flex items-center justify-end px-4 sm:px-6 py-2'>
         <div className='flex items-center gap-4'>
           <div className='relative'>
             <button

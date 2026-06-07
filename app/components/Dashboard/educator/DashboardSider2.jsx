@@ -80,8 +80,8 @@ const DashboardSider2 = () => {
     { label: 'Courses', icon: faBookOpen, href: '/educator/courses', key: 'courses' },
     { label: 'Students', icon: faUserGraduate, href: '/educator/students', key: 'students' },
     { label: 'Resources', icon: faFolderOpen, href: '/educator/resources', key: 'resources' },
-    { label: 'Assignments', icon: faClipboardCheck, href: '/educator/assignments', key: 'assignments' },
-    { label: 'Schedule', icon: faCalendar, href: '/educator/schedule', key: 'schedule' },
+    // { label: 'Assignments', icon: faClipboardCheck, href: '/educator/assignments', key: 'assignments' },
+    // { label: 'Schedule', icon: faCalendar, href: '/educator/schedule', key: 'schedule' },
   ];
 
   const bottomItems = [

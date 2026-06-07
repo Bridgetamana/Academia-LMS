@@ -37,7 +37,7 @@ export const createCourse = async (academyId, courseData) => {
     const docRef = await addDoc(collection(db, 'courses'), {
       ...courseData,
       academyId,
-      status: 'draft',
+      status: courseData.status || 'draft',
       createdAt: serverTimestamp(),
     });
     return { success: true, id: docRef.id };

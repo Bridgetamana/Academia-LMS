@@ -29,3 +29,20 @@ export const createAcademy = async (userId, academyData) => {
     return { success: false, message: error.message };
   }
 };
+
+export const updateAcademy = async (academyId, academyData) => {
+  try {
+    const academyRef = doc(db, 'academies', academyId);
+    const finalData = { ...academyData };
+    if (finalData.logoBase64 !== undefined) {
+      finalData.logoUrl = finalData.logoBase64;
+      delete finalData.logoBase64;
+    }
+
+    await setDoc(academyRef, finalData, { merge: true });
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating academy:', error);
+    return { success: false, message: error.message };
+  }
+};

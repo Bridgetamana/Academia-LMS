@@ -113,7 +113,7 @@ export default function CourseBuilderPage() {
     setError('');
 
     try {
-      const courseRes = await createCourse(academyId, courseData);
+      const courseRes = await createCourse(academyId, { ...courseData, status: 'published' });
       if (!courseRes.success) throw new Error(courseRes.error);
 
       const courseId = courseRes.id;

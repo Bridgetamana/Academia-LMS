@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -22,8 +22,22 @@ const SignUp = () => {
     password: '',
     role: 'educator',
   });
+  const [isInviteMode, setIsInviteMode] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const emailParam = params.get('email');
+      const roleParam = params.get('role');
+
+      if (emailParam) {
+        setFormData(prev => ({ ...prev, email: emailParam, role: roleParam || prev.role }));
+        setIsInviteMode(true);
+      }
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -158,15 +172,15 @@ const SignUp = () => {
               <label className='text-sm text-text-main font-medium'>
                 Email
               </label>
-              <input
-                name='email'
-                type='email'
-                required
-                disabled={isSubmitting}
-                value={formData.email}
-                onChange={handleInputChange}
-                className='w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50'
-              />
+                <input
+                  name='email'
+                  type='email'
+                  required
+                  disabled={isSubmitting || isInviteMode}
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className='w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50 disabled:bg-neutral-100'
+                />
             </div>
 
             <div className='space-y-1'>
@@ -179,10 +193,10 @@ const SignUp = () => {
                 <select
                   name='role'
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isInviteMode}
                   value={formData.role}
                   onChange={handleInputChange}
-                  className='w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50 appearance-none cursor-pointer'
+                  className='w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50 disabled:bg-neutral-100 appearance-none cursor-pointer'
                 >
                   <option value='educator'>Educator (Create an Academy)</option>
                   <option value='student'>Student (Join an Academy)</option>

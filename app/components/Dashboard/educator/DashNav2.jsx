@@ -49,10 +49,7 @@ const DashNav2 = () => {
   return (
     <div className='w-full z-40 bg-[#f4f6f8]'>
       <nav className='flex items-center justify-end px-4 sm:px-8 lg:px-10 py-6'>
-        
         <div className='flex items-center gap-4'>
-
-          {/* Profile Dropdown */}
           <div className='relative'>
             <button
               type='button'
@@ -62,7 +59,7 @@ const DashNav2 = () => {
               <img
                 src={photoURL || 'https://api.dicebear.com/7.x/initials/svg?seed=A'}
                 alt='Profile'
-                className='w-9 h-9 rounded-full object-cover border border-neutral-200 shadow-sm'
+                className='w-8 h-8 rounded-full object-cover border border-neutral-200 shadow-sm'
               />
             </button>
             <AnimatePresence>
@@ -98,15 +95,13 @@ const DashNav2 = () => {
             </AnimatePresence>
           </div>
 
-          {/* Notifications Dropdown */}
           <div className='relative ml-1'>
             <button
               type='button'
               onClick={() => toggleDropdown('notifications')}
               className='relative p-2 rounded-full text-neutral-500 hover:text-neutral-900 hover:bg-neutral-200/50 transition-colors'
             >
-              <FontAwesomeIcon icon={faBell} className='w-[18px] h-[18px]' />
-              {/* Notification Badge */}
+              <FontAwesomeIcon icon={faBell} className='w-4 h-4' />
               <span className='absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-[#f4f6f8]'></span>
             </button>
             <AnimatePresence>

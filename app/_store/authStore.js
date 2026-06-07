@@ -3,11 +3,10 @@ import {
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   updateProfile, 
-  sendEmailVerification, 
-  sendPasswordResetEmail 
 } from 'firebase/auth';
 import { doc, setDoc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '@/firebaseConfig'; 
+import { sendCustomVerificationEmail, sendCustomPasswordResetEmail } from '@/app/actions/authEmails';
 
 export const handleSignUp = async (name, email, password, role) => {
   if (role === 'student') {
@@ -38,7 +37,7 @@ export const handleSignUp = async (name, email, password, role) => {
       displayName: name,
     });
 
-    await sendEmailVerification(user);
+    await sendCustomVerificationEmail(user.email, name);
 
     await setDoc(doc(db, 'users', user.uid), {
       name,
@@ -188,7 +187,7 @@ export const handleSignIn = async (email, password) => {
 export const resetPassword = async (email) => {
   const auth = getAuth();
   try {
-    await sendPasswordResetEmail(auth, email);
+    await sendCustomPasswordResetEmail(email);
     return {
       success: true,
       message: 'Password reset email sent successfully!'

@@ -7,17 +7,16 @@ import {
 import { doc, setDoc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '@/firebaseConfig'; 
 import { sendCustomVerificationEmail, sendCustomPasswordResetEmail } from '@/app/actions/authEmails';
+import { verifyStudentInvite, acceptStudentInvites } from '@/app/actions/studentManagement';
 
 export const handleSignUp = async (name, email, password, role) => {
   if (role === 'student') {
     try {
-      const q = query(collection(db, 'invitations'), where('email', '==', email));
-      const querySnapshot = await getDocs(q);
-      
-      if (querySnapshot.empty) {
+      const inviteResult = await verifyStudentInvite(email);
+      if (!inviteResult.success) {
         return {
           success: false,
-          message: 'You must be invited by an instructor to join an Academy. No invitation was found for this email.',
+          message: inviteResult.message || 'You must be invited by an instructor to join an Academy. No invitation was found for this email.',
         };
       }
     } catch (err) {
@@ -54,17 +53,9 @@ export const handleSignUp = async (name, email, password, role) => {
     // If student, link them to the academies they were invited to
     if (role === 'student') {
       try {
-        const q = query(collection(db, 'invitations'), where('email', '==', email));
-        const querySnapshot = await getDocs(q);
-        
-        const academies = [];
-        querySnapshot.forEach((inviteDoc) => {
-          academies.push(inviteDoc.data().academyId);
-          setDoc(doc(db, 'invitations', inviteDoc.id), { status: 'accepted' }, { merge: true });
-        });
-
-        if (academies.length > 0) {
-          await setDoc(doc(db, 'users', user.uid), { academies }, { merge: true });
+        const acceptResult = await acceptStudentInvites(email);
+        if (acceptResult.success && acceptResult.academies.length > 0) {
+          await setDoc(doc(db, 'users', user.uid), { academies: acceptResult.academies }, { merge: true });
         }
       } catch (err) {
         console.error('Failed to link student academies:', err);

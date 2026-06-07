@@ -28,3 +28,38 @@ export async function removeStudentFromAcademy(studentId, academyId, isPending) 
     return { success: false, error: error.message };
   }
 }
+
+export async function verifyStudentInvite(email) {
+  try {
+    const invitesSnapshot = await adminDb.collection('invitations').where('email', '==', email).get();
+    
+    if (invitesSnapshot.empty) {
+      return { success: false, message: 'No invitation was found for this email.' };
+    }
+    
+    return { success: true };
+  } catch (error) {
+    console.error('Failed to verify invite:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function acceptStudentInvites(email) {
+  try {
+    const invitesSnapshot = await adminDb.collection('invitations').where('email', '==', email).get();
+    const academies = [];
+    
+    const batch = adminDb.batch();
+    
+    invitesSnapshot.forEach((doc) => {
+      academies.push(doc.data().academyId);
+      batch.update(doc.ref, { status: 'accepted' });
+    });
+    
+    await batch.commit();
+    return { success: true, academies };
+  } catch (error) {
+    console.error('Failed to accept invites:', error);
+    return { success: false, error: error.message };
+  }
+}

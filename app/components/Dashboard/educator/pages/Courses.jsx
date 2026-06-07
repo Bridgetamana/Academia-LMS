@@ -7,10 +7,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
 import { getEducatorCourses } from '@/app/_store/courseStore';
-import Course1 from '@/public/assets/images/course-1.jpg';
 import Link from 'next/link';
-
-import Image from 'next/image';
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState('');

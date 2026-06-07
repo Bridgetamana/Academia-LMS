@@ -1,14 +1,13 @@
-'use client'
+'use client';
 
-import { AdminDashboardLayout } from "@/app/_layouts";
-import { FaUpload } from "react-icons/fa";
-import React, { useState, useEffect } from "react";
+import { FaUpload } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
 
 const Library = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   useEffect(() => {
-    const storedFiles = JSON.parse(localStorage.getItem("uploadedFiles")) || [];
+    const storedFiles = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
     setUploadedFiles(storedFiles);
   }, []);
 
@@ -22,34 +21,34 @@ const Library = () => {
       };
       const updatedFiles = [...uploadedFiles, newFile];
       setUploadedFiles(updatedFiles);
-      localStorage.setItem("uploadedFiles", JSON.stringify(updatedFiles));
+      localStorage.setItem('uploadedFiles', JSON.stringify(updatedFiles));
     }
   };
 
   const handleDeleteFile = (index) => {
     const updatedFiles = uploadedFiles.filter((_, i) => i !== index);
     setUploadedFiles(updatedFiles);
-    localStorage.setItem("uploadedFiles", JSON.stringify(updatedFiles));
+    localStorage.setItem('uploadedFiles', JSON.stringify(updatedFiles));
   };
 
   return (
-    <AdminDashboardLayout>
-      <section className="max-w-[1640px] flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll">
+    <>
+      <section className='max-w-[1640px] flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll'>
         <div>
-          <h2 className="lg:text-xl font-semibold mb-4">Library</h2>
-          <div className="hero bg-[#E7E8EC] border rounded-lg py-3">
-            <div className="hero-content text-center">
-              <div className="max-w-md">
-                <span className="avatar placeholder p-3 rounded-lg bg-[#e3ddf8]">
-                  <FaUpload className="text-xl text-[#381A6D]" />
+          <h2 className='lg:text-xl font-semibold mb-4'>Library</h2>
+          <div className='hero bg-[#E7E8EC] border rounded-lg py-3'>
+            <div className='hero-content text-center'>
+              <div className='max-w-md'>
+                <span className='avatar placeholder p-3 rounded-lg bg-[#e3ddf8]'>
+                  <FaUpload className='text-xl text-[#381A6D]' />
                 </span>
-                <p className="py-3">Click to upload file</p>
-                <label className="btn bg-[#7262E4] text-white cursor-pointer border-0">
+                <p className='py-3'>Click to upload file</p>
+                <label className='btn bg-[#7262E4] text-white cursor-pointer border-0'>
                   Upload file
                   <input
-                    id="dropzone-file"
-                    type="file"
-                    className="hidden"
+                    id='dropzone-file'
+                    type='file'
+                    className='hidden'
                     onChange={handleFileChange}
                   />
                 </label>
@@ -57,10 +56,10 @@ const Library = () => {
             </div>
           </div>
 
-          <div className="mt-8">
+          <div className='mt-8'>
             {uploadedFiles.length > 0 ? (
-              <div className="overflow-x-auto">
-                <table className="table">
+              <div className='overflow-x-auto'>
+                <table className='table'>
                   {/* head */}
                   <thead>
                     <tr>
@@ -72,28 +71,28 @@ const Library = () => {
                   </thead>
                   <tbody>
                     {uploadedFiles.map((file, index) => (
-                      <tr key={index} className="">
+                      <tr key={index} className=''>
                         <th>1</th>
                         <td>{file.name}</td>
                         <td>{file.date}</td>
-                        <td className="space-x-8">
+                        <td className='space-x-8'>
                           <a
                             href={file.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mr-2 cursor-pointer p-2 rounded-md hover:bg-slate-200"
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='mr-2 cursor-pointer p-2 rounded-md hover:bg-slate-200'
                           >
                             View
                           </a>
                           <button
                             onClick={() => handleDeleteFile(index)}
-                            className="cursor-pointer p-2 rounded-md hover:bg-slate-200"
+                            className='cursor-pointer p-2 rounded-md hover:bg-slate-200'
                           >
                             Delete
                           </button>
                         </td>
                       </tr>
-                    ))}{" "}
+                    ))}{' '}
                   </tbody>
                 </table>
               </div>
@@ -103,7 +102,7 @@ const Library = () => {
           </div>
         </div>
       </section>
-    </AdminDashboardLayout>
+    </>
   );
 };
 

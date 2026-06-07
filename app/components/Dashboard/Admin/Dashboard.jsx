@@ -1,6 +1,5 @@
 "use client";
 
-import { AdminDashboardLayout } from "@/app/_layouts";
 import React, { useState } from "react";
 import CalendarView from "./CalendarView";
 import { BsThreeDotsVertical, BsStopwatch } from "react-icons/bs";
@@ -42,7 +41,7 @@ const Dashboard = () => {
   };
 
   return (
-    <AdminDashboardLayout>
+    <>
       <section className="max-w-[1640px] flex flex-col gap-6 px-4 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-[65%_30%] gap-8">
           <div>
@@ -333,7 +332,7 @@ const Dashboard = () => {
           </div>
         )}
       </section>
-    </AdminDashboardLayout>
+    </>
   );
 };
 

@@ -7,16 +7,17 @@ import { useRouter } from "next/navigation";
 import { handleSignUp } from "@/app/_store/authStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@base-ui/react";
-import Logo from "../common/Logo";
+import Image from "next/image";
 
 const SignUp = () => {
   const [isPasswordHidden, setPasswordHidden] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
-    role: "educator", // Default to educator
+    role: "educator", 
   });
   const [error, setError] = useState("");
   const router = useRouter();
@@ -39,19 +40,16 @@ const SignUp = () => {
     }
 
     try {
+      const fullName = `${formData.firstName} ${formData.lastName}`.trim();
       const result = await handleSignUp(
-        formData.name,
+        fullName,
         formData.email,
         formData.password,
         formData.role
       );
 
       if (result.success) {
-        if (formData.role === "educator") {
-          setTimeout(() => router.push("/signin?registered=true"), 1000);
-        } else {
-          setTimeout(() => router.push("/signin?registered=true"), 1000);
-        }
+        setTimeout(() => router.push("/signin?registered=true"), 1000);
       } else {
         setError(result.message);
       }
@@ -63,26 +61,53 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex bg-background">
-      <div className="w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-12 lg:px-24 xl:px-32 relative py-12">
-        <div className="absolute top-8 left-6 sm:left-12 lg:left-24">
-          <Logo />
+    <div className="min-h-screen w-full flex bg-white font-sans">
+      <div className="hidden lg:flex lg:w-5/12 relative bg-neutral-900">
+        <Image
+          src="/assets/images/auth-bg-academia.png"
+          alt="Academia"
+          fill
+          className="object-cover opacity-80"
+          priority
+        />
+        
+        <div className="absolute top-10 left-10 text-white flex items-center gap-2">
+          <Link href="/">
+            <div className="w-8 h-8 bg-primary flex items-center justify-center rounded-sm">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-white">
+                <path d="M12 3L2 21h4.5l2.5-4.5h6l2.5 4.5H22L12 3zm0 5.5l2.5 4.5h-5L12 8.5z" fill="currentColor" />
+              </svg>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+      <div className="w-full lg:w-7/12 flex flex-col justify-center px-6 sm:px-16 lg:px-32 relative py-12 bg-white">
+        
+        <div className="absolute top-8 left-6 lg:hidden">
+          <Link href="/">
+            <div className="w-8 h-8 bg-primary flex items-center justify-center rounded-sm">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-white">
+                <path d="M12 3L2 21h4.5l2.5-4.5h6l2.5 4.5H22L12 3zm0 5.5l2.5 4.5h-5L12 8.5z" fill="currentColor" />
+              </svg>
+            </div>
+          </Link>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-md mx-auto"
+          transition={{ duration: 0.4 }}
+          className="w-full max-w-125 mx-auto"
         >
-          <div className="mb-10">
-            <h1 className="text-3xl font-serif font-bold text-text-main mb-3">
-              Create your account
-            </h1>
-            <p className="text-text-muted font-sans">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl font-bold text-text-main mb-3 font-sans">
+              Join Academia
+            </h2>
+            <p className="text-text-muted">
               Already have an account?{" "}
-              <Link href="/signin" className="text-primary font-medium hover:underline">
-                Sign in
+              <Link href="/signin" className="text-primary underline decoration-primary hover:decoration-primary/70 underline-offset-4">
+                Login
               </Link>
             </p>
           </div>
@@ -90,46 +115,47 @@ const SignUp = () => {
           <AnimatePresence mode="wait">
             {error && (
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="mb-6 p-4 bg-red-50 text-red-600 rounded-xl text-sm border border-red-100 font-medium"
+                exit={{ opacity: 0, y: -5 }}
+                className="mb-6 p-3 text-red-600 text-sm text-center bg-red-50 rounded-md border border-red-100"
               >
                 {error}
               </motion.div>
             )}
           </AnimatePresence>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <label className={`cursor-pointer flex flex-col p-4 border rounded-2xl transition-all ${formData.role === 'educator' ? 'border-primary bg-primary-light/30' : 'border-border bg-white hover:border-gray-300'}`}>
-                <input type="radio" name="role" value="educator" checked={formData.role === "educator"} onChange={handleInputChange} className="sr-only" />
-                <span className="font-semibold text-text-main text-sm">Educator</span>
-                <span className="text-xs text-text-muted mt-1">Create an academy</span>
-              </label>
-              <label className={`cursor-pointer flex flex-col p-4 border rounded-2xl transition-all ${formData.role === 'student' ? 'border-primary bg-primary-light/30' : 'border-border bg-white hover:border-gray-300'}`}>
-                <input type="radio" name="role" value="student" checked={formData.role === "student"} onChange={handleInputChange} className="sr-only" />
-                <span className="font-semibold text-text-main text-sm">Student</span>
-                <span className="text-xs text-text-muted mt-1">Join a classroom</span>
-              </label>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <label className="text-sm text-text-main font-medium">First name</label>
+                <input
+                  name="firstName"
+                  type="text"
+                  required
+                  disabled={isSubmitting}
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  className="w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-sm text-text-main font-medium">Last name</label>
+                <input
+                  name="lastName"
+                  type="text"
+                  required
+                  disabled={isSubmitting}
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  className="w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50"
+                />
+              </div>
             </div>
 
             <div className="space-y-1">
-              <label className="text-sm font-medium text-text-main ml-1">Full Name</label>
-              <input
-                name="name"
-                type="text"
-                required
-                disabled={isSubmitting}
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
-                placeholder="Jane Doe"
-              />
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-text-main ml-1">Email address</label>
+              <label className="text-sm text-text-main font-medium">Email</label>
               <input
                 name="email"
                 type="email"
@@ -137,13 +163,44 @@ const SignUp = () => {
                 disabled={isSubmitting}
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
-                placeholder="jane@example.com"
+                className="w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="text-sm font-medium text-text-main ml-1">Password</label>
+              <div className="flex items-center gap-2">
+                <label className="text-sm text-text-main font-medium">Role</label>
+              </div>
+              <div className="relative">
+                <select
+                  name="role"
+                  required
+                  disabled={isSubmitting}
+                  value={formData.role}
+                  onChange={handleInputChange}
+                  className="w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50 appearance-none cursor-pointer"
+                >
+                  <option value="educator">Educator (Create an Academy)</option>
+                  <option value="student">Student (Join an Academy)</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-text-muted">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </div>
+              </div>
+              {formData.role === "student" && (
+                <p className="text-xs text-text-muted mt-1 leading-relaxed">
+                  * Note: Students are typically invited directly by their instructors. If you were sent a link, please use that to sign up.
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <label className="text-sm text-text-main font-medium">Password</label>
+                <span className="text-xs text-text-muted">(min. 6 char)</span>
+              </div>
               <div className="relative">
                 <input
                   name="password"
@@ -152,16 +209,15 @@ const SignUp = () => {
                   disabled={isSubmitting}
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="w-full p-3.5 text-text-main bg-surface rounded-xl outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
-                  placeholder="••••••••"
+                  className="w-full p-3 text-text-main bg-white rounded-md outline-none border border-border focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50"
                 />
                 <button
                   type="button"
                   onClick={() => setPasswordHidden(!isPasswordHidden)}
                   disabled={isSubmitting}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-main transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-main"
                 >
-                  {isPasswordHidden ? <FiEye className="w-5 h-5" /> : <FiEyeOff className="w-5 h-5" />}
+                  {isPasswordHidden ? <FiEye className="w-4 h-4" /> : <FiEyeOff className="w-4 h-4" />}
                 </button>
               </div>
             </div>
@@ -169,50 +225,19 @@ const SignUp = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full mt-4 py-4 px-4 rounded-xl shadow-sm text-sm font-semibold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-70 disabled:cursor-not-allowed transition-all active:scale-[0.99] flex justify-center items-center"
+              className="w-full py-3.5 px-4 rounded-md text-sm font-medium text-white bg-primary hover:bg-primary-hover focus:outline-none disabled:opacity-70 disabled:cursor-not-allowed transition-all active:scale-[0.99] flex justify-center items-center mt-2"
             >
               {isSubmitting ? (
                 <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
               ) : (
-                "Create Account"
+                "Join"
               )}
             </Button>
 
-            <p className="text-xs text-text-muted text-center mt-6">
-              By signing up, you agree to our{" "}
-              <Link href="#" className="underline hover:text-text-main transition-colors">Terms of Service</Link>{" "}
-              and{" "}
-              <Link href="#" className="underline hover:text-text-main transition-colors">Privacy Policy</Link>.
+            <p className="text-[13px] text-text-muted text-center mt-6 leading-relaxed px-4">
+              By joining, you agree to the Terms and Privacy Policy.
             </p>
           </form>
-        </motion.div>
-      </div>
-
-      <div className="hidden lg:flex lg:w-[45%] bg-surface border-l border-border relative overflow-hidden items-center justify-center p-12">
-        <div className="absolute inset-0 bg-primary/5 pattern-dots pattern-border pattern-opacity-10 pattern-size-4"></div>
-        <div className="absolute top-[-20%] right-[-10%] w-150 h-150 bg-primary/20 rounded-[100%] blur-[120px] opacity-70" />
-        
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 max-w-lg"
-        >
-          <div className="bg-white/80 backdrop-blur-xl p-8 border border-border rounded-3xl shadow-2xl relative">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-              <span className="text-primary text-xl">✨</span>
-            </div>
-            <h3 className="text-2xl font-serif font-bold text-text-main mb-4 leading-snug">
-              "Academia transformed how we deliver our curriculum. The interface gets out of the way so students can actually learn."
-            </h3>
-            <div className="flex items-center gap-4 mt-8">
-              <div className="w-10 h-10 rounded-full bg-surface-hover border border-border"></div>
-              <div>
-                <p className="text-sm font-bold text-text-main">Sarah Jenkins</p>
-                <p className="text-xs text-text-muted">Director, Animation Guild</p>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
     </div>

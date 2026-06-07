@@ -9,7 +9,7 @@ export async function sendCustomVerificationEmail(email, name = 'Student') {
   try {
     const actionCodeSettings = {
       // URL you want to redirect back to.
-      url: 'http://localhost:3000/signin?verified=true',
+      url: 'https://academia-lms-one.vercel.app/signin?verified=true',
       handleCodeInApp: false,
     };
 
@@ -48,7 +48,7 @@ export async function sendCustomVerificationEmail(email, name = 'Student') {
 export async function sendCustomPasswordResetEmail(email) {
   try {
     const actionCodeSettings = {
-      url: 'http://localhost:3000/signin?reset=success',
+      url: 'https://academia-lms-one.vercel.app/signin?reset=success',
       handleCodeInApp: false,
     };
 

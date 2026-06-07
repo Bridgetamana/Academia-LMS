@@ -20,7 +20,7 @@ export async function sendInviteEmail(studentEmail, academyName) {
             To access your courses and start learning, please complete your registration by clicking the button below.
           </p>
           <div style="text-align: center; margin: 30px 0;">
-            <a href="http://localhost:3000/signup?email=${encodeURIComponent(studentEmail)}&role=student" style="background-color: #6366f1; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px;">
+            <a href="https://academia-lms-one.vercel.app/signup?email=${encodeURIComponent(studentEmail)}&role=student" style="background-color: #6366f1; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px;">
               Accept Invitation & Sign Up
             </a>
           </div>

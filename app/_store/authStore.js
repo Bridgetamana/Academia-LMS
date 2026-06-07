@@ -37,7 +37,10 @@ export const handleSignUp = async (name, email, password, role) => {
       displayName: name,
     });
 
-    await sendCustomVerificationEmail(user.email, name);
+    const emailResult = await sendCustomVerificationEmail(user.email, name);
+    if (!emailResult.success) {
+      throw new Error('Account created, but failed to send verification email: ' + emailResult.error);
+    }
 
     await setDoc(doc(db, 'users', user.uid), {
       name,
@@ -109,15 +112,14 @@ export const handleSignIn = async (email, password) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
 
-    // TEMPORARY FOR MVP: Bypass email verification since Resend domain is pending
-    // if (!user.emailVerified) {
-    //   await auth.signOut();
-    //   throw {
-    //     success: false,
-    //     message: "Please verify your email before logging in. Check your inbox for the verification link.",
-    //     code: "auth/email-not-verified",
-    //   };
-    // }
+    if (!user.emailVerified) {
+      await auth.signOut();
+      throw {
+        success: false,
+        message: "Please verify your email before logging in. Check your inbox for the verification link.",
+        code: "auth/email-not-verified",
+      };
+    }
 
     const userDoc = await getDoc(doc(db, 'users', user.uid));
 

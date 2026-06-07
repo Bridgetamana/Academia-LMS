@@ -7,7 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function sendInviteEmail(studentEmail, academyName) {
   try {
     const data = await resend.emails.send({
-      from: 'Academia <onboarding@resend.dev>',
+      from: 'Academia <support@bridgetamana.me>',
       to: [studentEmail],
       subject: `You have been invited to join ${academyName}`,
       html: `

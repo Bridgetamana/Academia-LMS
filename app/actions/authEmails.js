@@ -16,7 +16,7 @@ export async function sendCustomVerificationEmail(email, name = 'Student') {
     const link = await adminAuth.generateEmailVerificationLink(email, actionCodeSettings);
 
     const { data, error } = await resend.emails.send({
-      from: 'Academia <onboarding@resend.dev>',
+      from: 'Academia <support@bridgetamana.me>',
       to: [email],
       subject: 'Verify your email for Academia',
       html: `
@@ -55,7 +55,7 @@ export async function sendCustomPasswordResetEmail(email) {
     const link = await adminAuth.generatePasswordResetLink(email, actionCodeSettings);
 
     const { data, error } = await resend.emails.send({
-      from: 'Academia <onboarding@resend.dev>',
+      from: 'Academia <support@bridgetamana.me>',
       to: [email],
       subject: 'Reset your Academia password',
       html: `

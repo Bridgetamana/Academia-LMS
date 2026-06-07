@@ -1,9 +1,8 @@
-import ForgotPassword from "@/app/components/Auth/ForgotPassword";
-import React from "react";
+import ForgotPassword from '@/app/components/Auth/ForgotPassword';
 
 export const metadata = {
-  title: "Forgot Password",
-  description: "Reset Password",
+  title: 'Forgot Password',
+  description: 'Reset Password',
 };
 
 const page = () => {

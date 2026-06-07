@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Image from "next/image";
-import Course1 from "@/public/assets/images/course-1.jpg";
+import { useState } from 'react';
+import Image from 'next/image';
+import Course1 from '@/public/assets/images/course-1.jpg';
 
 const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
   const [newCourse, setNewCourse] = useState({
-    title: "",
-    description: "",
+    title: '',
+    description: '',
     syllabus: [],
-    courseOutline: "",
+    courseOutline: '',
   });
 
   const handleInputChange = (e) => {
@@ -37,11 +37,11 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
   const handleCreateCourse = () => {
     onCreate(newCourse);
     setNewCourse({
-      title: "",
-      instructorName: "",
-      description: "",
+      title: '',
+      instructorName: '',
+      description: '',
       syllabus: [],
-      courseOutline: "",
+      courseOutline: '',
     });
     onClose();
   };
@@ -49,57 +49,57 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
-      <div className="bg-white rounded-lg p-6 w-96 max-h-screen overflow-y-auto">
-        <h2 className="text-lg font-semibold mb-4">Create New Course</h2>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+    <div className='fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75'>
+      <div className='bg-white rounded-lg p-6 w-96 max-h-screen overflow-y-auto'>
+        <h2 className='text-lg font-semibold mb-4'>Create New Course</h2>
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700'>
             Course Title
           </label>
           <input
-            type="text"
-            name="title"
+            type='text'
+            name='title'
             value={newCourse.title}
             onChange={handleInputChange}
-            className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            className='mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none'
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700'>
             Course Description
           </label>
           <textarea
-            name="description"
+            name='description'
             value={newCourse.description}
             onChange={handleInputChange}
             rows={4}
-            className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            className='mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none'
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700'>
             Upload Syllabus
           </label>
           <input
-            type="file"
+            type='file'
             onChange={handleFileChange}
-            className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            className='mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none'
             required
           />
           {newCourse.syllabus.length > 0 && (
-            <ul className="mt-2">
+            <ul className='mt-2'>
               {newCourse.syllabus.map((file, index) => (
                 <li
                   key={index}
-                  className="flex justify-between items-center mb-2"
+                  className='flex justify-between items-center mb-2'
                 >
-                  <a href={file.url} className="text-blue-600 hover:underline">
+                  <a href={file.url} className='text-blue-600 hover:underline'>
                     {file.name}
                   </a>
                   <button
-                    className="text-red-500"
+                    className='text-red-500'
                     onClick={() => handleDeleteFile(index)}
                   >
                     Delete
@@ -109,36 +109,39 @@ const CreateCourseModal = ({ isOpen, onClose, onCreate }) => {
             </ul>
           )}
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700'>
             Course Outline
           </label>
           <textarea
-            name="courseOutline"
+            name='courseOutline'
             value={newCourse.courseOutline}
             onChange={handleInputChange}
             rows={6}
-            className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+            className='mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none'
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700'>
             Course Image
           </label>
-          <div className="flex items-center gap-4">
+          <div className='flex items-center gap-4'>
             <input
-              type="file"
-              className="mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none"
+              type='file'
+              className='mt-1 p-2 block w-full border bg-gray-50 border-gray-300 rounded-md outline-none'
             />
           </div>
-          <p class="mt-1 text-sm text-gray-500">SVG, PNG or JPG</p>
+          <p class='mt-1 text-sm text-gray-500'>SVG, PNG or JPG</p>
         </div>
-        <div className="flex justify-end">
-          <button className="p-2 bg-gray-300 rounded-md mr-2" onClick={handleCreateCourse}>
+        <div className='flex justify-end'>
+          <button
+            className='p-2 bg-gray-300 rounded-md mr-2'
+            onClick={handleCreateCourse}
+          >
             Create
           </button>
-          <button className="p-2 bg-red-500 rounded-md" onClick={onClose}>
+          <button className='p-2 bg-red-500 rounded-md' onClick={onClose}>
             Cancel
           </button>
         </div>

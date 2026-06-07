@@ -1,5 +1,4 @@
-import Library from "@/app/components/Dashboard/Admin/pages/Library";
-import React from "react";
+import Library from '@/app/components/Dashboard/Admin/pages/Library';
 
 const page = () => {
   return <Library />;

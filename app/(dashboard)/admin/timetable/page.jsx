@@ -1,5 +1,4 @@
-import Timetable from "@/app/components/Dashboard/Admin/pages/Timetable";
-import React from "react";
+import Timetable from '@/app/components/Dashboard/Admin/pages/Timetable';
 
 const page = () => {
   return <Timetable />;

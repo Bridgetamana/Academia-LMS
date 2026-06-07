@@ -1,18 +1,18 @@
 'use client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faEllipsisVertical,
+  faStopwatch,
+  faCalendarDays,
+} from '@fortawesome/free-solid-svg-icons';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CalendarView from './CalendarView';
-import { BsThreeDotsVertical, BsStopwatch } from 'react-icons/bs';
+
 import Image from 'next/image';
 import Course1 from '@/public/assets/images/course-1.jpg';
 import Course2 from '@/public/assets/images/course-2.jpg';
 import Link from 'next/link';
-import {
-  FaChalkboardTeacher,
-  FaBook,
-  FaArrowRight,
-  FaRegCalendarAlt,
-} from 'react-icons/fa';
 
 const Dashboard = () => {
   const [showCatchUpModal, setShowCatchUpModal] = useState(false);
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <section className='max-w-[1640px] flex flex-col gap-6 px-4 lg:px-8 py-8 '>
+      <section className='max-w-410 flex flex-col gap-6 px-4 lg:px-8 py-8 '>
         <div className='grid grid-cols-1 lg:grid-cols-[65%_30%] gap-8'>
           <div>
             <div className=' rounded-lg mb-6'>
@@ -72,7 +72,7 @@ const Dashboard = () => {
                   <div className='space-y-2'>
                     <div>
                       <button className='btn btn-square bg-slate-200 btn-sm text-xl'>
-                        <FaRegCalendarAlt />
+                        <FontAwesomeIcon icon={faCalendarDays} />
                       </button>
                     </div>
                     <p>Sync Calendar</p>
@@ -92,7 +92,7 @@ const Dashboard = () => {
                   <div className='space-y-2'>
                     <div>
                       <button className='btn btn-square bg-slate-200 btn-sm text-xl'>
-                        <FaRegCalendarAlt />
+                        <FontAwesomeIcon icon={faCalendarDays} />
                       </button>
                     </div>
                     <p>Create Timetable</p>
@@ -170,7 +170,7 @@ const Dashboard = () => {
               <div>
                 <ol class='relative border-s border-gray-200'>
                   <li class='mb-4 ms-4'>
-                    <div class='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white'></div>
+                    <div class='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -inset-s-1.5 border border-white'></div>
                     <time class='mb-1 text-sm font-normal leading-none text-gray-400'>
                       February 2022
                     </time>
@@ -202,7 +202,7 @@ const Dashboard = () => {
                     </span>
                   </li>
                   <li class='mb-4 ms-4'>
-                    <div class='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white'></div>
+                    <div class='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -inset-s-1.5 border border-white'></div>
                     <time class='mb-1 text-sm font-normal leading-none text-gray-400'>
                       February 2022
                     </time>
@@ -252,7 +252,7 @@ const Dashboard = () => {
                   <span className='flex flex-col gap-2'>
                     <p className='lg:text-xl font-semibold'>MTH 101</p>
                     <span className='flex gap-4'>
-                      <BsStopwatch className='w-5 h-5' />{' '}
+                      <FontAwesomeIcon icon={faStopwatch} className='w-5 h-5' />{' '}
                       <p className='text-sm font-medium'>16 June • 18:00</p>
                     </span>
                   </span>
@@ -260,14 +260,17 @@ const Dashboard = () => {
                     type='button'
                     className='p-2 rounded-full hover:bg-black/20 active:scale-95'
                   >
-                    <BsThreeDotsVertical className='w-5 h-5' />
+                    <FontAwesomeIcon
+                      icon={faEllipsisVertical}
+                      className='w-5 h-5'
+                    />
                   </button>
                 </div>
                 <div className='bg-green-300 rounded-lg py-4 px-6 flex gap-6 justify-between items-center'>
                   <span className='flex flex-col gap-2'>
                     <p className='lg:text-xl font-semibold'>MTH 101</p>
                     <span className='flex gap-4'>
-                      <BsStopwatch className='w-5 h-5' />{' '}
+                      <FontAwesomeIcon icon={faStopwatch} className='w-5 h-5' />{' '}
                       <p className='text-sm font-medium'>16 June • 18:00</p>
                     </span>
                   </span>
@@ -275,7 +278,10 @@ const Dashboard = () => {
                     type='button'
                     className='p-2 rounded-full hover:bg-black/20 active:scale-95'
                   >
-                    <BsThreeDotsVertical className='w-5 h-5' />
+                    <FontAwesomeIcon
+                      icon={faEllipsisVertical}
+                      className='w-5 h-5'
+                    />
                   </button>
                 </div>
               </div>
@@ -288,7 +294,7 @@ const Dashboard = () => {
                       CSC 101 Group Project
                     </p>
                     <span className='flex gap-4'>
-                      <BsStopwatch className='w-5 h-5' />{' '}
+                      <FontAwesomeIcon icon={faStopwatch} className='w-5 h-5' />{' '}
                       <p className='text-sm font-medium'>16 June • 18:00</p>
                     </span>
                   </span>
@@ -296,7 +302,10 @@ const Dashboard = () => {
                     type='button'
                     className='p-2 rounded-full hover:bg-black/20 active:scale-95'
                   >
-                    <BsThreeDotsVertical className='w-5 h-5' />
+                    <FontAwesomeIcon
+                      icon={faEllipsisVertical}
+                      className='w-5 h-5'
+                    />
                   </button>
                 </div>
               </div>

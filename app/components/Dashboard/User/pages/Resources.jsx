@@ -1,7 +1,8 @@
 'use client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
-import { FaUpload } from 'react-icons/fa';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Assignments = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -40,7 +41,10 @@ const Assignments = () => {
             <div className='hero-content text-center'>
               <div className='max-w-md'>
                 <span className='avatar placeholder p-3 rounded-lg bg-[#e3ddf8]'>
-                  <FaUpload className='text-xl text-[#381A6D]' />
+                  <FontAwesomeIcon
+                    icon={faUpload}
+                    className='text-xl text-[#381A6D]'
+                  />
                 </span>
                 <p className='py-3'>Click to upload file</p>
                 <label className='btn bg-[#7262E4] text-white cursor-pointer border-0'>

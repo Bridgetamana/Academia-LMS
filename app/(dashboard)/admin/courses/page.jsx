@@ -1,5 +1,4 @@
-import Courses from "@/app/components/Dashboard/Admin/pages/Courses";
-import React from "react";
+import Courses from '@/app/components/Dashboard/Admin/pages/Courses';
 
 const page = () => {
   return <Courses />;

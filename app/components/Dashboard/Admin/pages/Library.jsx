@@ -1,7 +1,8 @@
 'use client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
-import { FaUpload } from 'react-icons/fa';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Library = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -33,14 +34,17 @@ const Library = () => {
 
   return (
     <>
-      <section className='max-w-[1640px] flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll'>
+      <section className='max-w-410 flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll'>
         <div>
           <h2 className='lg:text-xl font-semibold mb-4'>Library</h2>
           <div className='hero bg-[#E7E8EC] border rounded-lg py-3'>
             <div className='hero-content text-center'>
               <div className='max-w-md'>
                 <span className='avatar placeholder p-3 rounded-lg bg-[#e3ddf8]'>
-                  <FaUpload className='text-xl text-[#381A6D]' />
+                  <FontAwesomeIcon
+                    icon={faUpload}
+                    className='text-xl text-[#381A6D]'
+                  />
                 </span>
                 <p className='py-3'>Click to upload file</p>
                 <label className='btn bg-[#7262E4] text-white cursor-pointer border-0'>

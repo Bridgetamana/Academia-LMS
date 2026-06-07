@@ -1,9 +1,8 @@
-import SignUp from "@/app/components/Auth/SignUp";
-import React from "react";
+import SignUp from '@/app/components/Auth/SignUp';
 
 export const metadata = {
-  title: "Sign Up",
-  description: "Create an Account",
+  title: 'Sign Up',
+  description: 'Create an Account',
 };
 
 const page = () => {

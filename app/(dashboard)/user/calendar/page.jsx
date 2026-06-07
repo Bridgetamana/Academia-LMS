@@ -1,5 +1,4 @@
-import CalendarPage from "@/app/components/Dashboard/User/pages/CalendarPage";
-import React from "react";
+import CalendarPage from '@/app/components/Dashboard/User/pages/CalendarPage';
 
 const page = () => {
   return <CalendarPage />;

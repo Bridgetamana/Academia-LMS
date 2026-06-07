@@ -1,11 +1,13 @@
 'use client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 
-import React, { useState, useEffect } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+
 import CreateCourseModal from '../CreateNewCourse';
 import Course1 from '@/public/assets/images/course-1.jpg';
 import Link from 'next/link';
-import { PiStudentFill } from 'react-icons/pi';
+
 import Image from 'next/image';
 
 const Courses = () => {
@@ -30,7 +32,7 @@ const Courses = () => {
 
   return (
     <>
-      <section className='max-w-[1640px] flex flex-col gap-6 px-6 py-4 pb-8'>
+      <section className='max-w-410 flex flex-col gap-6 px-6 py-4 pb-8'>
         <div>
           <h2 className='lg:text-xl font-semibold mb-4'>Courses</h2>
           <div className='flex justify-between items-center mb-4'>
@@ -72,7 +74,7 @@ const Courses = () => {
                 className='flex p-2 items-center rounded-md text-academia-general bg-slate-200'
                 onClick={() => setIsModalOpen(true)}
               >
-                <FaPlus className='mr-1' />
+                <FontAwesomeIcon icon={faPlus} className='mr-1' />
                 <p className='hidden lg:flex'>Create Course</p>
               </button>
             </div>
@@ -102,7 +104,7 @@ const Courses = () => {
                       </h2>
                       <p className='text-gray-400 my-5'>{course.description}</p>
                       <div className='flex items-center justify-end'>
-                        <PiStudentFill />
+                        <FontAwesomeIcon icon={faUserGraduate} />
                         <p>0</p>
                       </div>
                     </div>

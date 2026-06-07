@@ -1,7 +1,8 @@
-"use client";
+'use client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-import React, { useState, useEffect } from "react";
-import { IoChevronUp } from "react-icons/io5";
+import { useState, useEffect } from 'react';
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,11 +18,11 @@ const ScrollToTopButton = () => {
       setIsVisible(window.scrollY > 200 && !scrolledToBottom);
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility);
 
     // Clean up listener on unmount
     return () => {
-      window.removeEventListener("scroll", toggleVisibility);
+      window.removeEventListener('scroll', toggleVisibility);
     };
   }, []);
 
@@ -29,20 +30,20 @@ const ScrollToTopButton = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
   return (
     <button
       className={`fixed bottom-8 right-8 z-50 hover:bg-primary-700 bg-primary-600 duration-200 text-white p-3 rounded-full transition-opacity ${
-        isVisible ? "opacity-100" : "opacity-0"
+        isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       onClick={scrollToTop}
       style={{ opacity: isVisible ? 1 : 0 }}
-      title="Back to Top"
+      title='Back to Top'
     >
-      <IoChevronUp className="w-6 h-6" />
+      <FontAwesomeIcon icon={faChevronUp} className='w-6 h-6' />
     </button>
   );
 };

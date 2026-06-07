@@ -1,5 +1,4 @@
-import Assignments from "@/app/components/Dashboard/User/pages/Assignments";
-import React from "react";
+import Assignments from '@/app/components/Dashboard/User/pages/Assignments';
 
 const page = () => {
   return <Assignments />;

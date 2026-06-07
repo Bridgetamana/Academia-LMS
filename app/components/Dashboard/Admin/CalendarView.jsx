@@ -1,38 +1,39 @@
-"use client";
+'use client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 
-import React, { useState } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const CalendarView = () => {
   const [value, setValue] = useState(new Date());
 
   const formatDate = (date) => {
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
   };
 
   return (
-    <div className="flex flex-col gap-4 bg-white px-6 py-4 rounded-lg">
-      <span className="flex gap-6 justify-between items-center">
-        <h2 className="lg:text-xl font-semibold">{`${formatDate(value)}`}</h2>
+    <div className='flex flex-col gap-4 bg-white px-6 py-4 rounded-lg'>
+      <span className='flex gap-6 justify-between items-center'>
+        <h2 className='lg:text-xl font-semibold'>{`${formatDate(value)}`}</h2>
         <button
-          type="button"
-          className="p-2 rounded-full hover:bg-black/10 active:scale-95"
+          type='button'
+          className='p-2 rounded-full hover:bg-black/10 active:scale-95'
         >
-          <BsThreeDotsVertical className="w-5 h-5" />
+          <FontAwesomeIcon icon={faEllipsisVertical} className='w-5 h-5' />
         </button>
       </span>
       <Calendar
         onChange={setValue}
         showWeekNumbers
         value={value}
-        className="border-none! w-full!"
+        className='border-none! w-full!'
       />
     </div>
   );
@@ -40,7 +41,7 @@ const CalendarView = () => {
 
 export default CalendarView;
 
-// import React from "react";
+//
 // import dayjs from "dayjs";
 // import "dayjs/locale/zh-cn";
 // import { Calendar, Col, Radio, Row, Select, theme, Typography } from "antd";

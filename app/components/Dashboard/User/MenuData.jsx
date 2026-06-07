@@ -1,88 +1,116 @@
-import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  FiBookOpen,
-  FiBox,
-  FiCalendar,
-  FiLogOut,
-  FiSettings,
-} from "react-icons/fi";
-import { MdOutlineDashboardCustomize } from "react-icons/md";
-import { LuClipboardList } from "react-icons/lu";
+  faBookOpen,
+  faCalendar,
+  faArrowRightFromBracket,
+  faGear,
+  faTableColumns,
+  faClipboardList,
+} from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 export const sidebarData1 = [
   {
     label: (
-      <Link href="dashboard" className="text-base">
+      <Link href='dashboard' className='text-base'>
         Dashboard
       </Link>
     ),
     icon: (
-      <MdOutlineDashboardCustomize className=" font-bold text-[#7C8493] w-5 h-5" />
+      <FontAwesomeIcon
+        icon={faTableColumns}
+        className=' font-bold text-[#7C8493] w-5 h-5'
+      />
     ),
-    key: "dashboard",
+    key: 'dashboard',
   },
   {
     label: (
-      <Link href="courses" className="text-base">
+      <Link href='courses' className='text-base'>
         Courses
       </Link>
     ),
-    icon: <FiBookOpen className=" font-bold text-[#7C8493] w-5 h-5" />,
-    key: "courses",
+    icon: (
+      <FontAwesomeIcon
+        icon={faBookOpen}
+        className=' font-bold text-[#7C8493] w-5 h-5'
+      />
+    ),
+    key: 'courses',
   },
   {
     label: (
-      <Link href="assignments" className="text-base">
+      <Link href='assignments' className='text-base'>
         Assignments
       </Link>
     ),
-    icon: <LuClipboardList className=" font-bold text-[#7C8493] w-5 h-5" />,
-    key: "assignments",
+    icon: (
+      <FontAwesomeIcon
+        icon={faClipboardList}
+        className=' font-bold text-[#7C8493] w-5 h-5'
+      />
+    ),
+    key: 'assignments',
   },
   {
     label: (
-      <Link href="calendar" className="text-base">
+      <Link href='calendar' className='text-base'>
         Calendar
       </Link>
     ),
-    icon: <FiCalendar className=" font-bold text-[#7C8493] w-5 h-5" />,
-    key: "calendar",
+    icon: (
+      <FontAwesomeIcon
+        icon={faCalendar}
+        className=' font-bold text-[#7C8493] w-5 h-5'
+      />
+    ),
+    key: 'calendar',
   },
   {
     label: (
-      <Link href="resources" className="text-base">
+      <Link href='resources' className='text-base'>
         Resources
       </Link>
     ),
-    icon: <FiBox className=" font-bold text-[#7C8493] w-5 h-5" />,
-    key: "resources",
+    icon: <FiBox className=' font-bold text-[#7C8493] w-5 h-5' />,
+    key: 'resources',
   },
 ];
 export const sidebarData2 = [
   {
     label: (
-      <Link href="settings" className="text-base">
+      <Link href='settings' className='text-base'>
         Settings
       </Link>
     ),
-    icon: <FiSettings className=" font-bold text-[#7C8493] w-5 h-5" />,
-    key: "settings",
+    icon: (
+      <FontAwesomeIcon
+        icon={faGear}
+        className=' font-bold text-[#7C8493] w-5 h-5'
+      />
+    ),
+    key: 'settings',
   },
   {
     label: (
-      <Link href="/signin" className="text-base">
+      <Link href='/signin' className='text-base'>
         Log Out
       </Link>
     ),
-    icon: <FiLogOut className=" font-bold text-[#7C8493] w-5 h-5" />,
-    key: "logout",
+    icon: (
+      <FontAwesomeIcon
+        icon={faArrowRightFromBracket}
+        className=' font-bold text-[#7C8493] w-5 h-5'
+      />
+    ),
+    key: 'logout',
   },
 ];
 export const activeKeys = [
-  "dashboard",
-  "courses",
-  "assignments",
-  "calendar",
-  "resources",
-  "settings",
+  'dashboard',
+  'courses',
+  'assignments',
+  'calendar',
+  'resources',
+  'settings',
 ];

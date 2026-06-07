@@ -1,9 +1,8 @@
-import SignIn from "@/app/components/Auth/SignIn";
-import React from "react";
+import SignIn from '@/app/components/Auth/SignIn';
 
 export const metadata = {
-  title: "Sign In",
-  description: "Continue to your Account",
+  title: 'Sign In',
+  description: 'Continue to your Account',
 };
 
 const page = () => {

@@ -1,5 +1,4 @@
-import Resources from "@/app/components/Dashboard/User/pages/Resources";
-import React from "react";
+import Resources from '@/app/components/Dashboard/User/pages/Resources';
 
 const page = () => {
   return <Resources />;

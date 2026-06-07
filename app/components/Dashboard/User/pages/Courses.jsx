@@ -1,10 +1,11 @@
 'use client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Course1 from '@/public/assets/images/course-1.jpg';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaExclamationCircle } from 'react-icons/fa';
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -27,7 +28,7 @@ const Courses = () => {
 
   return (
     <>
-      <section className='max-w-[1640px] flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll'>
+      <section className='max-w-410 flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll'>
         <div>
           <h2 className='lg:text-xl font-semibold mb-4'>Courses</h2>
           <div className='flex justify-between items-center mb-4'>
@@ -36,7 +37,7 @@ const Courses = () => {
                 Search
               </label>
               <div className='relative'>
-                <div className='absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none'>
+                <div className='absolute inset-y-0 inset-s-0 flex items-center ps-3 pointer-events-none'>
                   <svg
                     className='w-3 h-3 text-gray-500'
                     aria-hidden='true'
@@ -105,7 +106,10 @@ const Courses = () => {
             </div>
           ) : (
             <div className='flex flex-col items-center justify-center h-48'>
-              <FaExclamationCircle className='text-gray-400 text-3xl mb-4' />
+              <FontAwesomeIcon
+                icon={faCircleExclamation}
+                className='text-gray-400 text-3xl mb-4'
+              />
               <p className='text-gray-400'>No courses found.</p>
             </div>
           )}

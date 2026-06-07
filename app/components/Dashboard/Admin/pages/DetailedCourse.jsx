@@ -48,7 +48,7 @@ const CourseDetails = () => {
 
   return (
     <>
-      <div className='max-w-[1640px] mx-auto px-6 py-4'>
+      <div className='max-w-410 mx-auto px-6 py-4'>
         <div className='bg-white rounded-lg shadow-md p-6'>
           <h2 className='text-2xl font-semibold mb-4'>{course.title}</h2>
 

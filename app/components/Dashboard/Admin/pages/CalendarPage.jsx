@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import EventCalendarView from '../EventCalendarView';
 
 const CalendarPage = () => {
@@ -45,7 +45,7 @@ const CalendarPage = () => {
 
   return (
     <>
-      <section className='max-w-[1640px] flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll'>
+      <section className='max-w-410 flex flex-col gap-6 px-6 py-4 pb-8 md:h-screen overflow-y-scroll'>
         <div>
           <h2>Calendar View</h2>
           <div className='container mx-auto p-4'>

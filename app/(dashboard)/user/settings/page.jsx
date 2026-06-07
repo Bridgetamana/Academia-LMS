@@ -1,5 +1,4 @@
-import Settings from "@/app/components/Dashboard/User/pages/Settings";
-import React from "react";
+import Settings from '@/app/components/Dashboard/User/pages/Settings';
 
 const page = () => {
   return <Settings />;

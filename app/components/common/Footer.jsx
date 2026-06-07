@@ -1,5 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
-import { FaGithub } from 'react-icons/fa6';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -25,7 +26,7 @@ const Footer = () => {
               rel='noopener noreferrer'
               className='text-text-muted hover:text-text-main'
             >
-              <FaGithub className='w-5 h-5' />
+              <FontAwesomeIcon icon={faGithub} className='w-5 h-5' />
             </Link>
           </div>
         </div>

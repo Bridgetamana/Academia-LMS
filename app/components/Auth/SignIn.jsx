@@ -36,7 +36,7 @@ const SignIn = () => {
       const result = await handleSignIn(formData.email, formData.password);
 
       if (result.success) {
-        let redirectUser = '/user/dashboard';
+        let redirectUser = '/student/dashboard';
         if (result.user.role === 'educator') {
           if (!result.user.academies || result.user.academies.length === 0) {
             redirectUser = '/onboarding';
